@@ -2,12 +2,30 @@
 
 ## Identified Problem or Need
 
-Replace this text with a clearly stated problem or need that exists that your project will attempt to solve / fulfil.
+At Navy Cadets each week we have certian 'parade roles' that need to be fufilled. The problem is that it is quite difficult to:
+- Track who has done what so roles can be allocated / chosen by people fairly
+- Let everyone know if there's a special role that needs to be done this week
+- Quickly know who is doing what this current week
 
 
 ## End-User Requirements
 
-Replace this text with a description of your typical end-users and their specific needs / expectations / requirements.
+The end users for this website would be everyone that attends the local Navy Cadet unit. This can be split into two main categories of end users, each with different expectations and requirements of the site:
+
+**Junior Rates**
+
+- Have an indivudual login
+- Expect an easy and obvious to use interface that showing which roles are free or taken (and who by) for the current and next week
+- Need a way to easily accept a role for the current or next week
+- Can see their stats over the past term i.e. how many times they've done each role
+
+**Seniors Rates and Officers**
+
+- Have an indivudual login (with admin privelages associated)
+- The interface doesn't have to be basic or obvious but they do expect it to be straightforward and uncluttered
+- All of the above requirements for junior rates PLUS:
+- The ability to see a chart / graph / figure of some kind showing who is 'pulling their load' over the term with respect to accepting roles
+- The ability to assign people roles
 
 
 ## Proposed Solution
