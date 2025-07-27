@@ -23,6 +23,7 @@ The end users for this website would be everyone that attends the local Navy Cad
 - Expect an obvious and easy-to-use interface that showing which roles are free or taken (and who by) for the current and next week. This interface will mostly be used on mobile phones but must still be desktop compatible
 - Need a way to easily accept a role for the current or next week
 - Need an obvious way to see if when they've been allocated a role
+- Should be able to see an overview / description of each role in case they've forgotten
 - Can see their stats over the past term i.e. how many times they've done each role
 
 **Seniors Rates and Officers**
@@ -30,6 +31,7 @@ The end users for this website would be everyone that attends the local Navy Cad
 - All of the above needs for Junior rates (everyone does parade roles, not just junior rates), plus:
 - The ability to see a chart / graph / figure of some kind showing who is 'pulling their load' over the term with respect to fulfilling roles
 - The ability to assign people roles
+- The ability to add, edit, and remove roles - though the roles are the same each week, we might make changes to the parade format two or three times a year, meaning the roles would have to be changed.
 
 
 ## Proposed Solution
