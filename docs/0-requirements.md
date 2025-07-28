@@ -20,7 +20,7 @@ The end users for this website would be everyone that attends the local Navy Cad
 **Junior Rates**
 
 - Have an individual login
-- Expect an obvious and easy-to-use interface that showing which roles are free or taken (and who by) for the current and next week. This interface will mostly be used on mobile phones but must still be desktop compatible
+- Expect an obvious, clean, and easy-to-use interface that showing which roles are free or taken (and who by) for the current and next week. This interface will mostly be used on mobile phones but must still be desktop compatible
 - Need a way to easily accept a role for the current or next week
 - Need an obvious way to see if when they've been allocated a role
 - Should be able to see an overview / description of each role in case they've forgotten
@@ -49,9 +49,41 @@ A database-driven web application that meets the above needs by having:
 
 # Relevant Implications
 
-## NAME OF IMPLICATION 1
+## Accessiblity
 
-Replace this text with a clear explanation of what the implication means.
+Accesibility means ensuring my website is availiable to, and can be used by, all end-users, regardless of their abilities. 
+
+### Relevance to the System
+
+Everyone that uses this site needs to be able to do so easily; if some people arenn't able to use my site (e.g. they can't read low contrast text or have an old phone), then it won't be able to serve it's purpose - to make cadets easier for *everyone*. It would also be borderline discriminatory, as everyone should be able to use my website, regardless of accessibility concerns.
+
+### Impact / Considerations
+
+To ensure my website is accessible to all my end-users, I need to make my website function properly on all devices - mobile phones and computers - of all screen sizes. This may be a responsive, mobile-first design, or I may have seperate layouts for the desktop and mobile versions. I also need to ensure the content of my site is viewable and usable by everyone - this will include:
+- Selecting a good colour scheme to ensure that people with colour-blindness or impaired vision can read the text,
+- Selecting a readable font and font size to make it readable on any device,
+- Providing alt text for images to ensure that users with a screen reader can interact properly,
+- Making UI components like buttons appropriately sized and easily clickable on all devices and screen sizes.
+
+
+
+## Functionality
+
+Functionality means ensuring my website works as intended, as expected, and ultimately serves my end-users.
+
+### Relevance to the System
+
+My website's design needs to be functional for both of my end-user groups - junior rates will expect it to 'just work' easily and without bugs or issues; anything buggy or unexpected will confuse them and ultimately void the purpose of my site, which is to make parade allocations easier for everyone. The same goes for the senior rates and officers - they need the interface for allocating roles and tracking people's work to be simply and functional, else they'll simply go back to the old system.
+
+### Impact / Considerations
+
+Making my website functional will involve iterative testing and feedback-gathering from both of my end-user groups. I will repeat the process of making changes and gathering feedback throughout the development of my site until the end of my third sprint, when I'll have a final design. I will need to evaluate the functionality of this design against my end users' wants and needs, ensuring my site is logical and bug-free.
+
+
+
+## Ethics
+
+Ethics means ensuring my website is appropriate and can't cause harm to my end-users.
 
 ### Relevance to the System
 
@@ -59,36 +91,7 @@ Replace this text with an explanation of why the implication is relevant to this
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
-
-
-
-## NAME OF IMPLICATION 2
-
-Replace this text with a clear explanation of what the implication means.
-
-### Relevance to the System
-
-Replace this text with an explanation of why the implication is relevant to this particular project.
-
-### Impact / Considerations
-
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
-
-
-
-## NAME OF IMPLICATION 3
-
-Replace this text with a clear explanation of what the implication means.
-
-### Relevance to the System
-
-Replace this text with an explanation of why the implication is relevant to this particular project.
-
-### Impact / Considerations
-
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
-
+I need to consider how my website could be abused to do harm - while the stakes aren't especially high, the outcomes my site creates should be fair for everyone - it wouldn't be fair if it resulted in the same person doing the same role every week. I might consider adding a warning when allocating the same person for the same role for multiple weeks in a row. I also need to make sure the personal statistics page doesn't 'put down' my users for not doing enough work - even when they're not pulling their load.
 
 
 ## NAME OF IMPLICATION 4
@@ -105,17 +108,19 @@ Replace this text with an explanation of what you will need to consider moving f
 
 
 
-## NAME OF IMPLICATION 5
+## Usability
 
-Replace this text with a clear explanation of what the implication means.
+Usabulity is how easy to use my site will be for the end-user, without the need for help or guidance.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+It's important my end-users find navigating and operating my website to be easy - users will expect my site to follow established conventions (as described by Nielsen's usability heuristics), and if my website doesn't meet this expectation, my users will end up confused, bothered, and ultimately worse off than before my site.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
+A big part of making my website as usable as possible will come from the iterative design process: gathering feedback from both of my end-user groups, making appropriate changes, gathering more feedback, and so on.
+
+Maximising usability will also mean making sure my website follows Nielsen's usability heuristics. These heuristics are detailed below in the *User Experience (UX) Principles* section.
 
 
 ---
