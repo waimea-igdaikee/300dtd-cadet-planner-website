@@ -12,23 +12,40 @@ Develop a prototype that simulates the key functionality of the system, then tes
 
 ## Initial Database Design
 
-Replace this text with notes regarding the DB design.
+This is my inital design for my database. It has tables for users and tasks, and an allocations table to allow a 'many-to-many'-type relation betwen them. This allows many people to be allocated to a given role for a given week.
+All of the tables can have entries with data I think is relevant to the use case.
 
-![SCREENSHOT OF DB DESIGN](screenshots/example.png)
+![Initial database design showing 3 linked tables](screenshots/database0.png)
+
+I showed and explained this to some of the officers at my unit, and they raised some good points:
+> - Users will need a username and password to log in to the system
+> - Once roles have been allocated, people getting them done isn't an issue, so you don't need to track whether that role has been completed.
+> - Only one person can get allocated to a role each week, so the system you have to allocate multiple people to a task isn't neccesary.
+
+As such I've updated the users table to enable a login system, removed the 'done' bool from allocations, and removed 'user' from the conjoint primary key from allocations, as this system isn't needed. I've also changed 'dueDate' to 'date' - this is a small change but it reflects, as per the feedback, the change from thinking about role allocations as tasks to be completed to thinking about them as an entry of when something will happen / happened:
+
+![Database design with above changes](screenshots/database1.png)
+
 
 
 ### Required Data Input
 
-Replace this text with a description of what data will be input, and where / how it will be obtained.
+Data inputs depend on which end-user group the user is part of:
+
+- All users will be able to accept a parade role for a given week
+- Senior rates and officers will also be able to add, modify, and delete existing roles via forms.
 
 ### Required Data Output
 
-Replace this text with a description of the outputs for the system - what types of data will be displayed?
+- For the statistics pages, my site needs to show how many times that user as done each role in a logical format - perhaps a calender-heatmap-style display?
 
 ### Required Data Processing
 
-Replace this text with a description of how the data will be processed to achieve the desired output(s) - any processes / formulae?
+- Data will have to be grouped by week and sorted either alphabetically or in some custom order - whichever my end-users will find easiest.
 
+- New allocations will have to be made each week Wednesday at midnight - these will start with no user associated.
+
+- For the statistics pages, past records of when that user did each role will have to be proccessed to be displayed appropriately and logically.
 
 ---
 

@@ -66,7 +66,6 @@ To ensure my website is accessible to all my end-users, I need to make my websit
 - Making UI components like buttons appropriately sized and easily clickable on all devices and screen sizes.
 
 
-
 ## Functionality
 
 Functionality means ensuring my website works as intended, as expected, and ultimately serves my end-users.
@@ -80,31 +79,30 @@ My website's design needs to be functional for both of my end-user groups - juni
 Making my website functional will involve iterative testing and feedback-gathering from both of my end-user groups. I will repeat the process of making changes and gathering feedback throughout the development of my site until the end of my third sprint, when I'll have a final design. I will need to evaluate the functionality of this design against my end users' wants and needs, ensuring my site is logical and bug-free.
 
 
-
 ## Ethics
 
 Ethics means ensuring my website is appropriate and can't cause harm to my end-users.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+The main purpose of this site is for it to enable the allocation of parade roles in an easier, quicker, and notably, **fairer** way than presently. If my website isn't ethically sound - in other words, fair, then it won't achieve it's goal.
 
 ### Impact / Considerations
 
-I need to consider how my website could be abused to do harm - while the stakes aren't especially high, the outcomes my site creates should be fair for everyone - it wouldn't be fair if it resulted in the same person doing the same role every week. I might consider adding a warning when allocating the same person for the same role for multiple weeks in a row. I also need to make sure the personal statistics page doesn't 'put down' my users for not doing enough work - even when they're not pulling their load.
+I need to consider how my website could cause harm - while my site's stakes for abuse aren't especially high, the outcomes my it creates should be fair for everyone - it wouldn't be fair if it resulted in the same person doing the same role every week. I might consider adding a warning when allocating the same person for the same role for multiple weeks in a row. I also need to make sure the personal statistics page doesn't 'put down' my users for not doing enough work - even if they're not pulling their load.
 
 
-## NAME OF IMPLICATION 4
+## Aesthetics
 
-Replace this text with a clear explanation of what the implication means.
+Asthetics relate to how my site will look in terms of design.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+A clean, good-looking site will make for an appealing and overall easier experience for my end-users compared to one that has innapropriate colours and unneeded clutter.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
+I will need to consider and work with my end-users to choose the right colour scheme, fonts, and element positioning that maximise aesthetics while retaining proper usability and accessibility.
 
 
 
