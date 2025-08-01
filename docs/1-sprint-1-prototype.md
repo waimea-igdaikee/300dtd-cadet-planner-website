@@ -55,17 +55,15 @@ The first stage of prototyping was to explore how the UI might 'flow' between st
 
 This [Figma demo](https://www.figma.com/proto/rVOozVsAbJGSwktdN4QJWn/Cadet-Roles-App-Basic-Flow?node-id=0-1&t=2GvJXL3CwSX8vso3-1) shows the initial design for the UI 'flow':
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/rVOozVsAbJGSwktdN4QJWn/Cadet-Roles-App-Basic-Flow?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="350" height="550" src="https://embed.figma.com/proto/rVOozVsAbJGSwktdN4QJWn/Cadet-Roles-App-Basic-Flow?node-id=1-3&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3&embed-host=share" allowfullscreen></iframe>
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+I showed both my officers and junior rates the basic flow. They agreed that it seemed easy enough to use, though multiple people noted that buttons on the senior rates / officers page would be better off up in the nav bar:
 
-### Changes / Improvements
+![Flow demo with poorly positioned buttons](screenshots/flowButtons.png)
 
-Replace this text with notes any improvements you made as a result of the testing.
-
-*IMPROVED FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+This didn't come as a suprise, as the flow mockup is only meant to show flowing between pages. As this was the only criticism - and I can only get quality end-user feedback once per week - I don't feel the need to make a version two of my UI Flow mockup. In line with the above feedback, I'll move on to developing the UI layout for each page of my site.
 
 
 ---
@@ -74,15 +72,39 @@ Replace this text with notes any improvements you made as a result of the testin
 
 The next stage of prototyping was to develop the layout for each screen of the UI.
 
-This Figma demo shows the initial layout design for the UI:
+This [Figma demo](https://www.figma.com/proto/vGYBN6UJJcOTnVgUnrWYUR/Cadet-Roles-App-Prototype-Mockup-v1?node-id=2001-2&p=f&t=yRN5VznPcrYRBL8S-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2001%3A2) shows my initial layout design for my site's UI:
 
-*FIGMA PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="350" height="650" src="https://embed.figma.com/proto/vGYBN6UJJcOTnVgUnrWYUR/Cadet-Roles-App-Prototype-Mockup-v1?node-id=2021-46&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2001%3A2&embed-host=share" allowfullscreen></iframe>
+
+
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+I showed this UI prototype to both of my end user groups, and they had a few points of feedback:
+#### General feedback:
+> The dropdown menu is nice to use
+
+> There needs to be a way to un-allocate myself from a role in case I can no longer make it
+
+#### Senior rate / officer -specific feedback 
+> Selecting from a list for allocating someone to a role works here because you only have four cadets - but we have nearly 20. There needs to be a search, or maybe a way to filter by rank
+
+The 'filter by rank' idea brought up a conversation about whether the database needs to store rank information. Eventually we decided against it - for now at least - and to simply store rank information in the user's display name. I therefore need to add a way for users to edit their display name.
+
+> On the modify role description page, the many 'see descriptions' look ugly. I know we want this designed with mobile phones in mind, but perhaps it could display a preview of the description instead of 'see description'.
+
+The above point is in reference to this page of the design:
+
+![Alt text](screenshots/manyDescriptions.png)
 
 ### Changes / Improvements
+
+Based on the above end-user feedback, I have updated my UI by adding:
+
+- [ ] A way to un-allocate yourself / the current person (for senior rates / officers)
+- [x] A search box for people's names when seniors rates / officers are allocating someone a role
+- [ ] Confirmation messages when alocating a role to self / someone else
+- [ ] An improvement on the vertical stack of *see description*s
 
 Replace this text with notes any improvements you made as a result of the testing.
 
@@ -102,6 +124,8 @@ This Figma demo shows the UI with refinements applied:
 ### Testing
 
 Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+
+> The site needs some life to it. It could do with colour and maybe a different font.
 
 ### Changes / Improvements
 

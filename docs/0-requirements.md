@@ -98,7 +98,7 @@ Asthetics relate to how my site will look in terms of design.
 
 ### Relevance to the System
 
-A clean, good-looking site will make for an appealing and overall easier experience for my end-users compared to one that has innapropriate colours and unneeded clutter.
+A clean, good-looking site will make for an appealing and overall easier-to-use experience for my end-users compared to one that has innapropriate colours and unneeded clutter.
 
 ### Impact / Considerations
 
@@ -112,54 +112,53 @@ Usabulity is how easy to use my site will be for the end-user, without the need 
 
 ### Relevance to the System
 
-It's important my end-users find navigating and operating my website to be easy - users will expect my site to follow established conventions (as described by Nielsen's usability heuristics), and if my website doesn't meet this expectation, my users will end up confused, bothered, and ultimately worse off than before my site.
+It's important my end-users find navigating and operating my website to be easy - users will expect my site to follow established conventions (as described by Nielsen's usability heuristics), and if my website doesn't meet this expectation, my users will end up confused, bothered, and ultimately worse off than before my using site.
 
 ### Impact / Considerations
 
 A big part of making my website as usable as possible will come from the iterative design process: gathering feedback from both of my end-user groups, making appropriate changes, gathering more feedback, and so on.
 
-Maximising usability will also mean making sure my website follows Nielsen's usability heuristics. These heuristics are detailed below in the *User Experience (UX) Principles* section.
+Maximising usability will involve like making sure my website follows Nielsen's usability heuristics. These heuristics are detailed below in the *User Experience (UX) Principles* section.
 
 
 ---
 
 # User Experience (UX) Principles
 
-## NAME OF UX PRINCIPLE 1
+## Consistency and Standards
 
-Replace this text with a clear explanation of what the principle means.
-
-### Relevance to the System
-
-Replace this text with an explanation of why the principle is relevant to this particular project.
-
-### Impact / Considerations
-
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
-
-
-## NAME OF UX PRINCIPLE 2
-
-Replace this text with a clear explanation of what the principle means.
+Consistency and Standards means sticking to accepted conventions for UI elements and layout where possible.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the principle is relevant to this particular project.
+It's important my end-users find navigating and operating my website straightforward - users will expect my site to follow established conventions, and if my website doesn't meet this expectation, my users will end up confused, bothered, and ultimately worse off than before using my site.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
+For my site, consistency and standards will look like having the navigation bar at the top and using standard icons, like 3 stacked lines for the hamburger menu.
 
 
-## NAME OF UX PRINCIPLE 3
+## Error Prevention
 
-Replace this text with a clear explanation of what the principle means.
+Error Prevention involves stopping users from making errors where possible.
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the principle is relevant to this particular project.
+It's important my end-users aren't able to make mistakes - this site exists to make parade allocations easier, and if it's easy for users to make errors, my website won't be able to fulfill it's purpose.
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
+I need to ensure that whenever my users commit to an action, for example, allocating or removing themselves from a role, that some form of confirmation message is shown to give them a way out of any misclicks or typos.
 
+
+## Aesthetic and Minamalist Design
+
+Aesthetic and Minimalis Design is about keeping the UI as simple as possible - only showing the necessary information for the current user action, and not overwhelming the user with useless information.
+
+### Relevance to the System
+
+An aesthetic and minimalist design will make for an appealing and easy-to-use experience for my end-users, compared to if my design had unnecessary clutter.
+
+### Impact / Considerations
+
+I need to make sure via the iterative feedback process that my site has a simple design that display only what is relevant and necessary - for both junior and senior / officer rates.

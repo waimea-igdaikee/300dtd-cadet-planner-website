@@ -7,7 +7,7 @@ by Indiana Daikee
 
 ## Project Description
 
-At Navy Cadets, we have parade roles that need to be fulfilled by different people each week. This database-driven web application enables that with the following features:
+At Navy Cadets, we have parade roles that need to be fulfilled by different people each week. This database-driven web application with the following features:
 
 - Individual user account login, with different permissions depending on rank
 - Feature 2 here
@@ -21,6 +21,7 @@ At Navy Cadets, we have parade roles that need to be fulfilled by different peop
 ## Project Links
 
 - [GitHub repo for the project](https://github.dev/waimea-igdaikee/300dtd-cadet-planner-website/)
+- [Project documentation](https://waimea-igdaikee.github.io/300dtd-cadet-planner-website/)
 - [Live web app](https://...)
 
 
