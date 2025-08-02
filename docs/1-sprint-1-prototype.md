@@ -74,7 +74,7 @@ The next stage of prototyping was to develop the layout for each screen of the U
 
 This [Figma demo](https://www.figma.com/proto/vGYBN6UJJcOTnVgUnrWYUR/Cadet-Roles-App-Prototype-Mockup-v1?node-id=2001-2&p=f&t=yRN5VznPcrYRBL8S-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2001%3A2) shows my initial layout design for my site's UI:
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="350" height="650" src="https://embed.figma.com/proto/vGYBN6UJJcOTnVgUnrWYUR/Cadet-Roles-App-Prototype-Mockup-v1?node-id=2021-46&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2001%3A2&embed-host=share" allowfullscreen></iframe>
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="350" height="650" src="https://embed.figma.com/proto/vGYBN6UJJcOTnVgUnrWYUR/Cadet-Roles-App-Prototype-Mockup-v1?content-scaling=fixed&kind=proto&node-id=2001-2&page-id=0%3A1&scaling=scale-down&starting-point-node-id=2001%3A2&embed-host=share" allowfullscreen></iframe>
 
 
 
@@ -86,7 +86,7 @@ I showed this UI prototype to both of my end user groups, and they had a few poi
 
 > There needs to be a way to un-allocate myself from a role in case I can no longer make it
 
-#### Senior rate / officer -specific feedback 
+#### Senior rate- / officer-specific feedback 
 > Selecting from a list for allocating someone to a role works here because you only have four cadets - but we have nearly 20. There needs to be a search, or maybe a way to filter by rank
 
 The 'filter by rank' idea brought up a conversation about whether the database needs to store rank information. Eventually we decided against it - for now at least - and to simply store rank information in the user's display name. I therefore need to add a way for users to edit their display name.
@@ -95,25 +95,44 @@ The 'filter by rank' idea brought up a conversation about whether the database n
 
 The above point is in reference to this page of the design:
 
-![Alt text](screenshots/manyDescriptions.png)
+![Column of 'description'](screenshots/manyDescriptions.png)
 
 ### Changes / Improvements
 
 Based on the above end-user feedback, I have updated my UI by adding:
 
-- [ ] A way to un-allocate yourself / the current person (for senior rates / officers)
+- [x] A way to un-allocate yourself / the current person (for senior rates / officers)
 - [x] A search box for people's names when seniors rates / officers are allocating someone a role
-- [ ] Confirmation messages when alocating a role to self / someone else
-- [ ] An improvement on the vertical stack of *see description*s
+<!-- - [ ] Confirmation messages when alocating a role to self / someone else -->
+- [x] An improvement on the vertical stack of *see description*s
 
 Replace this text with notes any improvements you made as a result of the testing.
 
-*FIGMA IMPROVED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="350" height="650" src="https://embed.figma.com/proto/JtkNGGN07Hv2EOFoRztA5h/Cadet-Roles-App-Prototype-Mockup-v2?node-id=2001-2&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2001%3A2&embed-host=share" allowfullscreen></iframe>
 
+I showed this improved UI design to both end user-groups and this was their feedback:
+
+#### Junior Rate-Specific Feedback
+> The un-allocate 'X' button makes sense and is in a good spot
+
+> I know the website isn't meant to be fun but it needs some life to it. Perhaps some colour and a different font?
+
+### Senior Rate- / Officer-Specific Feedback
+
+> The changes pertaining to role allocation are all good. I'm not sure if it's your intention or if it will work in practice but having the search act as a filter for names would be ideal.
+Note that they were also happy with the un-allocate 'X' button - I showed them the one on the junior rate page as due to figma limitations I couldn't make it work with the person selection on the senior rate / officer page.
+
+> The new role description preview (image below) is better, but I just want a way to see the entire description without clicking anything.
+
+![Column of description previews](screenshots\descriptionPreviews.png)
+
+I asked my commanding officer what colours and fonts he wanted the site to have (he *is* the boss) and he said "Suprise me." For my next iteration, I will add colours and possibly change the font, keeping somewhat within a Navy theme.
 
 ---
 
 ## Refined UI Prototype
+
+<!-- Make each role show a paragraph description under the title for this revision -->
 
 Having established the layout of the UI screens, the prototype was refined visually, in terms of colour, fonts, etc.
 
@@ -125,7 +144,7 @@ This Figma demo shows the UI with refinements applied:
 
 Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
 
-> The site needs some life to it. It could do with colour and maybe a different font.
+
 
 ### Changes / Improvements
 

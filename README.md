@@ -22,7 +22,7 @@ At Navy Cadets, we have parade roles that need to be fulfilled by different peop
 
 - [GitHub repo for the project](https://github.dev/waimea-igdaikee/300dtd-cadet-planner-website/)
 - [Project documentation](https://waimea-igdaikee.github.io/300dtd-cadet-planner-website/)
-- [Live web app](https://...)
+- [Live web app](https://waimea-igdaikee.github.io/300dtd-cadet-planner-website/)
 
 
 ---
