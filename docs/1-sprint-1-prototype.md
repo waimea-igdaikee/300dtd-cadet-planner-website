@@ -59,11 +59,13 @@ This [Figma demo](https://www.figma.com/proto/rVOozVsAbJGSwktdN4QJWn/Cadet-Roles
 
 ### Testing
 
-I showed both my officers and junior rates the basic flow. They agreed that it seemed easy enough to use, though multiple people noted that buttons on the senior rates / officers page would be better off up in the nav bar:
+I showed both my officers and junior rates the basic flow. They noted that there actually isn't any way to see a role's description from the homne page, so I'll need to add that. Otherwise, they agreed that it seemed easy enough to use, though multiple people noted that buttons on the senior rates / officers page would be better off up in the nav bar:
 
 ![Flow demo with poorly positioned buttons](screenshots/flowButtons.png)
 
-This didn't come as a suprise, as the flow mockup is only meant to show flowing between pages. As this was the only criticism - and I can only get quality end-user feedback once per week - I don't feel the need to make a version two of my UI Flow mockup. In line with the above feedback, I'll move on to developing the UI layout for each page of my site.
+This navbar comment didn't come as a suprise, as the flow mockup is only meant to show flowing between pages.
+
+As these were the only criticisms - and I can only get quality end-user feedback once per week - I don't feel the need to make a version two of my UI Flow mockup. In line with the above feedback, I'll move on to developing the UI layout for each page of my site.
 
 
 ---
@@ -86,6 +88,12 @@ I showed this UI prototype to both of my end user groups, and they had a few poi
 
 > There needs to be a way to un-allocate myself from a role in case I can no longer make it
 
+> The font size is mismatched badly on the role allocation tables
+
+> I didn't realise that you could click roles to see the description
+
+This last feedback brings up a good point about the relevant implication of **usability** - *how easy to use my site is for the end-user, without the need for help or guidance*. Even though I thought the underlined text made it clear it was a link that could be followed, not all my end users realised that - and ultimately, that's what matters. I will address this by adding text saying 'click for info.' This, combined with the underline, should make it clear that it is a link the user can follow.
+
 #### Senior rate- / officer-specific feedback 
 > Selecting from a list for allocating someone to a role works here because you only have four cadets - but we have nearly 20. There needs to be a search, or maybe a way to filter by rank
 
@@ -97,16 +105,16 @@ The above point is in reference to this page of the design:
 
 ![Column of 'description'](screenshots/manyDescriptions.png)
 
+> I think it would be better to have every role's description on one page for everyone to view, that way they could understand all the roles at once. Could you make it automatically highlight the role the user clicked on, though?
+
 ### Changes / Improvements
 
-Based on the above end-user feedback, I have updated my UI by adding:
+Based on the above end-user feedback, I have updated my UI by:
 
-- [x] A way to un-allocate yourself / the current person (for senior rates / officers)
-- [x] A search box for people's names when seniors rates / officers are allocating someone a role
-<!-- - [ ] Confirmation messages when alocating a role to self / someone else -->
-- [x] An improvement on the vertical stack of *see description*s
-
-Replace this text with notes any improvements you made as a result of the testing.
+- [x] Adding a way to un-allocate yourself / the current person (for senior rates / officers)
+- [x] Adding search box for people's names when seniors rates / officers are allocating someone a role
+- [x] Improving the vertical stack of *see description*s by showing a preview
+- [ ] Making it so that clicking on a role from the allocation home page shows all the roles instead of just one
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="350" height="650" src="https://embed.figma.com/proto/JtkNGGN07Hv2EOFoRztA5h/Cadet-Roles-App-Prototype-Mockup-v2?node-id=2001-2&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2001%3A2&embed-host=share" allowfullscreen></iframe>
 
@@ -115,18 +123,18 @@ I showed this improved UI design to both end user-groups and this was their feed
 #### Junior Rate-Specific Feedback
 > The un-allocate 'X' button makes sense and is in a good spot
 
-> I know the website isn't meant to be fun but it needs some life to it. Perhaps some colour and a different font?
+> I know the website doesn't need to be fun but it needs some life to it. Perhaps some colour and a different font?
 
 ### Senior Rate- / Officer-Specific Feedback
 
 > The changes pertaining to role allocation are all good. I'm not sure if it's your intention or if it will work in practice but having the search act as a filter for names would be ideal.
-Note that they were also happy with the un-allocate 'X' button - I showed them the one on the junior rate page as due to figma limitations I couldn't make it work with the person selection on the senior rate / officer page.
+Note that they were also happy with the un-allocate 'X' button - I showed them the one on the junior rate page as due to Figma limitations I couldn't make it work with the person selection on the senior rate / officer page.
 
 > The new role description preview (image below) is better, but I just want a way to see the entire description without clicking anything.
 
 ![Column of description previews](screenshots\descriptionPreviews.png)
 
-I asked my commanding officer what colours and fonts he wanted the site to have (he *is* the boss) and he said "Suprise me." For my next iteration, I will add colours and possibly change the font, keeping somewhat within a Navy theme.
+I asked my commanding officer what colours and fonts he wanted the site to have (he *is* the boss) and he said, "suprise me." For my next iteration, I will add colours and possibly change the font, keeping somewhat within a Navy theme.
 
 ---
 
@@ -134,7 +142,7 @@ I asked my commanding officer what colours and fonts he wanted the site to have 
 
 <!-- Make each role show a paragraph description under the title for this revision -->
 
-Having established the layout of the UI screens, the prototype was refined visually, in terms of colour, fonts, etc.
+Having established the layout of the UI screens, the last thing my prototype needs is colour and font.
 
 This Figma demo shows the UI with refinements applied:
 
