@@ -136,6 +136,16 @@ Note that they were also happy with the un-allocate 'X' button - I showed them t
 
 I asked my commanding officer what colours and fonts he wanted the site to have (he *is* the boss) and he said, "suprise me." For my next iteration, I will add colours and possibly change the font, keeping somewhat within a Navy theme.
 
+### Further Development
+
+Seeing as my commanding officer is happy with anything, I've sat down with a couple of junior rates and worked out some good colours and fonts to trial.
+
+I've done this by playing around with [Realtime Colours](https://www.realtimecolors.com/) and [Google Fonts](https://fonts.google.com):
+
+![Realtime Colours and Google Fonts](screenshots/coloursFonts.png)
+
+I've come up with a colour scheme and font choice to test on my next figma mockup.
+
 ---
 
 ## Refined UI Prototype
@@ -144,19 +154,23 @@ I asked my commanding officer what colours and fonts he wanted the site to have 
 
 Having established the layout of the UI screens, the last thing my prototype needs is colour and font.
 
-This Figma demo shows the UI with refinements applied:
+This Figma demo shows the colours and fonts applied:
 
-*FIGMA REFINED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="350" height="650" src="https://embed.figma.com/proto/6kvwIkLbuEJYMSiX5c1CHj/Cadet-Roles-App-Prototype-Mockup-v3?node-id=6009-71&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=6009%3A71&embed-host=share" allowfullscreen></iframe>
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+I showed this to most of my unit and the general consensus was that:
+- The new body text font (Roboto) is an improvement from before in terms of aesthetics and readability
+- The navy blue primary colour is aesthetically pleasing
+- The display font (DM Serif Display) doesn't feel right. It looks more like what a newspaper website would use
+- The peach-coloured background accents are *alright* but also don't quite feel right. I think I'm on the right track for this one - it might be as simple as lowering the saturation.
 
 
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+After having another good sit-down with my end-users, we've decided on some final (at least until the refinement stage of the project) fonts and colours. These can be seen in the below demo:
 
 *FIGMA IMPROVED REFINED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
 
