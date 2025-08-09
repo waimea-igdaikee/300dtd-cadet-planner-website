@@ -163,7 +163,7 @@ This Figma demo shows the colours and fonts applied:
 I showed this to most of my unit and the general consensus was that:
 - The new body text font (Roboto) is an improvement from before in terms of aesthetics and readability
 - The navy blue primary colour is aesthetically pleasing
-- The display font (DM Serif Display) doesn't feel right. It looks more like what a newspaper website would use
+- The display font (DM Serif Display) doesn't feel right. It looks more like something you'd see on a newpaper site.
 - The peach-coloured background accents are *alright* but also don't quite feel right. I think I'm on the right track for this one - it might be as simple as lowering the saturation.
 
 
@@ -172,12 +172,11 @@ I showed this to most of my unit and the general consensus was that:
 
 After having another good sit-down with my end-users, we've decided on some final (at least until the refinement stage of the project) fonts and colours. These can be seen in the below demo:
 
-*FIGMA IMPROVED REFINED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="350" height="650" src="https://embed.figma.com/proto/6dRkM1cbCwnDfbAjHtKBNV/Cadet-Roles-App-Prototype-Mockup-v4?node-id=6009-71&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=6009%3A71&embed-host=share" allowfullscreen></iframe>
 
 
 ---
 
 ## Sprint Review
 
-Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
-
+I'm quite happy with how my prototype has turned out, and where the project is sitting as a whole. Overall, the iterative design process has helped me develop a mockup that both me and my end-users are happy with. While some of the feedback was a little unspecific, this was to be expected, and I've been able to work around it to figure out exactly what my end-users want and need.
