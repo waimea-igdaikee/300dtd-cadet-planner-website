@@ -18,11 +18,11 @@ All of the tables can have entries with data I think is relevant to the use case
 ![Initial database design showing 3 linked tables](screenshots/database0.png)
 
 I showed and explained this to some of the officers at my unit, and they raised some good points:
-> - Users will need a username and password to log in to the system
+> - Users will need a username and password to log in to the system - and what about admins?
 > - Once roles have been allocated, people getting them done isn't an issue, so you don't need to track whether that role has been completed.
 > - Only one person can get allocated to a role each week, so the system you have to allocate multiple people to a task isn't neccesary.
 
-As such I've updated the users table to enable a login system, removed the 'done' bool from allocations, and removed 'user' from the conjoint primary key from allocations, as this system isn't needed. I've also changed 'dueDate' to 'date' - this is a small change but it reflects, as per the feedback, the change from thinking about role allocations as tasks to be completed to thinking about them as an entry of when something will happen / happened:
+As such I've updated the users table to enable a login system with optional admin permissions, removed the 'done' bool from allocations, and removed 'user' from the conjoint primary key from allocations, as this system isn't needed. I've also changed 'dueDate' to 'date' - this is a small change but it reflects, as per the feedback, the change from thinking about role allocations as tasks to be completed to thinking about them as an entry of when something will happen / happened:
 
 ![Database design with above changes](screenshots/database1.png)
 
@@ -111,10 +111,12 @@ The above point is in reference to this page of the design:
 
 Based on the above end-user feedback, I have updated my UI by:
 
-- [x] Adding a way to un-allocate yourself / the current person (for senior rates / officers)
-- [x] Adding search box for people's names when seniors rates / officers are allocating someone a role
-- [x] Improving the vertical stack of *see description*s by showing a preview
-- [ ] Making it so that clicking on a role from the allocation home page shows all the roles instead of just one
+- Adding a way to un-allocate yourself / the current person (for senior rates / officers)
+- Adding search box for people's names when seniors rates / officers are allocating someone a role
+- Improving the vertical stack of *see description*s by showing a preview
+- Making it so that clicking on a role from the allocation home page shows all the roles instead of just one
+# - Adding a way for users to edit their name. I have also allowed admins to edit people's names, and give/revoke their admin status.
+
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="350" height="650" src="https://embed.figma.com/proto/JtkNGGN07Hv2EOFoRztA5h/Cadet-Roles-App-Prototype-Mockup-v2?node-id=2001-2&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2001%3A2&embed-host=share" allowfullscreen></iframe>
 
