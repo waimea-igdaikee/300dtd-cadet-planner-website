@@ -18,11 +18,14 @@ All of the tables can have entries with data I think is relevant to the use case
 ![Initial database design showing 3 linked tables](screenshots/database0.png)
 
 I showed and explained this to some of the officers at my unit, and they raised some good points:
-> - Users will need a username and password to log in to the system - and what about admins?
-> - Once roles have been allocated, people getting them done isn't an issue, so you don't need to track whether that role has been completed.
-> - Only one person can get allocated to a role each week, so the system you have to allocate multiple people to a task isn't neccesary.
+> - Once roles have been allocated, people getting them done isn't an issue we face, so you don't need to track whether that role has been completed.
+> - What users that need to be admins?
+> - We only want one person allocated to a role each week, so the system you have to allocate multiple people to a role isn't neccesary.
+> - Roles are the same each week, so the roles table doesn't need to track the date.
 
-As such I've updated the users table to enable a login system with optional admin permissions, removed the 'done' bool from allocations, and removed 'user' from the conjoint primary key from allocations, as this system isn't needed. I've also changed 'dueDate' to 'date' - this is a small change but it reflects, as per the feedback, the change from thinking about role allocations as tasks to be completed to thinking about them as an entry of when something will happen / happened:
+## Updated Database Design
+
+As such, I've removed the `completed` boolean column from roles, added an `admin` column to users, removed `user` from the compound primary key in allocations, and removed the date stamp from roles:
 
 ![Database design with above changes](screenshots/database1.png)
 
