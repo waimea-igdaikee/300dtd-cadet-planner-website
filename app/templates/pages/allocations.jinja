@@ -1,0 +1,44 @@
+{#=====================================================
+  Home page
+  - Hero style greeting banner
+  - List of things passed in as 'things' array
+  - Form for adding a new thing
+
+  - List of allocations passed in as 'allocations' array
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Flask Demo
+
+{% endblock %}
+
+
+{% block content %}
+
+    <article>
+        <h2>Parade Roles This Week</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Role (click for info)</th>
+                    <th scope="col">Allocated to</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for allocation in allocations %}
+                    <tr>
+                        <th scope="row"><a href="/roles?role={{ allocation.role_id }}">{{ allocation.role_name }}</a></th>
+                        <th scope="row">{{ allocation.user }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+
+{% endblock %}
+

@@ -1,44 +1,44 @@
 {#=====================================================
-  Things page
-  - List of things passed in as 'things' array
+  Roles page
+  - List of roles passed in as 'roles' array
   - Form for adding a new thing
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
 
+{% set role_to_bold = request.args.get('role') | int %}
+
 
 {% block title %}
 
-    Flask Demo - All Things
+    Flask Demo - All Parade Roles
 
 {% endblock %}
 
 
 {% block content %}
 
-    <h1>Things...</h1>
+    <h1>Parade Roles</h1>
+
+    {% for role in roles %}
+
+        <article
+            {% if role_to_bold == role.id %}
+                class = "highlight"
+            {% endif %}
+        >
+
+            <h2>{{ role.name }}</h2>
+            <p>{{ role.description }}</p>
 
 
-    <article>
+        </article>
 
-        <ul>
-            {% for thing in things %}
+    {% else %} {# If no roles have been defined#}
 
-                <li>
-                    <a href="/thing/{{ thing.id }}">
-                        <strong>{{ thing.name }}</strong> - owned by {{ thing.owner }}
-                    </a>
-                </li>
+        <p>No parade roles exist at the moment.</p>
 
-            {% else %}
-
-                <p>None!</p>
-
-            {% endfor %}
-        </ul>
-
-    </article>
-
+    {% endfor %}
 
     {# Only show form if user is logged in #}
     {% if session.user_id %}

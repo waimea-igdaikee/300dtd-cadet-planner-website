@@ -29,44 +29,68 @@ init_datetime(app)  # Handle UTC dates in timestamps
 
 
 #-----------------------------------------------------------
-# Home page route
+# User login page route
 #-----------------------------------------------------------
 @app.get("/")
-def index():
-    return render_template("pages/home.jinja")
+def login_form():
+    return render_template("pages/login.jinja")
+
+#-----------------------------------------------------------
+# Allocations page route
+#-----------------------------------------------------------
+@app.get("/allocations")
+@login_required
+def allocations():
+    with connect_db() as client:
+        # Get all the allocations from the DB
+        sql = """
+            SELECT allocations.date,
+                   roles.id as role_id,
+                   roles.name as role_name,
+                   users.name as user
+
+            FROM allocations
+            JOIN roles ON allocations.role = roles.id
+            JOIN users on allocations.user = users.id
+        """
+        params=[]
+        result = client.execute(sql, params)
+        allocations = result.rows
+
+        # And show them on the page
+        return render_template("pages/allocations.jinja", allocations=allocations)
 
 
 #-----------------------------------------------------------
 # About page route
 #-----------------------------------------------------------
 @app.get("/about/")
+@login_required
 def about():
     return render_template("pages/about.jinja")
 
 
 #-----------------------------------------------------------
-# Things page route - Show all the things, and new thing form
+# Roles page route
 #-----------------------------------------------------------
-@app.get("/things/")
-def show_all_things():
+@app.get("/roles/")
+@login_required
+def show_all_roles():
     with connect_db() as client:
         # Get all the things from the DB
         sql = """
-            SELECT things.id,
-                   things.name,
-                   users.name AS owner
+            SELECT *
 
-            FROM things
-            JOIN users ON things.user_id = users.id
+            FROM roles
 
-            ORDER BY things.name ASC
+            ORDER BY roles.name ASC
         """
         params=[]
         result = client.execute(sql, params)
-        things = result.rows
+        roles = result.rows
 
         # And show them on the page
-        return render_template("pages/things.jinja", things=things)
+        return render_template("pages/roles.jinja", roles=roles)
 
 
 #-----------------------------------------------------------
@@ -165,14 +189,6 @@ def register_form():
 
 
 #-----------------------------------------------------------
-# User login form route
-#-----------------------------------------------------------
-@app.get("/login")
-def login_form():
-    return render_template("pages/login.jinja")
-
-
-#-----------------------------------------------------------
 # Route for adding a user when registration form submitted
 #-----------------------------------------------------------
 @app.post("/add-user")
@@ -238,13 +254,13 @@ def login_user():
                 session["user_name"] = user["name"]
                 session["logged_in"] = True
 
-                # And head back to the home page
+                # And to the allocations landing page
                 flash("Login successful", "success")
-                return redirect("/")
+                return redirect("/allocations")
 
         # Either username not found, or password was wrong
         flash("Invalid credentials", "error")
-        return redirect("/login")
+        return redirect("/")
 
 
 #-----------------------------------------------------------

@@ -34,7 +34,7 @@
     <header>
         <nav>
             <ul>
-                <li><strong><a href="/">Flask App Demo</a></strong></li>
+                <li><strong><a href="/">Parade Role Planner</a></strong></li>
             </ul>
 
             <ul>
@@ -44,9 +44,9 @@
 
                 {% endif %}
 
-                <li><a href="/">Home</a></li>
-                <li><a href="/things">Things</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="/allocations">Home</a></li>
+                <li><a href="/roles">Roles</a></li>
+                <li><a href="/stats">Personal Stats</a></li>
 
                 {% if session.user_id %}
 
@@ -54,7 +54,7 @@
 
                 {% else %}
 
-                    <li><a href="/login">Login</a></li>
+                    <li><a href="/">Login</a></li>
                     <li><a href="/register">Register</a></li>
 
                 {% endif %}
