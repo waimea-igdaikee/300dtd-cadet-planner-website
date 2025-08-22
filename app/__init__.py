@@ -51,7 +51,7 @@ def allocations():
 
             FROM allocations
             JOIN roles ON allocations.role = roles.id
-            JOIN users on allocations.user = users.id
+            LEFT JOIN users on allocations.user = users.id
         """
         params=[]
         result = client.execute(sql, params)
@@ -59,6 +59,29 @@ def allocations():
 
         # And show them on the page
         return render_template("pages/allocations.jinja", allocations=allocations)
+    
+#-----------------------------------------------------------
+# Route for processing a user allocating themselves
+#-----------------------------------------------------------
+@app.get("/allocate")
+@login_required
+def allocate():
+    # Retrieve the neccesary data to make the allocation query
+    user_id = session["user_id"]
+    date = request.args.get("date")
+    role = request.args.get("role")
+
+    with connect_db() as client:
+        # Update the DB
+        sql = """
+            UPDATE allocations
+            SET user = ?
+            WHERE date = ? AND role = ?
+        """
+
+        params=[user_id, date, role]
+        client.execute(sql, params)
+        return redirect("/allocations")
 
 
 #-----------------------------------------------------------

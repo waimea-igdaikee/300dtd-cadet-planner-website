@@ -33,7 +33,12 @@
                 {% for allocation in allocations %}
                     <tr>
                         <th scope="row"><a href="/roles?role={{ allocation.role_id }}">{{ allocation.role_name }}</a></th>
-                        <th scope="row">{{ allocation.user }}</th>
+                        {# If the user is null, show a button for the user to allocate themselves #}
+                        {% if allocation.user %}
+                            <th scope="row">{{ allocation.user }}</th>
+                        {% else %}
+                            <th scope="row"><a href="/allocate?date={{ allocation.date }}&role={{ allocation.role_id }}">Click to accept</a></th>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>
