@@ -17,6 +17,7 @@ from app.helpers.logging import init_logging
 from app.helpers.auth    import login_required
 from app.helpers.time    import init_datetime, utc_timestamp, utc_timestamp_now
 
+import datetime
 
 # Create the app
 app = Flask(__name__)
@@ -41,13 +42,18 @@ def login_form():
 @app.get("/allocations")
 @login_required
 def allocations():
+    # The user id is used to display which roles the user themselves is allocated
+    user_id = session["user_id"]
+    current_date = datetime.date.today()
+
     with connect_db() as client:
         # Get all the allocations from the DB
         sql = """
             SELECT allocations.date,
                    roles.id as role_id,
                    roles.name as role_name,
-                   users.name as user
+                   users.id as user_id,
+                   users.name as user_name
 
             FROM allocations
             JOIN roles ON allocations.role = roles.id
@@ -57,8 +63,25 @@ def allocations():
         result = client.execute(sql, params)
         allocations = result.rows
 
+
+        # Filter the dates into either this week, next week, or discard them
+        allocations_this_week = []
+        allocations_next_week = []
+        for allocation in allocations:
+            allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date()
+            date_delta = (allocation_date - current_date).days
+            if 0 <= date_delta < 7:
+                allocations_this_week.append(allocation)
+            elif 7 <= date_delta < 14:
+                allocations_next_week.append(allocation)
+
         # And show them on the page
-        return render_template("pages/allocations.jinja", allocations=allocations)
+        return render_template(
+            "pages/allocations.jinja",
+            allocations_this_week=allocations_this_week, 
+            allocations_next_week=allocations_next_week, 
+            user_id=user_id, 
+        )
     
 #-----------------------------------------------------------
 # Route for processing a user allocating themselves
@@ -67,7 +90,11 @@ def allocations():
 @login_required
 def allocate():
     # Retrieve the neccesary data to make the allocation query
-    user_id = session["user_id"]
+    remove = request.args.get("remove")
+    if remove == "1":
+        user_id = "NULL"
+    else:
+        user_id = session["user_id"]
     date = request.args.get("date")
     role = request.args.get("role")
 
@@ -82,15 +109,6 @@ def allocate():
         params=[user_id, date, role]
         client.execute(sql, params)
         return redirect("/allocations")
-
-
-#-----------------------------------------------------------
-# About page route
-#-----------------------------------------------------------
-@app.get("/about/")
-@login_required
-def about():
-    return render_template("pages/about.jinja")
 
 
 #-----------------------------------------------------------
@@ -114,6 +132,51 @@ def show_all_roles():
 
         # And show them on the page
         return render_template("pages/roles.jinja", roles=roles)
+    
+
+#-----------------------------------------------------------
+# Person Stats page route
+#-----------------------------------------------------------
+@app.get("/personal_stats")
+@login_required
+def personal_stats():
+    # The user id is used to display which roles the user themselves is allocated
+    user_id = session["user_id"]
+    current_date = datetime.date.today()
+
+    with connect_db() as client:
+        # Get all the allocations from the DB
+        sql = """
+            SELECT allocations.date,
+                   roles.id as role_id,
+                   roles.name as role_name,
+                   users.id as user_id,
+                   users.name as user_name
+
+            FROM allocations
+            JOIN roles ON allocations.role = roles.id
+            LEFT JOIN users on allocations.user = users.id
+        """
+        params=[]
+        result = client.execute(sql, params)
+        allocations = result.rows
+
+
+        # Filter the dates into either this week, next week, or discard them
+        allocations_this_week = []
+        allocations_next_week = []
+        for allocation in allocations:
+            allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date()
+            date_delta = (allocation_date - current_date).days
+            if 0 <= date_delta < 7:
+                allocations_this_week.append(allocation)
+            elif 7 <= date_delta < 14:
+                allocations_next_week.append(allocation)
+
+        # And show them on the page
+        return render_template(
+            "pages/personal_stats.jinja",
+        )
 
 
 #-----------------------------------------------------------
