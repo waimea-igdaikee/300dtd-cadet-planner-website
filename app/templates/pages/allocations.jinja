@@ -45,6 +45,10 @@
 
                                 <td scope="row">{{ allocation.user_name }}</td>
 
+                            {% elif session.admin %} {# If this role has no-one allocated to it and the user is admin, show a button to allocate someone - dropdown #}
+
+                                <td scope="row"><a href="/allocate?remove=0&date={{ allocation.date }}&role={{ allocation.role_id }}">Click to allocate</a></td>
+
                             {% else %} {# If this role has no-one allocated to it, show a button to allocate the current user #}
 
                                 <td scope="row"><a href="/allocate?remove=0&date={{ allocation.date }}&role={{ allocation.role_id }}">Click to accept</a></td>

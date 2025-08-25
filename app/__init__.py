@@ -251,28 +251,26 @@ def show_one_thing(id):
 # Route for adding a thing, using data posted from a form
 # - Restricted to logged in users
 #-----------------------------------------------------------
-@app.post("/add")
-@login_required
+@app.post("/role")
+@login_required # Perhaops I should make an @admin_req'd
 def add_a_thing():
     # Get the data from the form
     name  = request.form.get("name")
-    price = request.form.get("price")
+    description = request.form.get("description")
 
     # Sanitise the text inputs
     name = html.escape(name)
-
-    # Get the user id from the session
-    user_id = session["user_id"]
+    description=html.escape(description)
 
     with connect_db() as client:
         # Add the thing to the DB
-        sql = "INSERT INTO things (name, price, user_id) VALUES (?, ?, ?)"
-        params = [name, price, user_id]
+        sql = "INSERT INTO roles (name, description) VALUES (?, ?)"
+        params = [name, description]
         client.execute(sql, params)
 
         # Go back to the home page
-        flash(f"Thing '{name}' added", "success")
-        return redirect("/things")
+        flash(f"Role '{name}' added", "success")
+        return redirect("/roles")
 
 
 #-----------------------------------------------------------

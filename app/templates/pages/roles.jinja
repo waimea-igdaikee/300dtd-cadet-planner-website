@@ -28,7 +28,7 @@
             {% endif %}
         >
 
-            <h2>{{ role.name }}</h2>
+            <h3>{{ role.name }}</h3>
             <p>{{ role.description }}</p>
 
 
@@ -40,31 +40,31 @@
 
     {% endfor %}
 
-    {# Only show form if user is logged in #}
-    {% if session.user_id %}
+    {# Only show form if user is an admin #}
+    {% if session.admin %}
 
         <article>
 
-            <h3>Add a New Thing...</h3>
+            <h3>New Role</h3>
 
-            <form action="/add" method="POST">
+            <form action="/role" method="POST">
 
                 <input
                     type="text"
                     name="name"
-                    placeholder="Name of new thing"
+                    placeholder="Role Name"
                     required
                 >
 
-                <input
-                    type="number"
-                    name="price"
-                    min="0"
-                    placeholder="Price in dollars"
+                <textarea
+                    type="text"
+                    name="description"
+                    placeholder="Role Description"
+                    rows="3"
                     required
-                >
+                ></textarea>
 
-                <button>Add the Thing</button>
+                <button>Submit</button>
 
             </form>
 
