@@ -41,12 +41,17 @@
                 {% if session.user_name %}
 
                     <li>Hello, {{ session.user_name }}</li>
+                <li><a href="/allocations">Home</a></li>
+                <li><a href="/roles">Roles</a></li>
+                <li><a href="/stats_personal">Personal Stats</a></li>
 
                 {% endif %}
 
-                <li><a href="/allocations">Home</a></li>
-                <li><a href="/roles">Roles</a></li>
-                <li><a href="/personal_stats">Personal Stats</a></li>
+                {% if session.admin %}
+
+                    <li><a href="/stats_unit">Unit Stats</a></li>
+
+                {% endif %}
 
                 {% if session.user_id %}
 

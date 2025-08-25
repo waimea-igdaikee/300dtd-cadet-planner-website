@@ -138,9 +138,9 @@ def show_all_roles():
 # Person Stats page route
 # Filters previous allocations
 #-----------------------------------------------------------
-@app.get("/personal_stats")
+@app.get("/stats_personal")
 @login_required
-def personal_stats():
+def stats_personal():
     # The user id is used to display which roles the user themselves is allocated
     user_id = session["user_id"]
     current_date = datetime.date.today()
@@ -171,7 +171,47 @@ def personal_stats():
                 allocations_past.append(allocation)
 
         # And show them on the page
-        return render_template("pages/personal_stats.jinja", allocations_past=allocations_past)
+        return render_template("pages/stats_personal.jinja", allocations_past=allocations_past)
+    
+
+#-----------------------------------------------------------
+# Unit Stats page route
+# Filters previous allocations
+#-----------------------------------------------------------
+@app.get("/stats_unit")
+@login_required
+def stats_unit():
+    # The user id is used to display which roles the user themselves is allocated
+    user_id = session["user_id"]
+    current_date = datetime.date.today()
+
+    with connect_db() as client:
+        # Get all the current user's allocations from the DB
+        sql = """
+            SELECT allocations.date,
+                   roles.id as role_id,
+                   roles.name as role_name,
+                   users.id as user_id,
+                   users.name as user_name
+
+            FROM allocations
+            JOIN roles ON allocations.role = roles.id
+            LEFT JOIN users on allocations.user = users.id
+        """
+        params=[]
+        result = client.execute(sql, params)
+        allocations = result.rows
+
+
+        # Filter the dates into either this week, next week, or discard them
+        allocations_past = []
+        for allocation in allocations:
+            allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date() # Extract a date object from the string
+            if current_date > allocation_date:
+                allocations_past.append(allocation)
+
+        # And show them on the page
+        return render_template("pages/stats_unit.jinja", allocations_past=allocations_past)
 
 
 #-----------------------------------------------------------
@@ -333,6 +373,7 @@ def login_user():
                 # Yes, so save info in the session
                 session["user_id"]   = user["id"]
                 session["user_name"] = user["name"]
+                session["admin"] = user["admin"]
                 session["logged_in"] = True
 
                 # And to the allocations landing page
@@ -353,6 +394,7 @@ def logout():
     session.pop("user_id", None)
     session.pop("user_name", None)
     session.pop("logged_in", None)
+    session.pop("admin", None)
 
     # And head back to the home page
     flash("Logged out successfully", "success")
