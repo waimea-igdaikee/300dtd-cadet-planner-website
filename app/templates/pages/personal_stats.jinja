@@ -21,6 +21,9 @@
 
 <article>
     <h2>Your Statistics | Past 10 Weeks</h2>
+    {% for allocation in allocations_past %}
+      <li>{{ allocation }}</li>
+    {% endfor %}
 </article>
 
 {% endblock %}

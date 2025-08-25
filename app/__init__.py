@@ -47,7 +47,7 @@ def allocations():
     current_date = datetime.date.today()
 
     with connect_db() as client:
-        # Get all the allocations from the DB
+        # Get all the future allocations from the DB
         sql = """
             SELECT allocations.date,
                    roles.id as role_id,
@@ -136,6 +136,7 @@ def show_all_roles():
 
 #-----------------------------------------------------------
 # Person Stats page route
+# Filters previous allocations
 #-----------------------------------------------------------
 @app.get("/personal_stats")
 @login_required
@@ -145,38 +146,32 @@ def personal_stats():
     current_date = datetime.date.today()
 
     with connect_db() as client:
-        # Get all the allocations from the DB
+        # Get all the current user's allocations from the DB
         sql = """
             SELECT allocations.date,
                    roles.id as role_id,
                    roles.name as role_name,
-                   users.id as user_id,
-                   users.name as user_name
+                   users.id as user_id
 
             FROM allocations
             JOIN roles ON allocations.role = roles.id
             LEFT JOIN users on allocations.user = users.id
+            WHERE user_id = ?
         """
-        params=[]
+        params=[user_id]
         result = client.execute(sql, params)
         allocations = result.rows
 
 
         # Filter the dates into either this week, next week, or discard them
-        allocations_this_week = []
-        allocations_next_week = []
+        allocations_past = []
         for allocation in allocations:
-            allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date()
-            date_delta = (allocation_date - current_date).days
-            if 0 <= date_delta < 7:
-                allocations_this_week.append(allocation)
-            elif 7 <= date_delta < 14:
-                allocations_next_week.append(allocation)
+            allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date() # Extract a date object from the string
+            if current_date > allocation_date:
+                allocations_past.append(allocation)
 
         # And show them on the page
-        return render_template(
-            "pages/personal_stats.jinja",
-        )
+        return render_template("pages/personal_stats.jinja", allocations_past=allocations_past)
 
 
 #-----------------------------------------------------------
@@ -305,7 +300,7 @@ def add_user():
 
             # And let them know it was successful and they can login
             flash("Registration successful", "success")
-            return redirect("/login")
+            return redirect("/allocations")
 
         # Found an existing record, so prompt to try again
         flash("Username already exists. Try again...", "error")
