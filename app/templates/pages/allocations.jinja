@@ -33,6 +33,9 @@
                     {% for allocation in allocations %}
                         <tr>
                             <td scope="row"><a href="/roles?role={{ allocation.role_id }}">{{ allocation.role_name }}</a></td>
+
+                            {############# This needs a very big refacfor ################}
+
                             {% if allocation.user_id == user_id %} {# If this role is allocated to the current (non-admin) user, show a button to de-allocate themselves #}
 
                                 <td scope="row"><b>

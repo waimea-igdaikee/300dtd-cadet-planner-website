@@ -184,7 +184,7 @@ def stats_personal():
 
     with connect_db() as client:
         # Get all the current user's allocations from the DB.
-        sql = """
+        sql_allocations = """
             SELECT allocations.date,
                    roles.id as role_id,
                    roles.name as role_name,
@@ -196,16 +196,38 @@ def stats_personal():
             WHERE user_id = ?
         """
         params=[user_id]
-        result = client.execute(sql, params)
+        result = client.execute(sql_allocations, params)
         allocations = result.rows
 
 
-        # Filter the dates into either this week, next week, or discard them
-        allocations_past = []
+        # Get a list of all roles
+        sql_roles = """
+            SELECT roles.id as role_id,
+                   roles.name as role_name
+
+            FROM roles
+        """
+        params=[]
+        result = client.execute(sql_roles, params)
+        roles = result.rows
+
+
+        # Only include past allocations within the last 10 weeks
+
+
+        allocations_past_count = [0]*len(roles)
         for allocation in allocations:
             allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date() # Extract a date object from the string
-            if current_date > allocation_date:
-                allocations_past.append(allocation)
+            if current_date > allocation_date >= current_date - datetime.timedelta(weeks=10):
+                # Count how many times in the past 10 weeks this user has done this role
+                allocations_past_count[allocation["role_id"]-1] += 1
+
+        allocations_past = []
+        for role in roles:
+            allocations_past.append([role["role_name"], (allocations_past_count[role["role_id"]])])
+            
+
+        # Work out how many times each role
 
         # And show them on the page
         return render_template("pages/stats_personal.jinja", allocations_past=allocations_past)
