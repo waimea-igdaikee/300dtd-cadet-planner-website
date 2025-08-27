@@ -37,3 +37,7 @@
     background-color: var(--pico-text-selection-color);
 }
 
+.allocate_form {
+    display: flex !important;
+}
+

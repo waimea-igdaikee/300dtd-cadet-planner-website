@@ -48,7 +48,7 @@ def allocations():
 
     with connect_db() as client:
         # Get all the future allocations from the DB
-        sql = """
+        sql_allocations = """
             SELECT allocations.date,
                    roles.id as role_id,
                    roles.name as role_name,
@@ -60,8 +60,8 @@ def allocations():
             LEFT JOIN users on allocations.user = users.id
         """
         params=[]
-        result = client.execute(sql, params)
-        allocations = result.rows
+        result_allocations = client.execute(sql_allocations, params)
+        allocations = result_allocations.rows
 
 
         # Filter the dates into either this week, next week, or discard them
@@ -75,12 +75,25 @@ def allocations():
             elif 7 <= date_delta < 14:
                 allocations_next_week.append(allocation)
 
+        # Get all the users from the DB for the admin allocation dropdown menu
+        sql_users = """
+            SELECT users.id as id,
+                   users.name as name
+                
+            FROM users
+        """
+        params=[]
+        result_users = client.execute(sql_users, params)
+        users = result_users.rows
+        
+
         # And show them on the page
         return render_template(
             "pages/allocations.jinja",
             allocations_this_week=allocations_this_week, 
-            allocations_next_week=allocations_next_week, 
-            user_id=user_id, 
+            allocations_next_week=allocations_next_week,
+            users=users,
+            user_id=user_id
         )
     
 #-----------------------------------------------------------
@@ -97,6 +110,30 @@ def allocate():
         user_id = session["user_id"]
     date = request.args.get("date")
     role = request.args.get("role")
+
+    with connect_db() as client:
+        # Update the DB
+        sql = """
+            UPDATE allocations
+            SET user = ?
+            WHERE date = ? AND role = ?
+        """
+
+        params=[user_id, date, role]
+        client.execute(sql, params)
+        return redirect("/allocations")
+    
+
+#-----------------------------------------------------------
+# Route for processing an admin allocating a user
+#-----------------------------------------------------------
+@app.post("/allocation")
+@login_required # Perhaps I should make an @admin_req'd
+def allocate_admin():
+    # Get the data from the form
+    user_id  = request.form.get("user_id")
+    date = request.form.get("date")
+    role = request.form.get("role")
 
     with connect_db() as client:
         # Update the DB
@@ -146,7 +183,7 @@ def stats_personal():
     current_date = datetime.date.today()
 
     with connect_db() as client:
-        # Get all the current user's allocations from the DB
+        # Get all the current user's allocations from the DB.
         sql = """
             SELECT allocations.date,
                    roles.id as role_id,
@@ -155,7 +192,7 @@ def stats_personal():
 
             FROM allocations
             JOIN roles ON allocations.role = roles.id
-            LEFT JOIN users on allocations.user = users.id
+            JOIN users on allocations.user = users.id
             WHERE user_id = ?
         """
         params=[user_id]
@@ -196,7 +233,7 @@ def stats_unit():
 
             FROM allocations
             JOIN roles ON allocations.role = roles.id
-            LEFT JOIN users on allocations.user = users.id
+            JOIN users on allocations.user = users.id
         """
         params=[]
         result = client.execute(sql, params)
@@ -248,11 +285,11 @@ def show_one_thing(id):
 
 
 #-----------------------------------------------------------
-# Route for adding a thing, using data posted from a form
+# Route for adding a role, using data posted from a form
 # - Restricted to logged in users
 #-----------------------------------------------------------
 @app.post("/role")
-@login_required # Perhaops I should make an @admin_req'd
+@login_required # Perhaps I should make an @admin_req'd
 def add_a_thing():
     # Get the data from the form
     name  = request.form.get("name")
