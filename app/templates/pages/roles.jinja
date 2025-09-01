@@ -7,7 +7,7 @@
 {% extends 'pages/base.jinja' %}
 
 {% set role_to_bold = request.args.get('role') | int %}
-
+{% set role_to_edit = request.args.get('edit') | int %}
 
 {% block title %}
 
@@ -23,18 +23,52 @@
     {% for role in roles %}
 
         <article
+            {# If the user clicked on a role link on the allocations page, bold it for clarity #}
             {% if role_to_bold == role.id %}
                 class = "highlight"
             {% endif %}
         >
 
-            <h3>{{ role.name }}</h3>
-            <p>{{ role.description }}</p>
+            {# If the user is editing this role, replace it with a form#}
+            {% if role_to_edit == role.id %}
+                <form action="/role_edit" method="POST">
+
+                    <input
+                        type="text"
+                        name="name"
+                        value="{{ role.name }}"
+                        placeholder="Role Name"
+                        required
+                    >
+
+                    <textarea
+                        type="text"
+                        name="description"
+                        placeholder="Role Description"
+                        rows="3"
+                        required
+                    >{{ role.description }}</textarea>
+
+                    <input type="hidden" id="role" name="role" value="{{ role.id }}">
+
+                    <button>Submit</button>
+
+                </form>
+                <br>
+                <a href="/roles">Cancel</a>
+            {% else %}
+                <h3>{{ role.name }}</h3>
+                <p>{{ role.description }}</p>
+            {% endif %}
+
+            {% if session.admin and role.id != role_to_edit %} {# Don't show the edit button for a role already being edited#}
+                <a href="/roles?edit={{ role.id }}">Edit</a>
+            {% endif %}
 
 
         </article>
 
-    {% else %} {# If no roles have been defined#}
+    {% else %} {# If no roles have been defined #}
 
         <p>No parade roles exist at the moment.</p>
 
@@ -47,7 +81,7 @@
 
             <h3>New Role</h3>
 
-            <form action="/role" method="POST">
+            <form action="/role_new" method="POST">
 
                 <input
                     type="text"

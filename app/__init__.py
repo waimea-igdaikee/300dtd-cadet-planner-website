@@ -151,7 +151,7 @@ def allocate_admin():
 #-----------------------------------------------------------
 # Roles page route
 #-----------------------------------------------------------
-@app.get("/roles/")
+@app.get("/roles")
 @login_required
 def show_all_roles():
     with connect_db() as client:
@@ -169,6 +169,7 @@ def show_all_roles():
 
         # And show them on the page
         return render_template("pages/roles.jinja", roles=roles)
+    
     
 
 #-----------------------------------------------------------
@@ -310,9 +311,9 @@ def show_one_thing(id):
 # Route for adding a role, using data posted from a form
 # - Restricted to logged in users
 #-----------------------------------------------------------
-@app.post("/role")
+@app.post("/role_new")
 @login_required # Perhaps I should make an @admin_req'd
-def add_a_thing():
+def role_new():
     # Get the data from the form
     name  = request.form.get("name")
     description = request.form.get("description")
@@ -329,6 +330,40 @@ def add_a_thing():
 
         # Go back to the home page
         flash(f"Role '{name}' added", "success")
+        return redirect("/roles")
+    
+
+#-----------------------------------------------------------
+# Route for editing a role, using data posted from a form
+# - Restricted to logged in users
+#-----------------------------------------------------------
+@app.post("/role_edit")
+@login_required # Perhaps I should make an @admin_req'd
+def role_edit():
+    # Get the data from the form
+    name  = request.form.get("name")
+    description = request.form.get("description")
+    role = request.form.get("role")
+
+    # Sanitise the text inputs
+    name = html.escape(name)
+    description=html.escape(description)
+
+    with connect_db() as client:
+        # Add the thing to the DB
+        sql = """
+            UPDATE roles
+
+            SET name=?,
+                description=?
+
+            WHERE roles.id=?
+        """
+        params = [name, description, role]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"Role '{name}' updated", "success")
         return redirect("/roles")
 
 
