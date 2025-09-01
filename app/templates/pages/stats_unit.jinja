@@ -20,9 +20,9 @@
 {% block content %}
 
 <article>
-    <h2>Your Statistics | Past 10 Weeks</h2>
+    <h2>Unit Statistics | Past 10 Weeks</h2>
     {% for allocation in allocations_past %}
-      <li>{{ allocation }}</li>
+      <li>{{ allocation.date }} | {{ allocation.role_name }} | {{ allocation.user_name }}</li>
     {% endfor %}
 </article>
 

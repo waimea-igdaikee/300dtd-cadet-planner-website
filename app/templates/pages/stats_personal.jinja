@@ -21,8 +21,8 @@
 
 <article>
     <h2>Your Statistics | Past 10 Weeks</h2>
-    {% for allocation in allocations_past %}
-      <li>{{ allocation }}</li>
+    {% for role, count in allocations_count.items() %}
+      <li>{{ role }}: {{ count }}</li>
     {% endfor %}
 </article>
 

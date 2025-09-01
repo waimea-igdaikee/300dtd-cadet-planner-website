@@ -212,25 +212,25 @@ def stats_personal():
         roles = result.rows
 
 
-        # Only include past allocations within the last 10 weeks
-
-
-        allocations_past_count = [0]*len(roles)
+        # Filter the dates into either this week, next week, or discard them
+        allocations_past = []
         for allocation in allocations:
             allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date() # Extract a date object from the string
-            if current_date > allocation_date >= current_date - datetime.timedelta(weeks=10):
-                # Count how many times in the past 10 weeks this user has done this role
-                allocations_past_count[allocation["role_id"]-1] += 1
+            if current_date > allocation_date:
+                allocations_past.append(allocation)
 
-        allocations_past = []
+        # Count how many times each role has been done
+        # Initialise the dictionary
+        allocations_count = {}
         for role in roles:
-            allocations_past.append([role["role_name"], (allocations_past_count[role["role_id"]])])
-            
-
-        # Work out how many times each role
+            allocations_count[role["role_name"]] = 0
+        
+        # Count the allocations
+        for allocation in allocations_past:
+            allocations_count[allocation["role_name"]] += 1
 
         # And show them on the page
-        return render_template("pages/stats_personal.jinja", allocations_past=allocations_past)
+        return render_template("pages/stats_personal.jinja", allocations_count=allocations_count)
     
 
 #-----------------------------------------------------------
