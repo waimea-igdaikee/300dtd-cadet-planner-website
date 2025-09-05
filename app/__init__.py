@@ -33,7 +33,7 @@ init_datetime(app)  # Handle UTC dates in timestamps
 # User login page route
 #-----------------------------------------------------------
 @app.get("/")
-def login_form():
+def login():
     return render_template("pages/login.jinja")
 
 #-----------------------------------------------------------
@@ -43,7 +43,6 @@ def login_form():
 @login_required
 def allocations():
     # The user id is used to display which roles the user themselves is allocated
-    user_id = session["user_id"]
     current_date = datetime.date.today()
 
     with connect_db() as client:
@@ -93,7 +92,6 @@ def allocations():
             allocations_this_week=allocations_this_week, 
             allocations_next_week=allocations_next_week,
             users=users,
-            user_id=user_id
         )
     
 #-----------------------------------------------------------
@@ -146,6 +144,37 @@ def allocate_admin():
         params=[user_id, date, role]
         client.execute(sql, params)
         return redirect("/allocations")
+    
+
+#-----------------------------------------------------------
+# Route for instantiating all parade roles for this or next week
+#-----------------------------------------------------------
+@app.get("/allocations_create")
+@login_required
+def allocations_create():
+    # Retrieve the neccesary data to make the allocation query
+    week = int(request.args.get("week"))
+
+
+    # Calculate how many days away the coming `day 1` (tuesday) is
+    days_away = (1 - datetime.date.today().weekday() + 7) % 7
+    if week == 1:
+        days_away += 7 # Add a week if we are wanting the next tuesday after this tuesday
+
+    date_to_insert = datetime.date.today() + datetime.timedelta(days=days_away)
+    date_to_insert = date_to_insert.isoformat() # Convert to string
+    
+    with connect_db() as client:
+        # Update the DB
+        sql = """
+            INSERT INTO allocations (role, date, user)
+            SELECT roles.id, ?, NULL
+            FROM roles
+        """
+
+        params=[date_to_insert]
+        client.execute(sql, params)
+        return redirect("/allocations")
 
 
 #-----------------------------------------------------------
@@ -155,6 +184,34 @@ def allocate_admin():
 @login_required
 def show_all_roles():
     with connect_db() as client:
+        # Get all the things from the DB
+        sql = """
+            SELECT *
+
+            FROM roles
+
+            ORDER BY roles.name ASC
+        """
+        params=[]
+        result = client.execute(sql, params)
+        roles = result.rows
+
+        # And show them on the page
+        return render_template("pages/roles.jinja", roles=roles)
+    
+@app.get("/role_delete")
+@login_required # Should this have admin perms
+def role_delete():
+    role = int(request.args.get("role"))
+    with connect_db() as client:
+        # Get all the things from the DB
+        sql = """
+            DELETE FROM roles
+            WHERE id=?
+        """
+        params=[role]
+        client.execute(sql, params)
+
         # Get all the things from the DB
         sql = """
             SELECT *

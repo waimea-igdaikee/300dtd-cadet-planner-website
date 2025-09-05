@@ -19,75 +19,70 @@
 
 {% block content %}
 
-    {% for allocations, title in [(allocations_this_week, "This Week"), (allocations_next_week, "Next Week")] %}
+    {% for allocations, week in [(allocations_this_week, 0), (allocations_next_week, 1)] %}
         <article>
-            <h2>Parade Roles {{ title }}</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">Role (click for info)</th>
-                        <th scope="col">Allocated to</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for allocation in allocations %}
+            <h2>Parade Roles {{ "Next" if week else "This"}} Week</h2> {# Set the title appropriately#}
+            {% if allocations %} {# If this week has allocations for it #}
+                <table>
+                    <thead>
                         <tr>
-                            <td scope="row"><a href="/roles?role={{ allocation.role_id }}">{{ allocation.role_name }}</a></td>
-
-                            {############# This needs a very big refacfor ################}
-
-                            {% if allocation.user_id == user_id %} {# If this role is allocated to the current (non-admin) user, show a button to de-allocate themselves #}
-
-                                <td scope="row"><b>
-                                    {{ allocation.user_name }}
-                                    &nbsp;
-                                    <a href="/allocate?remove=1&date={{ allocation.date }}&role={{ allocation.role_id }}">X</a>
-                                </b></td>
-
-                            {% elif allocation.user_id and session.admin %} {# If this role is allocated to the current (non-admin) user, show a button to de-allocate themselves #}
-
-                            <td scope="row"><b>
-                                {{ allocation.user_name }}
-                                &nbsp;
-                                <a href="/allocate?remove=1&date={{ allocation.date }}&role={{ allocation.role_id }}">X</a>
-                            </b></td>
-
-                            {% elif allocation.user_id %} {# If this role has someone else allocated to it, show their name #}
-
-                                <td scope="row">{{ allocation.user_name }}</td>
-
-                            {% elif session.admin %} {# If this role has no-one allocated to it and the user is admin, show a form to allocate someone #}
+                            <th scope="col">Role (click for info)</th>
+                            <th scope="col">Allocated to</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for allocation in allocations %}
+                            <tr>
+                                <td scope="row"><a href="/roles?role={{ allocation.role_id }}">{{ allocation.role_name }}</a></td>
 
                                 <td scope="row">
-                                
-                                    <form class="allocate_form" action="/allocation" method="POST">
-                                        <label for="users">Allocate someone:</label>
-                                        <select name="user_id" id="user_id">
 
-                                            {% for user in users %}
-                                                <option value="{{ user.id }}">{{ user.name }}</option>
-                                            {% endfor %}
+                                {% if allocation.user_id %} {# If this role is allocated to someone #}
 
-                                        </select>
-                                        <input type="hidden" id="date" name="date" value="{{ allocation.date }}">
-                                        <input type="hidden" id="role" name="role" value="{{ allocation.role_id }}">
-                                        <button>Submit</button>
-                                    </form>
-                                    
+                                    {% if allocation.user_id == session.user_id %} {# If this role is allocated to the current user, bold their name #}
+                                        <b>{{ allocation.user_name }}</b>
+                                    {% else %}
+                                        {{ allocation.user_name }}
+                                    {% endif %}
+
+                                    {% if allocation.user_id == session.user_id or session.admin %} {# If the user has permission, show the de-allocate button#}
+                                        <b><a href="/allocate?remove=1&date={{ allocation.date }}&role={{ allocation.role_id }}">X</a></b>
+                                    {% endif %}
+
+                                {% else %} {# If this role is not allocated to anyone #}
+
+                                    {% if session.admin %} {# If user is admin, show a dropdown menu to allocate someone#}
+
+                                        <form class="allocate_form" action="/allocation" method="POST">
+                                            <label for="users">Allocate someone:</label>
+                                            <select name="user_id" id="user_id">
+
+                                                {% for user in users %}
+                                                    <option value="{{ user.id }}">{{ user.name }}</option>
+                                                {% endfor %}
+
+                                            </select>
+                                            <input type="hidden" id="date" name="date" value="{{ allocation.date }}">
+                                            <input type="hidden" id="role" name="role" value="{{ allocation.role_id }}">
+                                            <button>Allocate</button>
+                                        </form>
+
+                                    {% else %} {# For standard users, show a button to allocate themselves #}
+                                        <a href="/allocate?remove=0&date={{ allocation.date }}&role={{ allocation.role_id }}">Click to accept</a></td>
+                                    {% endif %}
+
+                                {% endif %}
                                 </td>
-
-                            {% else %} {# If this role has no-one allocated to it, show a button to allocate the current user #}
-
-                                <td scope="row"><a href="/allocate?remove=0&date={{ allocation.date }}&role={{ allocation.role_id }}">Click to accept</a></td>
-
-                            {% endif %}
-                        
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% elif session.admin %} {# If no roles exist for a given week, show a button to add them or a message depending on whether the user has admin #}
+                <a href="/allocations_create?week={{week}}" role="button">Add parade roles for {{ "next" if week else "this"}} week</a>
+            {% else %}
+                <p>No parade roles have been put up for {{ "next" if week else "this"}}.</p>
+            {% endif %}
         </article>
     {% endfor %}
-
 {% endblock %}
 

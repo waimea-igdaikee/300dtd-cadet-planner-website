@@ -10,9 +10,9 @@ Develop a bare-bones, working web application that provides the key functionalit
 
 ## Implemented Database Schema
 
-Replace this text with notes regarding the DB schema.
+This is the database schema I have implemented for the my MVP. As detailed in the Sprint 1 documentation, me and my stakeholders are still debating adding a rank field to the users table, as opposed to just storing the user's rank as part of their name.
 
-![SCREENSHOT OF DB SCHEMA](screenshots/example.png)
+![Implemented database schema](screenshots/database2.png)
 
 
 ---
