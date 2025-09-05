@@ -125,7 +125,7 @@ def allocate():
 #-----------------------------------------------------------
 # Route for processing an admin allocating a user
 #-----------------------------------------------------------
-@app.post("/allocation")
+@app.post("/allocate")
 @login_required # Perhaps I should make an @admin_req'd
 def allocate_admin():
     # Get the data from the form
@@ -182,9 +182,9 @@ def allocations_create():
 #-----------------------------------------------------------
 @app.get("/roles")
 @login_required
-def show_all_roles():
+def roles():
     with connect_db() as client:
-        # Get all the things from the DB
+        # Get all roles from the DB
         sql = """
             SELECT *
 
@@ -298,8 +298,6 @@ def stats_personal():
 @app.get("/stats_unit")
 @login_required
 def stats_unit():
-    # The user id is used to display which roles the user themselves is allocated
-    user_id = session["user_id"]
     current_date = datetime.date.today()
 
     with connect_db() as client:
@@ -330,38 +328,6 @@ def stats_unit():
         # And show them on the page
         return render_template("pages/stats_unit.jinja", allocations_past=allocations_past)
 
-
-#-----------------------------------------------------------
-# Thing page route - Show details of a single thing
-#-----------------------------------------------------------
-@app.get("/thing/<int:id>")
-def show_one_thing(id):
-    with connect_db() as client:
-        # Get the thing details from the DB, including the owner info
-        sql = """
-            SELECT things.id,
-                   things.name,
-                   things.price,
-                   things.user_id,
-                   users.name AS owner
-
-            FROM things
-            JOIN users ON things.user_id = users.id
-
-            WHERE things.id=?
-        """
-        params = [id]
-        result = client.execute(sql, params)
-
-        # Did we get a result?
-        if result.rows:
-            # yes, so show it on the page
-            thing = result.rows[0]
-            return render_template("pages/thing.jinja", thing=thing)
-
-        else:
-            # No, so show error
-            return not_found_error()
 
 
 #-----------------------------------------------------------
@@ -424,44 +390,20 @@ def role_edit():
         return redirect("/roles")
 
 
-#-----------------------------------------------------------
-# Route for deleting a thing, Id given in the route
-# - Restricted to logged in users
-#-----------------------------------------------------------
-@app.get("/delete/<int:id>")
-@login_required
-def delete_a_thing(id):
-    # Get the user id from the session
-    user_id = session["user_id"]
-
-    with connect_db() as client:
-        # Delete the thing from the DB only if we own it
-        sql = "DELETE FROM things WHERE id=? AND user_id=?"
-        params = [id, user_id]
-        client.execute(sql, params)
-
-        # Go back to the home page
-        flash("Thing deleted", "success")
-        return redirect("/things")
-
-
-
-
-
 
 
 #-----------------------------------------------------------
 # User registration form route
 #-----------------------------------------------------------
 @app.get("/register")
-def register_form():
+def register():
     return render_template("pages/register.jinja")
 
 
 #-----------------------------------------------------------
 # Route for adding a user when registration form submitted
 #-----------------------------------------------------------
-@app.post("/add-user")
+@app.post("/add_user")
 def add_user():
     # Get the data from the form
     name = request.form.get("name")
@@ -499,7 +441,7 @@ def add_user():
 #-----------------------------------------------------------
 # Route for processing a user login
 #-----------------------------------------------------------
-@app.post("/login-user")
+@app.post("/login_user")
 def login_user():
     # Get the login form data
     username = request.form.get("username")
