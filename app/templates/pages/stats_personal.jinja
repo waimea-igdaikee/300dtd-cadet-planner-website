@@ -20,6 +20,20 @@
 {% block content %}
 
 <article>
+  <h2>Display Name</h2>
+    <form class="flex" action="/user_name_edit" method="POST">
+      <input
+        type="text"
+        name="name"
+        value="{{ session['user_name'] }}"
+        placeholder="Display Name"
+        required
+      >
+      <button>Update Name</button>
+    </form>
+</article>
+
+<article>
     <h2>Your Statistics | Past 10 Weeks</h2>
     {% for role, count in allocations_count.items() %}
       <li>{{ role }}: {{ count }}</li>

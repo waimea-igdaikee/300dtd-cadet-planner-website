@@ -100,7 +100,7 @@ This last feedback brings up a good point about the relevant implication of **us
 #### Senior rate- / officer-specific feedback 
 > Selecting from a list for allocating someone to a role works here because you only have four cadets - but we have nearly 20. There needs to be a search, or maybe a way to filter by rank
 
-The 'filter by rank' idea brought up a conversation about whether the database needs to store rank information. Eventually we decided against it - for now at least - and to simply store rank information in the user's display name. I therefore need to add a way for users to edit their display name.
+The 'filter by rank' idea brought up a conversation about whether the database needs to store rank information. Eventually we decided against it - for now at least - and to simply store rank information in the user's display name. I therefore need to add a way for users to edit their own display names.
 
 > On the modify role description page, the many 'see descriptions' look ugly. I know we want this designed with mobile phones in mind, but perhaps it could display a preview of the description instead of 'see description'.
 
@@ -118,7 +118,7 @@ Based on the above end-user feedback, I have updated my UI by:
 - Adding search box for people's names when seniors rates / officers are allocating someone a role
 - Improving the vertical stack of *see description*s by showing a preview
 - Making it so that clicking on a role from the allocation home page shows all the roles instead of just one
-# - Adding a way for users to edit their name. I have also allowed admins to edit people's names, and give/revoke their admin status.
+- Adding a way for users to edit their name.
 
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="350" height="650" src="https://embed.figma.com/proto/JtkNGGN07Hv2EOFoRztA5h/Cadet-Roles-App-Prototype-Mockup-v2?node-id=2001-2&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2001%3A2&embed-host=share" allowfullscreen></iframe>

@@ -37,7 +37,12 @@
     background-color: var(--pico-text-selection-color);
 }
 
-.allocate_form {
+.flex {
     display: flex !important;
+}
+
+.flex > * {
+    margin-bottom: 0 !important;
+    height: inherit !important;
 }
 

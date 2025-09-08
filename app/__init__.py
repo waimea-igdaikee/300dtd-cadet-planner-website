@@ -269,7 +269,6 @@ def stats_personal():
         result = client.execute(sql_roles, params)
         roles = result.rows
 
-
         # Filter the dates into either this week, next week, or discard them
         allocations_past = []
         for allocation in allocations:
@@ -289,6 +288,40 @@ def stats_personal():
 
         # And show them on the page
         return render_template("pages/stats_personal.jinja", allocations_count=allocations_count)
+    
+#-----------------------------------------------------------
+# Route for a user editing their name
+# - Restricted to logged in users
+#-----------------------------------------------------------
+@app.post("/user_name_edit")
+@login_required
+def user_name_edit():
+    # Get the data from the form
+    name  = request.form.get("name")
+
+    # Sanitise the text input
+    name = html.escape(name)
+
+    user_id = session['user_id']
+
+    with connect_db() as client:
+        # Add the thing to the DB
+        sql = """
+            UPDATE users
+
+            SET name=?
+
+            WHERE id=?
+        """
+        params = [name, user_id]
+        client.execute(sql, params)
+
+        # Updat the session to reflect the name change
+        session["user_name"] = name
+
+        # Go back to the home page
+        flash(f"Display name updated to '{name}'", "success")
+        return redirect("/stats_personal")
     
 
 #-----------------------------------------------------------
