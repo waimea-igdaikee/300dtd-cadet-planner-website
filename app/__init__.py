@@ -57,6 +57,7 @@ def allocations():
             FROM allocations
             JOIN roles ON allocations.role = roles.id
             LEFT JOIN users on allocations.user = users.id
+            ORDER BY role_name
         """
         params=[]
         result_allocations = client.execute(sql_allocations, params)

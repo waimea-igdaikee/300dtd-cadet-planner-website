@@ -22,7 +22,7 @@
 
     {% for role in roles %}
 
-        <article
+        <article id="role_{{role.id}}"
             {# If the user clicked on a role link on the allocations page, bold it for clarity #}
             {% if role_to_bold == role.id %}
                 class = "highlight"

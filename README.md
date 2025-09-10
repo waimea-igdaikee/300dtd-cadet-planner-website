@@ -10,10 +10,10 @@ by Indiana Daikee
 At Navy Cadets, we have parade roles that need to be fulfilled by different people each week. This database-driven web application with the following features:
 
 - Individual user account login, with different permissions depending on rank
-- Feature 2 here
-- Feature 3 here
-- Feature 4 here
-- Feature 5 here
+- Tracking of personal statistics over the past 10 weeks
+- Tracking and display of everyone's statistics over the past 10 weeks
+- Allocating parade roles
+- Editing of roles' descriptions
 
 
 ---
