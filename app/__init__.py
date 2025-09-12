@@ -64,7 +64,8 @@ def allocations():
         allocations = result_allocations.rows
 
 
-        # Filter the dates into either this week, next week, or discard them
+        # Filter the dates into either this week, next week, or discard them.
+        # I'm not using SQL to filter them as this would require 2 sql queries for the 2 weeks.
         allocations_this_week = []
         allocations_next_week = []
         for allocation in allocations:
@@ -239,53 +240,24 @@ def role_delete():
 def stats_personal():
     # The user id is used to display which roles the user themselves is allocated
     user_id = session["user_id"]
-    current_date = datetime.date.today()
+    current_date_string = datetime.date.today().isoformat()
 
     with connect_db() as client:
         # Get all the current user's allocations from the DB.
         sql_allocations = """
-            SELECT allocations.date,
-                   roles.id as role_id,
-                   roles.name as role_name,
-                   users.id as user_id
-
-            FROM allocations
-            JOIN roles ON allocations.role = roles.id
-            JOIN users on allocations.user = users.id
-            WHERE user_id = ?
-        """
-        params=[user_id]
-        result = client.execute(sql_allocations, params)
-        allocations = result.rows
-
-
-        # Get a list of all roles
-        sql_roles = """
-            SELECT roles.id as role_id,
-                   roles.name as role_name
+            SELECT roles.name AS name,
+                COUNT(allocations.user) AS count
 
             FROM roles
+            LEFT JOIN allocations
+                ON allocations.role = roles.id
+                AND allocations.user = ?
+                AND allocations.date < ?
+            GROUP BY roles.name
         """
-        params=[]
-        result = client.execute(sql_roles, params)
-        roles = result.rows
-
-        # Filter the dates into either this week, next week, or discard them
-        allocations_past = []
-        for allocation in allocations:
-            allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date() # Extract a date object from the string
-            if current_date > allocation_date:
-                allocations_past.append(allocation)
-
-        # Count how many times each role has been done
-        # Initialise the dictionary
-        allocations_count = {}
-        for role in roles:
-            allocations_count[role["role_name"]] = 0
-        
-        # Count the allocations
-        for allocation in allocations_past:
-            allocations_count[allocation["role_name"]] += 1
+        params=[user_id, current_date_string]
+        result = client.execute(sql_allocations, params)
+        allocations_count = result.rows
 
         # And show them on the page
         return render_template("pages/stats_personal.jinja", allocations_count=allocations_count)
@@ -332,36 +304,51 @@ def user_name_edit():
 @app.get("/stats_unit")
 @login_required
 def stats_unit():
-    current_date = datetime.date.today()
+    current_date_string = datetime.date.today().isoformat()
 
     with connect_db() as client:
-        # Get all the current user's allocations from the DB
+        # Get all the roles for display as table headings
         sql = """
-            SELECT allocations.date,
-                   roles.id as role_id,
-                   roles.name as role_name,
-                   users.id as user_id,
-                   users.name as user_name
-
-            FROM allocations
-            JOIN roles ON allocations.role = roles.id
-            JOIN users on allocations.user = users.id
+            SELECT name
+            FROM roles
+            ORDER BY name
         """
         params=[]
         result = client.execute(sql, params)
-        allocations = result.rows
+        roles = result.rows
 
+        # Get all the allocations from the DB
+        sql = """
+            SELECT users.name AS user,
+                roles.name AS role,
+                COUNT(allocations.user) AS count
+            FROM users
+            CROSS JOIN roles
+            LEFT JOIN allocations
+                ON allocations.user = users.id
+                AND allocations.role = roles.id
+                AND allocations.date < ?
+            GROUP BY users.id, roles.id
+            ORDER BY user, role;
+        """
+        params=[current_date_string]
+        result = client.execute(sql, params)
+        users_allocations_count = result.rows
 
-        # Filter the dates into either this week, next week, or discard them
-        allocations_past = []
-        for allocation in allocations:
-            allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date() # Extract a date object from the string
-            if current_date > allocation_date:
-                allocations_past.append(allocation)
+        # Convert the returned table to a nested dictionary so it can be iterated over on the webpage
+        allocations_count = {} # This dictionary will hold a dictionary for each user
+        for user_allocation_count in users_allocations_count:
+            user = user_allocation_count['user']
+            role = user_allocation_count['role']
+            count = user_allocation_count['count']
+
+            if user not in allocations_count:
+                allocations_count[user] = {}
+
+            allocations_count[user][role] = count
 
         # And show them on the page
-        return render_template("pages/stats_unit.jinja", allocations_past=allocations_past)
-
+        return render_template("pages/stats_unit.jinja", roles=roles, allocations_count=allocations_count)
 
 
 #-----------------------------------------------------------

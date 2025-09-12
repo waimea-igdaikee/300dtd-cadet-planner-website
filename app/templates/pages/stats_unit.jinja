@@ -19,11 +19,32 @@
 
 {% block content %}
 
+{# What if no roles have been defined? #}
 <article>
     <h2>Unit Statistics | Past 10 Weeks</h2>
-    {% for allocation in allocations_past %}
-      <li>{{ allocation.date }} | {{ allocation.role_name }} | {{ allocation.user_name }}</li>
-    {% endfor %}
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">User</th>
+                {# Print each role as a table column heading #}
+                {% for role in roles %}
+                    <th scope="col">{{role.name}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        
+        <tbody>
+            {# Print each user and put their count of each allocation in the respective column #}
+            {% for user, roles in allocations_count.items() %}
+                <tr>
+                    <td>{{ user }}</td>
+                    {% for role, count in roles.items() %}
+                        <td>{{ count }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </article>
 
 {% endblock %}
