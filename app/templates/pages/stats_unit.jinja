@@ -22,13 +22,13 @@
 {# What if no roles have been defined? #}
 <article>
     <h2>Unit Statistics | Past 10 Weeks</h2>
-    <table>
+    <table id="stats_table">
         <thead>
             <tr>
                 <th scope="col">User</th>
                 {# Print each role as a table column heading #}
                 {% for role in roles %}
-                    <th scope="col">{{role.name}}</th>
+                    <th class="heading_rotate" scope="col">{{role.name}}</th>
                 {% endfor %}
             </tr>
         </thead>
