@@ -32,14 +32,36 @@
             {# If the user is editing this role, replace it with a form#}
             {% if role_to_edit == role.id %}
                 <form action="/role_edit" method="POST">
+                    <div class="role_header">
+                        <div class="flex">
+                            <input
+                                style="width:70%"
+                                type="text"
+                                name="name"
+                                value="{{ role.name }}"
+                                placeholder="Role Name"
+                                required
+                            >
 
-                    <input
-                        type="text"
-                        name="name"
-                        value="{{ role.name }}"
-                        placeholder="Role Name"
-                        required
-                    >
+                            <input
+                                style="width:20%;"
+
+                                type="text"
+                                name="abbreviation"
+                                value="{{ role.abbreviation }}"
+                                placeholder="Abrvn."
+                                required
+                            >
+                        </div>
+
+
+                        <div class="flex">
+                            <button>Submit</button>
+                            <a href="/roles#role_{{role.id}}">Cancel</a>
+                        </div>
+                        
+
+                    </div>
 
                     <textarea
                         type="text"
@@ -51,19 +73,26 @@
 
                     <input type="hidden" id="role" name="role" value="{{ role.id }}">
 
-                    <button>Submit</button>
 
                 </form>
                 <br>
                 <a role="button" href="/role_delete?role={{ role.id }}">Delete</a>
-                <a href="/roles">Cancel</a>
             {% else %}
-                <h3>{{ role.name }}</h3>
-                <p>{{ role.description }}</p>
-            {% endif %}
 
-            {% if session.admin and role.id != role_to_edit %} {# Don't show the edit button for a role already being edited#}
-                <a href="/roles?edit={{ role.id }}">Edit</a>
+                <div class="role_header">
+                    <h3>
+                        {{ role.name }}
+                        {% if session.admin %} 
+                            ({{ role.abbreviation}})
+                        {% endif %}
+                    </h3>
+
+                    {% if session.admin and role.id != role_to_edit %} {# Don't show the edit button for a role already being edited#}
+                        <a href="/roles?edit={{ role.id }}#role_{{role.id}}">Edit</a>
+                    {% endif %}
+                </div>
+
+                <p>{{ role.description }}</p>
             {% endif %}
 
 
@@ -84,12 +113,24 @@
 
             <form action="/role_new" method="POST">
 
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Role Name"
-                    required
-                >
+                <div class="flex">
+                    <input
+                    
+                        type="text"
+                        name="name"
+                        placeholder="Role Name"
+                        required
+                    >
+
+                    <input
+                        style="width:20%;"
+
+                        type="text"
+                        name="abbreviation"
+                        placeholder="Abrvn."
+                        required
+                    >
+                </div>
 
                 <textarea
                     type="text"

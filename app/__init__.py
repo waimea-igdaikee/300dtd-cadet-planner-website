@@ -227,6 +227,7 @@ def role_delete():
         roles = result.rows
 
         # And show them on the page
+        flash(f"Role deleted", "success")
         return render_template("pages/roles.jinja", roles=roles)
     
     
@@ -362,16 +363,18 @@ def stats_unit():
 def role_new():
     # Get the data from the form
     name  = request.form.get("name")
+    abbreviation = request.form.get("abbreviation")
     description = request.form.get("description")
 
     # Sanitise the text inputs
     name = html.escape(name)
+    abbreviation = html.escape(abbreviation)
     description=html.escape(description)
 
     with connect_db() as client:
         # Add the thing to the DB
-        sql = "INSERT INTO roles (name, description) VALUES (?, ?)"
-        params = [name, description]
+        sql = "INSERT INTO roles (name, abbreviation, description) VALUES (?, ?, ?)"
+        params = [name, abbreviation, description]
         client.execute(sql, params)
 
         # Go back to the home page
@@ -388,12 +391,15 @@ def role_new():
 def role_edit():
     # Get the data from the form
     name  = request.form.get("name")
+    abbreviation = request.form.get("abbreviation")
     description = request.form.get("description")
     role = request.form.get("role")
 
     # Sanitise the text inputs
     name = html.escape(name)
+    abbreviation = html.escape(abbreviation)
     description=html.escape(description)
+    
 
     with connect_db() as client:
         # Add the thing to the DB
@@ -401,11 +407,12 @@ def role_edit():
             UPDATE roles
 
             SET name=?,
+                abbreviation=?,
                 description=?
 
             WHERE roles.id=?
         """
-        params = [name, description, role]
+        params = [name, abbreviation, description, role]
         client.execute(sql, params)
 
         # Go back to the home page

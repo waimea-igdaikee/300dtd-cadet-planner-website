@@ -66,6 +66,11 @@ h1, h2, h3 {
     table-layout: auto;
 }
 
+.role_header {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* .heading_rotate {
     transform: rotate(-45deg);
     background-color: transparent;
