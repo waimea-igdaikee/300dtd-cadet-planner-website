@@ -28,7 +28,7 @@
                 <th scope="col">User</th>
                 {# Print each role as a table column heading #}
                 {% for role in roles %}
-                    <th class="heading_rotate" scope="col">{{role.name}}</th>
+                    <th class="heading_rotate" data-tooltip="{{role.name}}" scope="col">{{role.abbreviation}}</th>
                 {% endfor %}
             </tr>
         </thead>

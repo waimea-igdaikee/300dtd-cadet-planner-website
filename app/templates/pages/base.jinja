@@ -24,7 +24,7 @@
 
     <script src="/static/js/utils.js"></script>
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.slate.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.slate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
@@ -38,32 +38,41 @@
             </ul>
 
             <ul>
-                {% if session.user_name %}
+                <li>
+                    <details class="dropdown">
+                        <summary role="button">
+                        Menu
+                        </summary>
+                        <ul dir="rtl">
+                            {% if session.user_name %}
 
-                    <li>Hello, {{ session.user_name }}</li>
-                <li><a href="/allocations">Home</a></li>
-                <li><a href="/roles">Roles</a></li>
-                <li><a href="/stats_personal">Personal Stats</a></li>
+                            <div id="topNav"></div>
+                            <li><a href="/allocations">Home</a></li>
+                            <li><a href="/roles">Roles</a></li>
+                            <li><a href="/stats_personal">Personal Stats</a></li>
 
-                {% endif %}
+                            {% endif %}
 
-                {% if session.admin %}
+                            
+                            {% if session.admin %}
 
-                    <li><a href="/stats_unit">Unit Stats</a></li>
+                                <li><a href="/stats_unit">Unit Stats</a></li>
 
-                {% endif %}
+                            {% endif %}
 
-                {% if session.user_id %}
+                            {% if session.user_id %}
 
-                    <li><a href="/logout">Logout</a></li>
+                                <li><a href="/logout">Logout</a></li>
 
-                {% else %}
+                            {% else %}
 
-                    <li><a href="/">Login</a></li>
-                    <li><a href="/register">Register</a></li>
+                                <li><a href="/">Login</a></li>
+                                <li><a href="/register">Register</a></li>
 
-                {% endif %}
-
+                            {% endif %}
+                        </ul>
+                    </details>
+                </li>
             </ul>
         </nav>
     </header>

@@ -8,6 +8,12 @@
     font-family: "roboto" !important;
 }
 
+
+body > * {
+    width: min(800px, 100%);
+    margin: auto;
+}
+
 h1, h2, h3 {
     font-family: "source serif 4" !important;
 }
@@ -57,12 +63,10 @@ h1, h2, h3 {
 }
 
 #stats_table {
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 /* .heading_rotate {
-    transform: rotate(-30deg);
+    transform: rotate(-45deg);
     background-color: transparent;
 } */
-
-

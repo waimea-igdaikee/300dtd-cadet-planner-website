@@ -309,7 +309,9 @@ def stats_unit():
     with connect_db() as client:
         # Get all the roles for display as table headings
         sql = """
-            SELECT name
+            SELECT name,
+                   abbreviation
+
             FROM roles
             ORDER BY name
         """
