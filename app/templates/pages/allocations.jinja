@@ -80,7 +80,7 @@
             {% elif session.admin %} {# If no roles exist for a given week, show a button to add them or a message depending on whether the user has admin #}
                 <a href="/allocations_create?week={{week}}" role="button">Add parade roles for {{ "next" if week else "this"}} week</a>
             {% else %}
-                <p>No parade roles have been put up for {{ "next" if week else "this"}}.</p>
+                <p>No parade roles have been put up for {{ "next" if week else "this"}} week.</p>
             {% endif %}
         </article>
     {% endfor %}
