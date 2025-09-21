@@ -110,22 +110,25 @@ This works as intended. However when taking a closer look at the actual data sho
 
 ---
 
-## Testing FEATURE NAME HERE -----------------------
+## Testing account creation and name editing
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+I need to test that new accounts can be created properly, and that users can edit their account's display name:
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+![Registration process with minor error](screenshots/test_mvp_register_1.gif)
+
+The registration and name change worked, however the error "*You need to be logged in to access that page*" appears, which I need to fix.
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+It turns out this error is being caused by my site attempting to route users to the allocations page after registering - but, as I don't want the site to automatically log users in after registering, they don't have access to this page. The simple fix is to route users directly to the login page instead: `return redirect("/login")`
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+![Registration without error](image-1.png)
+
+As the above image shows, the error message is gone.
 
 
 ---
 
 ## Sprint Review
 
-Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
-
+The purpose of this sprint was to "*develop a bare-bones, working web application that provides the key functionality of the system.*" I beleive the end result of this sprint is exactly that - a site that, while rough around the edges, especially in terms of some of my [relavant implications](0-requirements.md) such as aesthetics and usability, has all the key functionality required.
