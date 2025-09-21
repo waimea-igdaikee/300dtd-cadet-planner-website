@@ -7,13 +7,13 @@ by Indiana Daikee
 
 ## Project Description
 
-At Navy Cadets, we have parade roles that need to be fulfilled by different people each week. This database-driven web application with the following features:
+At Navy Cadets, we have parade roles that need to be fulfilled by different people each week. Tracking how many times people have done each role and allocating roles to people weekly are things we struggle to do effectively.  As such, this database-driven web app solves these problems with the following features:
 
-- Individual user account login, with different permissions depending on rank
+- Individual user account login, including admins with elevated permissions
 - Tracking of personal statistics over the past 10 weeks
 - Tracking and display of everyone's statistics over the past 10 weeks
 - Allocating parade roles
-- Editing of roles' descriptions
+- Creating, editing, and deleting roles
 
 
 ---
