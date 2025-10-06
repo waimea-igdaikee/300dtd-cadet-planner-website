@@ -32,51 +32,49 @@
             {# If the user is editing this role, replace it with a form#}
             {% if role_to_edit == role.id %}
                 <form action="/role_edit" method="POST">
-                    <div class="role_header">
-                        <div class="flex">
+                    <div class="flex">
+                        {# Inputs are wrapped in divs to allow tooltips #}
+                        <div class="input">
                             <input
-                                style="width:70%"
+                            
                                 type="text"
                                 name="name"
-                                value="{{ role.name }}"
                                 placeholder="Role Name"
+                                value="{{role.name}}"
                                 required
                             >
+                        </div>
 
+                        <div class = "input small" data-tooltip="Abbreviation">
                             <input
-                                style="width:20%;"
-
                                 type="text"
                                 name="abbreviation"
-                                value="{{ role.abbreviation }}"
                                 placeholder="Abrvn."
+                                value="{{role.abbreviation}}"
                                 required
                             >
                         </div>
-
-
-                        <div class="flex">
-                            <button>Submit</button>
-                            <a href="/roles#role_{{role.id}}">Cancel</a>
-                        </div>
-                        
 
                     </div>
 
                     <textarea
                         type="text"
+                        
                         name="description"
                         placeholder="Role Description"
                         rows="3"
                         required
-                    >{{ role.description }}</textarea>
+                    >{{role.description}}</textarea>
 
                     <input type="hidden" id="role" name="role" value="{{ role.id }}">
 
+                    <div class="flex buttons">
+                        <a role="button" class="cancel" href="/roles#role_{{role.id}}">Cancel</a>
+                        <button>Submit</button>
+                        <a role="button" class="delete" href="/role_delete?role={{ role.id }}">Delete</a>
+                    </div>
 
                 </form>
-                <br>
-                <a role="button" href="/role_delete?role={{ role.id }}">Delete</a>
             {% else %}
 
                 <div class="role_header">
@@ -114,22 +112,25 @@
             <form action="/role_new" method="POST">
 
                 <div class="flex">
-                    <input
-                    
-                        type="text"
-                        name="name"
-                        placeholder="Role Name"
-                        required
-                    >
+                    {# Inputs are wrapped in divs to allow tooltips #}
+                    <div class="input">
+                        <input
+                        
+                            type="text"
+                            name="name"
+                            placeholder="Role Name"
+                            required
+                        >
+                    </div>
 
-                    <input
-                        style="width:20%;"
-
-                        type="text"
-                        name="abbreviation"
-                        placeholder="Abrvn."
-                        required
-                    >
+                    <div class = "input small" data-tooltip="Abbreviation">
+                        <input
+                            type="text"
+                            name="abbreviation"
+                            placeholder="Abrvn."
+                            required
+                        >
+                    </div>
                 </div>
 
                 <textarea

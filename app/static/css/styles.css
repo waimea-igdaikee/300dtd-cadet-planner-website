@@ -18,6 +18,52 @@ h1, h2, h3 {
     font-family: "source serif 4" !important;
 }
 
+.small {
+    width: 20% !important;
+}
+
+.large {
+    width: 80% !important;
+}
+
+
+/* NAV -----------------------------------------*/
+
+details ul {
+    width: 100px !important;
+    right: auto !important;
+}
+
+
+
+/* ROLES ---------------------------------------*/
+
+
+
+.input {
+    width: 100%;
+}
+
+.cancel {
+    color: var(--pico-primary);
+    background-color: var(--pico-color);
+    border-color: var(--pico-form-element-border-color);
+}
+
+.delete {
+    background-color: var(--pico-color-red-600);;
+    border-color: var(--pico-color-red-650);;
+    right: 0;
+}
+
+.buttons {
+    justify-content: space-between;
+}
+
+.buttons > a, button {
+    width: 30%;
+}
+
 
 /* ABOUT PAGE -------------------------------------------- */
 
