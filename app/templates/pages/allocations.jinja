@@ -9,6 +9,9 @@
 
 {% extends 'pages/base.jinja' %}
 
+{% set allocation_date = request.args.get('date') | string %}
+{% set allocation_role_id = request.args.get('role') | int %}
+
 
 {% block title %}
 
@@ -21,7 +24,7 @@
 
     {% for allocations, week in [(allocations_this_week, 0), (allocations_next_week, 1)] %}
         <article>
-            <h2>Parade Roles {{ "Next" if week else "This"}} Week</h2> {# Set the title appropriately#}
+            <h2>Parade Roles {{ "Next" if week else "This"}} Week</h2> {# Set the title appropriately #}
             {% if allocations %} {# If this week has allocations for it #}
                 <table>
                     <thead>
@@ -36,42 +39,39 @@
                                 <td scope="row"><a href="/roles?role={{ allocation.role_id }}#role_{{allocation.role_id}}">{{ allocation.role_name }}</a></td>
 
                                 <td scope="row">
+                                    {% if allocation.user_id %} {# If this role is allocated to someone #}
 
-                                {% if allocation.user_id %} {# If this role is allocated to someone #}
+                                        {% if allocation.user_id == session.user_id %} {# If this role is allocated to the current user, bold their name #}
+                                            <b>{{ allocation.user_name }}</b>
+                                        {% else %}
+                                            {{ allocation.user_name }}
+                                        {% endif %}
 
-                                    {% if allocation.user_id == session.user_id %} {# If this role is allocated to the current user, bold their name #}
-                                        <b>{{ allocation.user_name }}</b>
-                                    {% else %}
-                                        {{ allocation.user_name }}
+                                        {% if allocation.user_id == session.user_id or session.admin %} {# If the user has permission, show the de-allocate button#}
+                                            <b><a href="/allocate?remove=1&date={{ allocation.date }}&role={{ allocation.role_id }}">X</a></b>
+                                        {% endif %}
+
+                                    {% else %} {# If this role is not allocated to anyone #}
+
+                                        {% if session.admin %} {# If user is admin, show a dropdown menu to allocate someone#}
+
+                                            <details class="dropdown allocation">
+                                                <summary>
+                                                    Click to allocate someone
+                                                </summary>
+                                                <ul>
+                                                    {% for user in users %}
+                                                        <li><a href="/allocate_admin?remove=0&date={{ allocation.date }}&role={{ allocation.role_id }}&user_id={{ user.id }}">{{ user.name }}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </details>
+
+
+                                        {% else %} {# For standard users, show a button to allocate themselves #}
+                                            <a href="/allocate?remove=0&date={{ allocation.date }}&role={{ allocation.role_id }}">Click to accept</a></td>
+                                        {% endif %}
+
                                     {% endif %}
-
-                                    {% if allocation.user_id == session.user_id or session.admin %} {# If the user has permission, show the de-allocate button#}
-                                        <b><a href="/allocate?remove=1&date={{ allocation.date }}&role={{ allocation.role_id }}">X</a></b>
-                                    {% endif %}
-
-                                {% else %} {# If this role is not allocated to anyone #}
-
-                                    {% if session.admin %} {# If user is admin, show a dropdown menu to allocate someone#}
-
-                                        <form class="flex" action="/allocate" method="POST">
-                                            <label for="users">Allocate someone:</label>
-                                            <select name="user_id" id="user_id">
-
-                                                {% for user in users %}
-                                                    <option value="{{ user.id }}">{{ user.name }}</option>
-                                                {% endfor %}
-
-                                            </select>
-                                            <input type="hidden" id="date" name="date" value="{{ allocation.date }}">
-                                            <input type="hidden" id="role" name="role" value="{{ allocation.role_id }}">
-                                            <button>Allocate</button>
-                                        </form>
-
-                                    {% else %} {# For standard users, show a button to allocate themselves #}
-                                        <a href="/allocate?remove=0&date={{ allocation.date }}&role={{ allocation.role_id }}">Click to accept</a></td>
-                                    {% endif %}
-
-                                {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}
@@ -85,4 +85,18 @@
         </article>
     {% endfor %}
 {% endblock %}
+
+                                                {# <form class="flex" action="/allocate" method="POST">
+                                                    <label for="users">Allocate someone:</label>
+                                                    <select name="user_id" id="user_id">
+
+                                                        {% for user in users %}
+                                                            <option value="{{ user.id }}">{{ user.name }}</option>
+                                                        {% endfor %}
+
+                                                    </select>
+                                                    <input type="hidden" id="date" name="date" value="{{ allocation.date }}">
+                                                    <input type="hidden" id="role" name="role" value="{{ allocation.role_id }}">
+                                                    <button>Allocate</button>
+                                                </form> #}
 

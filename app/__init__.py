@@ -123,17 +123,17 @@ def allocate():
         client.execute(sql, params)
         return redirect("/allocations")
     
-
-#-----------------------------------------------------------
-# Route for processing an admin allocating a user
-#-----------------------------------------------------------
-@app.post("/allocate")
-@login_required # Perhaps I should make an @admin_req'd
+@app.get("/allocate_admin")
+@login_required # Admin reqd
 def allocate_admin():
-    # Get the data from the form
-    user_id  = request.form.get("user_id")
-    date = request.form.get("date")
-    role = request.form.get("role")
+    # Retrieve the neccesary data to make the allocation query
+    remove = request.args.get("remove")
+    if remove == "1":
+        user_id = "NULL"
+    else:
+        user_id = request.args.get("user_id")
+    date = request.args.get("date")
+    role = request.args.get("role")
 
     with connect_db() as client:
         # Update the DB
@@ -146,6 +146,30 @@ def allocate_admin():
         params=[user_id, date, role]
         client.execute(sql, params)
         return redirect("/allocations")
+    
+
+# #-----------------------------------------------------------
+# # Route for processing an admin allocating a user
+# #-----------------------------------------------------------
+# @app.post("/allocate")
+# @login_required # Perhaps I should make an @admin_req'd
+# def allocate_admin():
+#     # Get the data from the form
+#     user_id  = request.form.get("user_id")
+#     date = request.form.get("date")
+#     role = request.form.get("role")
+
+#     with connect_db() as client:
+#         # Update the DB
+#         sql = """
+#             UPDATE allocations
+#             SET user = ?
+#             WHERE date = ? AND role = ?
+#         """
+
+#         params=[user_id, date, role]
+#         client.execute(sql, params)
+#         return redirect("/allocations")
     
 
 #-----------------------------------------------------------

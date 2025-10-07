@@ -69,8 +69,8 @@
                     <input type="hidden" id="role" name="role" value="{{ role.id }}">
 
                     <div class="flex buttons">
+                        <button>Save</button>
                         <a role="button" class="cancel" href="/roles#role_{{role.id}}">Cancel</a>
-                        <button>Submit</button>
                         <a role="button" class="delete" href="/role_delete?role={{ role.id }}">Delete</a>
                     </div>
 
@@ -150,4 +150,3 @@
     {% endif %}
 
 {% endblock %}
-

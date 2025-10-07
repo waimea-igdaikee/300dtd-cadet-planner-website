@@ -55,7 +55,7 @@ Accesibility means ensuring my website is availiable to, and can be used by, all
 
 ### Relevance to the System
 
-Everyone that uses this site needs to be able to do so easily; if some people arenn't able to use my site (e.g. they can't read low contrast text or have an old phone), then it won't be able to serve it's purpose - to make cadets easier for *everyone*. It would also be borderline discriminatory, as everyone should be able to use my website, regardless of accessibility concerns.
+Everyone that uses this site needs to be able to do so easily; if some people aren't able to use my site (e.g. they can't read low contrast text or have an old phone), then it won't be able to serve it's purpose - to make cadets easier for *everyone*. It would also be borderline discriminatory, as everyone should be able to use my website, regardless of accessibility concerns.
 
 ### Impact / Considerations
 

@@ -34,6 +34,18 @@ details ul {
     right: auto !important;
 }
 
+/* ALLOCATIONS ---------------------------*/
+
+.allocation {
+    margin-bottom: 0;
+}
+
+.allocation summary {
+    padding: 0 !important;
+    border: 0 !important;
+    height: 0 !important;
+}
+
 
 
 /* ROLES ---------------------------------------*/
