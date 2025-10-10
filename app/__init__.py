@@ -265,13 +265,15 @@ def role_delete():
 def stats_personal():
     # The user id is used to display which roles the user themselves is allocated
     user_id = session["user_id"]
-    current_date_string = datetime.date.today().isoformat()
+    current_date = datetime.datetime.now()
+    current_date_string = current_date.isoformat()
 
     with connect_db() as client:
         # Get all the current user's allocations from the DB.
         sql_allocations = """
             SELECT roles.name AS name,
-                COUNT(allocations.user) AS count
+                COUNT(allocations.user) AS count,
+                MAX(allocations.date) AS last_date
 
             FROM roles
             LEFT JOIN allocations
@@ -282,7 +284,7 @@ def stats_personal():
         """
         params=[user_id, current_date_string]
         result = client.execute(sql_allocations, params)
-        allocations_count = result.rows
+        allocations_count = result.rows # Get result.rows in dictionary form
 
         # And show them on the page
         return render_template("pages/stats_personal.jinja", allocations_count=allocations_count)

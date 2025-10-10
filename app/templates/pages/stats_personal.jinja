@@ -35,9 +35,25 @@
 
 <article>
     <h2>Your Statistics | Past 10 Weeks</h2>
-    {% for role in allocations_count %}
-      <li>{{ role["name"] }}: {{ role["count"] }}</li>
-    {% endfor %}
+    <table>
+      <thead>
+        <tr>
+          <td>Role</td>
+          <td>Count</td>
+          <td>Weeks Since</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for role in allocations_count %}
+          <tr>
+            <td>{{ role["name"] }}</td>
+            <td>{{ role["count"] }}</td>
+            <td>{{ role["last_date"] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 </article>
 
 {% endblock %}

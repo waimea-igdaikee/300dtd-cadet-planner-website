@@ -36,6 +36,10 @@ details ul {
 
 /* ALLOCATIONS ---------------------------*/
 
+details {
+    width: fit-content;
+}
+
 .allocation {
     margin-bottom: 0;
 }
@@ -43,8 +47,17 @@ details ul {
 .allocation summary {
     padding: 0 !important;
     border: 0 !important;
-    height: 0 !important;
+    height: 31.5px !important;
+    color: var(--pico-primary) !important;
+    background-color: transparent !important;
+    text-decoration: underline;
 }
+
+table {
+    table-layout: fixed;
+}
+
+
 
 
 
