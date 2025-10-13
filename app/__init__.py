@@ -282,12 +282,34 @@ def stats_personal():
                 AND allocations.date < ?
             GROUP BY roles.name
         """
+
         params=[user_id, current_date_string]
         result = client.execute(sql_allocations, params)
-        allocations_count = result.rows # Get result.rows in dictionary form
+        allocations_count_absolute = result.rows # Has the absolute date of the last time the role was done by this user
+
+        allocations_count_relative = {} # This dictionary will hold a dictionary for each role
+        
+        for role in allocations_count_absolute:
+            allocations_count_relative[role["name"]] = {} # Create a sub dictionary for each role
+
+            if role["last_date"]:
+                last_date = datetime.datetime.strptime(role["last_date"], '%Y-%m-%d')
+                weeks_since = (current_date - last_date).days // 7
+            else:
+                weeks_since = "None"
+
+            count = role["count"]
+
+            weeks_since = (current_date - last_date).days // 7
+
+            allocations_count_relative[role["name"]]["count"] = count
+            allocations_count_relative[role["name"]]["weeks_since"] = weeks_since
+
+
+
 
         # And show them on the page
-        return render_template("pages/stats_personal.jinja", allocations_count=allocations_count)
+        return render_template("pages/stats_personal.jinja", allocations_count=allocations_count_relative)
     
 #-----------------------------------------------------------
 # Route for a user editing their name
