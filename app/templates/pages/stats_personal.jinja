@@ -45,11 +45,11 @@
       </thead>
 
       <tbody>
-        {% for role in allocations_count %}
+        {% for name, role in allocations_count.items() %}
           <tr>
-            <td>{{ allocations_count[role] }}</td>
+            <td>{{ name }}</td>
             <td>{{ role["count"] }}</td>
-            <td>{{ role["last_date"] }}</td>
+            <td>{{ role["weeks_since"] }}</td>
           </tr>
         {% endfor %}
       </tbody>

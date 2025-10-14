@@ -296,11 +296,9 @@ def stats_personal():
                 last_date = datetime.datetime.strptime(role["last_date"], '%Y-%m-%d')
                 weeks_since = (current_date - last_date).days // 7
             else:
-                weeks_since = "None"
+                weeks_since = "Never"
 
             count = role["count"]
-
-            weeks_since = (current_date - last_date).days // 7
 
             allocations_count_relative[role["name"]]["count"] = count
             allocations_count_relative[role["name"]]["weeks_since"] = weeks_since
