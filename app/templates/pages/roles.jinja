@@ -70,7 +70,7 @@
                     <div class="flex buttons">
                         <button>Save</button>
                         <a role="button" class="cancel" href="/roles#role_{{role.id}}">Cancel</a>
-                        <a role="button" class="delete" href="/role_delete?role={{ role.id }}">Delete</a>
+                        <a role="button" class="delete" href="/role_delete?role={{ role.id }}" onclick="return confirm('Are you sure you want to delete the {{role.name}} role?');">Delete</a>
                     </div>
 
                 </form>
