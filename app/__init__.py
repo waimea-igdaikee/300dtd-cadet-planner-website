@@ -18,6 +18,7 @@ from app.helpers.auth    import login_required
 from app.helpers.time    import init_datetime, utc_timestamp, utc_timestamp_now
 
 import datetime
+from math import ceil
 
 # Create the app
 app = Flask(__name__)
@@ -265,7 +266,7 @@ def role_delete():
 def stats_personal():
     # The user id is used to display which roles the user themselves is allocated
     user_id = session["user_id"]
-    current_date = datetime.datetime.now()
+    current_date = datetime.date.today()
     current_date_string = current_date.isoformat()
 
     with connect_db() as client:
@@ -293,15 +294,22 @@ def stats_personal():
             allocations_count_relative[role["name"]] = {} # Create a sub dictionary for each role
 
             if role["last_date"]:
-                last_date = datetime.datetime.strptime(role["last_date"], '%Y-%m-%d')
-                weeks_since = (current_date - last_date).days // 7
+                last_date = datetime.datetime.strptime(role["last_date"], '%Y-%m-%d').date()
+                weeks_since = ceil((current_date - last_date).days / 7)
+
+                if weeks_since > 1:
+                    last_done = f"{weeks_since} weeks ago"
+                elif weeks_since > 0:
+                    last_done = "Last week"
+                else: #weeks_since == 0
+                    last_done = "Never"
             else:
-                weeks_since = "Never"
+                last_done = "Never"
 
             count = role["count"]
 
             allocations_count_relative[role["name"]]["count"] = count
-            allocations_count_relative[role["name"]]["weeks_since"] = weeks_since
+            allocations_count_relative[role["name"]]["weeks_since"] = last_done
 
 
 
