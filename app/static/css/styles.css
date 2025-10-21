@@ -10,7 +10,7 @@
 
 
 body > * {
-    width: min(800px, 100%);
+    width: min(800px, 80%);
     margin: auto;
 }
 
@@ -70,9 +70,9 @@ table {
 }
 
 .cancel {
-    color: var(--pico-primary);
-    background-color: var(--pico-color);
-    border-color: var(--pico-form-element-border-color);
+    color: var(--pico-form-element-color);
+    background-color: transparent;
+    border-color: var(--pico-form-element-color);
 }
 
 .delete {
