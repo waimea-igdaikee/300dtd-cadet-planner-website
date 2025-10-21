@@ -1,19 +1,20 @@
-# PROJECT NAME HERE
+# Cadet Parade Role Planner
 
-by YOUR NAME HERE
+by Indiana Daikee
 
 
 ---
 
 ## Project Description
 
-Replace this text with your project description and list the key features below
+This project is a database-driven web application, inteded to simplify the allocation of parade roles at cadets. It has the following features:
 
-- Feature 1 here
-- Feature 2 here
-- Feature 3 here
-- Feature 4 here
-- Feature 5 here
+- A user account login system. This will be linked up to the database, which records when each person has done each role
+- Two simple main interfaces for everyone:
+    - One showing all the parade roles for this and next week, along with who has taken this role. If no-one has taken that role, there should be a button for the logged-in user to volunteer for that role.
+    - Another showing that user's statistics over the past 10 weeks - how many times they have done each role.
+- An aditional interface for senior rates and officers, showing a unit-wide overview of who is 'pulling their load' in regard to doing each role
+- Some way for senior rates and officers to allocate an untaken role to someone.
 
 
 ---
