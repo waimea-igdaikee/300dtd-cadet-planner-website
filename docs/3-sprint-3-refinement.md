@@ -31,6 +31,19 @@ As such, I've updated my database to give each role an abbreviation:
 
 ---
 
+
+## Updated Colour Scheme
+
+Now that my website was fully functional, it was time to add colour. 
+
+I showed the final colour sceme to my stakeholers:
+
+![Peach-coloured table](screenshots/allocations_table_1.png)
+
+While they all liked the colour, some members, particually [certian stakeholder group] found it hard to read, therefore accessibility was bad. To maximise accessibility while keeping the aesthetically pleasing colour scheme, I have made the table itself white to maximise contrast, while keeping the peach border:
+
+
+
 ## Final Implementation
 
 The web app is fully implemented with a refined UI:

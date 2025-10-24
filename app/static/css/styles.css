@@ -8,8 +8,26 @@
     font-family: "roboto" !important;
 }
 
+:root {
+  color-scheme: light dark;
+}
 
-body > * {
+header {
+    background-color: var(--pico-color-slate-800);
+    padding: 0 !important;
+}
+
+nav {
+    width: min(800px, 80%);
+    margin: auto;
+}
+
+header h2 {
+    color: var(--pico-primary-inverse);
+    margin: 0 !important;
+}
+
+main {
     width: min(800px, 80%);
     margin: auto;
 }
@@ -24,6 +42,10 @@ h1, h2, h3 {
 
 .large {
     width: 80% !important;
+}
+
+article {
+    background-color: light-dark(#F3EBDA, var(--pico-card-background-color));
 }
 
 
@@ -57,6 +79,24 @@ table {
     table-layout: fixed;
 }
 
+table tr:first-child th:first-child {
+    border-top-left-radius: var(--pico-border-radius);
+}
+    
+table tr:first-child th:last-child {
+    border-top-right-radius: var(--pico-border-radius);
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: var(--pico-border-radius);
+}
+    
+table tr:last-child td:last-child {
+    border-bottom-right-radius: var(--pico-border-radius);
+}
+
+
+
 
 
 
@@ -71,7 +111,7 @@ table {
 
 .cancel {
     color: var(--pico-form-element-color);
-    background-color: transparent;
+    background-color: var(--pico-form-element-background-color);
     border-color: var(--pico-form-element-color);
 }
 
@@ -121,7 +161,7 @@ table {
 #messages .message.error   { color: var(--pico-color-red-500); }
 
 .highlight {
-    background-color: var(--pico-text-selection-color);
+    background-color: light-dark(var(--pico-color-sand-150), var(--pico-color-slate-800));
 }
 
 .flex {
@@ -141,8 +181,3 @@ table {
     display: flex;
     justify-content: space-between;
 }
-
-/* .heading_rotate {
-    transform: rotate(-45deg);
-    background-color: transparent;
-} */

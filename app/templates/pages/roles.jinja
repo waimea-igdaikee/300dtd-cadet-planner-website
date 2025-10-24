@@ -28,6 +28,7 @@
                 class = "highlight"
             {% endif %}
         >
+        <div>
 
             {# If the user is editing this role, replace it with a form#}
             {% if role_to_edit == role.id %}
@@ -92,7 +93,7 @@
                 <p>{{ role.description }}</p>
             {% endif %}
 
-
+        </div>
         </article>
 
     {% else %} {# If no roles have been defined #}
