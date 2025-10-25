@@ -2,7 +2,7 @@
 
 ## Identified Problem or Need
 
-At Navy Cadets each week we have certian parade roles (e.g. parade commander, quartermaster, bosun's mate) that need to be fulfilled. Every week, the roles are the same, but should ideally be taken by different people so that each role's work is spread roughly equally across the unit over the course of a term. People can volunteer for a role, however if no-one has put themselves forward for a role by Monday (we parade on Tuesday), then that role gets allocated to someone.
+At Navy Cadets each week we have certain parade roles (e.g. parade commander, quartermaster, bosun's mate) that need to be fulfilled. Every week, the roles are the same, but should ideally be taken by different people so that each role's work is spread roughly equally across the unit over the course of a term. People can volunteer for a role, however if no-one has put themselves forward for a role by Monday (we parade on Tuesday), then that role gets allocated to someone.
 
 Currently, this process of volunteering / allocating involves long-winded WhatsApp message chains to figure out who wants to do what. In order to distribute the roles fairly, we rely on people remembering how many times they've done each role recently - and unfortunately, people's memories aren't quite as reliable as we need.
 
@@ -41,7 +41,7 @@ A database-driven web application that meets the above needs by having:
 - Two simple main interfaces for everyone:
     - One showing all the parade roles for this and next week, along with who has taken this role. If no-one has taken that role, there should be a button for the logged-in user to volunteer for that role.
     - Another showing that user's statistics over the past 10 weeks - how many times they have done each role.
-- An aditional interface for senior rates and officers, showing a unit-wide overview of who is 'pulling their load' in regard to doing each role
+- An additional interface for senior rates and officers, showing a unit-wide overview of who is 'pulling their load' in regard to doing each role
 - Some way for senior rates and officers to allocate an untaken role to someone.
 
 
@@ -49,9 +49,9 @@ A database-driven web application that meets the above needs by having:
 
 # Relevant Implications
 
-## Accessiblity
+## Accessibility
 
-Accesibility means ensuring my website is availiable to, and can be used by, all end-users, regardless of their abilities. 
+Accessibility means ensuring my website is available to, and can be used by, all end-users, regardless of their abilities. 
 
 ### Relevance to the System
 
@@ -59,7 +59,7 @@ Everyone that uses this site needs to be able to do so easily; if some people ar
 
 ### Impact / Considerations
 
-To ensure my website is accessible to all my end-users, I need to make my website function properly on all devices - mobile phones and computers - of all screen sizes. This may be a responsive, mobile-first design, or I may have seperate layouts for the desktop and mobile versions. I also need to ensure the content of my site is viewable and usable by everyone - this will include:
+To ensure my website is accessible to all my end-users, I need to make my website function properly on all devices - mobile phones and computers - of all screen sizes. This may be a responsive, mobile-first design, or I may have separate layouts for the desktop and mobile versions. I also need to ensure the content of my site is viewable and usable by everyone - this will include:
 - Selecting a good colour scheme to ensure that people with colour-blindness or impaired vision can read the text,
 - Selecting a readable font and font size to make it readable on any device,
 - Providing alt text for images to ensure that users with a screen reader can interact properly,
@@ -94,11 +94,11 @@ I need to consider how my website could cause harm - while my site's stakes for 
 
 ## Aesthetics
 
-Asthetics relate to how my site will look in terms of design.
+Aesthetics relate to how my site will look in terms of design.
 
 ### Relevance to the System
 
-A clean, good-looking site will make for an appealing and overall easier-to-use experience for my end-users compared to one that has innapropriate colours and unneeded clutter.
+A clean, good-looking site will make for an appealing and overall easier-to-use experience for my end-users compared to one that has inappropriate colours and unneeded clutter.
 
 ### Impact / Considerations
 
@@ -108,7 +108,7 @@ I will need to consider and work with my end-users to choose the right colour sc
 
 ## Usability
 
-Usabulity is how easy to use my site will be for the end-user, without the need for help or guidance.
+Usability is how easy to use my site will be for the end-user, without the need for help or guidance.
 
 ### Relevance to the System
 
@@ -153,7 +153,7 @@ I need to ensure that whenever my users commit to an action, for example, deleti
 
 ## Aesthetic and Minamalist Design
 
-Aesthetic and Minimalis Design is about keeping the UI as simple as possible - only showing the necessary information for the current user action, and not overwhelming the user with useless information.
+Aesthetic and Minimalist Design is about keeping the UI as simple as possible - only showing the necessary information for the current user action, and not overwhelming the user with useless information.
 
 ### Relevance to the System
 

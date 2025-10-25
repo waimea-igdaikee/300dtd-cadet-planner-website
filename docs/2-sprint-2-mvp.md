@@ -82,7 +82,7 @@ I've allocated myself to ensign and prep, so these should be incremented in a we
 
 ![Personal stats after allocation](screenshots/test_mvp_stats_personal_2.png)
 
-As can be seen, it increments correctly. While the display isn't particually visually appealing or easy to read, it fulfills the requirements of an MVP.
+As can be seen, it increments correctly. While the display isn't particularly visually appealing or easy to read, it fulfills the requirements of an MVP.
 
 
 ---
@@ -131,4 +131,4 @@ As the above image shows, the error message is gone.
 
 ## Sprint Review
 
-The purpose of this sprint was to "*develop a bare-bones, working web application that provides the key functionality of the system.*" I beleive the end result of this sprint is exactly that - a site that, while rough around the edges, especially in terms of some of my [relavant implications](0-requirements.md) such as aesthetics and usability, has all the key functionality required.
+The purpose of this sprint was to "*develop a bare-bones, working web application that provides the key functionality of the system.*" I believe the end result of this sprint is exactly that - a site that, while rough around the edges, especially in terms of some of my [relevant implications](0-requirements.md) such as aesthetics and usability, has all the key functionality required.

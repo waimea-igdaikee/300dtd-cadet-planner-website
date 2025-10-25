@@ -12,7 +12,7 @@ Develop a prototype that simulates the key functionality of the system, then tes
 
 ## Initial Database Design
 
-This is my inital design for my database. It has tables for users and tasks, and an allocations table to allow a 'many-to-many'-type relation betwen them. This allows many people to be allocated to a given role for a given week.
+This is my initial design for my database. It has tables for users and tasks, and an allocations table to allow a 'many-to-many'-type relation between them. This allows many people to be allocated to a given role for a given week.
 All of the tables can have entries with data I think is relevant to the use case.
 
 ![Initial database design showing 3 linked tables](screenshots/database0.png)
@@ -20,7 +20,7 @@ All of the tables can have entries with data I think is relevant to the use case
 I showed and explained this to some of the officers at my unit, and they raised some good points:
 > - Once roles have been allocated, people getting them done isn't an issue we face, so you don't need to track whether that role has been completed.
 > - What users that need to be admins?
-> - We only want one person allocated to a role each week, so the system you have to allocate multiple people to a role isn't neccesary.
+> - We only want one person allocated to a role each week, so the system you have to allocate multiple people to a role isn't necessary.
 > - Roles are the same each week, so the roles table doesn't need to track the date.
 
 ## Updated Database Design
@@ -48,7 +48,7 @@ Data inputs depend on which end-user group the user is part of:
 
 - New allocations will have to be made each week Wednesday at midnight - these will start with no user associated.
 
-- For the statistics pages, past records of when that user did each role will have to be proccessed to be displayed appropriately and logically.
+- For the statistics pages, past records of when that user did each role will have to be processed to be displayed appropriately and logically.
 
 ---
 
@@ -62,7 +62,7 @@ This [Figma demo](https://www.figma.com/proto/rVOozVsAbJGSwktdN4QJWn/Cadet-Roles
 
 ### Testing
 
-I showed both my officers and junior rates the basic flow. They noted that there actually isn't any way to see a role's description from the homne page, so I'll need to add that. Otherwise, they agreed that it seemed easy enough to use, though multiple people noted that buttons on the senior rates / officers page would be better off up in the nav bar:
+I showed both my officers and junior rates the basic flow. They noted that there actually isn't any way to see a role's description from the home page, so I'll need to add that. Otherwise, they agreed that it seemed easy enough to use, though multiple people noted that buttons on the senior rates / officers page would be better off up in the nav bar:
 
 ![Flow demo with poorly positioned buttons](screenshots/flowButtons.png)
 
@@ -168,7 +168,7 @@ This Figma demo shows the colours and fonts applied:
 I showed this to most of my unit and the general consensus was that:
 - The new body text font (Roboto) is an improvement from before in terms of aesthetics and readability
 - The navy blue primary colour is aesthetically pleasing
-- The display font (DM Serif Display) doesn't feel right. It looks more like something you'd see on a newpaper site.
+- The display font (DM Serif Display) doesn't feel right. It looks more like something you'd see on a newspaper site.
 - The peach-coloured background accents are *alright* but also don't quite feel right. I think I'm on the right track for this one - it might be as simple as lowering the saturation.
 
 

@@ -26,7 +26,7 @@ As such, I've updated my database to give each role an abbreviation:
 
 
 
-![Final database scema](screenshots/database3.png)
+![Final database schema](screenshots/database3.png)
 
 
 ---
@@ -36,37 +36,36 @@ As such, I've updated my database to give each role an abbreviation:
 
 Now that my website was fully functional, it was time to add colour. 
 
-I showed the final colour sceme to my stakeholers:
+I showed the final colour scheme to my end-users:
 
 ![Peach-coloured table](screenshots/allocations_table_1.png)
 
-While they all liked the colour, some members, particually [certian stakeholder group] found it hard to read, therefore accessibility was bad. To maximise accessibility while keeping the aesthetically pleasing colour scheme, I have made the table itself white to maximise contrast, while keeping the peach border:
+While they all liked the colour, some end-users, especially some officers, found it hard to read - meaning I had an accessibility problem. To maximise accessibility while keeping the aesthetically pleasing colour scheme, I have made the table itself white to maximise contrast, while keeping the peach border:
 
 ![White, readable table](screenshots/allocations_table_2.png)
 
-My stakeholders all liked this change.
+My end-users were all in support of this change.
 
 ## Final Implementation
 
-The web app is fully implemented with a refined UI:
+My website is fully implemented with a refined UI:
 
 ![Refined allocations page](screenshots/refine_allocations.png)
 
 ![Refined roles page](screenshots/refine_roles.png)
 
-Note how with the above roles image, we've decided to have the peach colour throughout instead of a white insert. This is based on feedback.
+Note how with the above roles image, we've decided to have the peach colour throughout instead of a white insert - this is based on end-user feedback.
 
 ![Refined personal statistics page](screenshots/refine_stats_personal.png)
 
 ![Refined unit statistics page](screenshots/refine_stats_unit.png)
 
 
-
 ---
 
 ## Testing Features
 
-I'll now go through and test all my website's features. Similarly to the testing in sprint 2, I'll be testing the functionality, but here I'll also be testing the user experience in terms of usability and asthetics.
+I'll now go through and test all my website's features. Similarly to the testing in sprint 2, I'll be testing the functionality, but here I'll also be testing the user experience in terms of usability and aesthetics.
 
 ## Testing allocations
 
@@ -104,25 +103,25 @@ Before:
 
 ![Stats before waiting a week](screenshots/test_refine_stats_personal_before.png)
 
-I've assigned myself to ensign, so if everytinh works that should read "last week" in a week's time.
+I've assigned myself to ensign, so if everything works that should read "last week" in a week's time.
 
 After:
 
 ![Stats after waiting a week](screenshots/test_refine_stats_personal_after.png)
 
-As can be seen by comparing the images, everyting has incremented correctly, and the results are displayed logically.
+As can be seen by comparing the images, everything has incremented correctly, and the results are displayed logically.
 
 ---
 
 ## Testing unit stats
 
-I need to test that 1. only admin accounts can view this page, and 2. the data is displayed in a user-friendly way.
+I need to test that 1. only admin accounts can view this page, and 2. the data is presented to the user in a logical and readable format.
 
 ![Functional unit stats page](screenshots/test_refine_stats_unit.gif)
 
 The functionality is all here - only admins can view the page, the data is displayed in table form, and the tooltips show when hovering over the table headings.
 
-I showed this to some of the officers likely to be using the table, and they really liked how it looked, but the one problem brought up is that the table needs a key explaining what the numbers mean - even though it makes sense to me, it might as well be a table of random numbers to someone that hadn't recieved an explanation.
+I showed this to some of the officers likely to be using the table, and they really liked how it looked, but the one problem brought up is that the table needs a key explaining what the numbers mean - even though it makes sense to me, it might as well be a table of random numbers to someone that hadn't received an explanation.
 
 To remedy this, I've added a short explanation above the table:
 
@@ -144,7 +143,7 @@ I've done some fixes in my CSS styling - now, I'll make sure that everything els
 
 ![Registration, login, name change](screenshots/test_refine_register.gif)
 
-As the above gif shows, registration, login, and name editing work as inteded, and the process is also functionally simple and aesthetically pleasing.
+As the above gif shows, registration, login, and name editing work as intended, and the process is also functionally simple and aesthetically pleasing.
 
 
 ## Testing mobile view
@@ -161,16 +160,14 @@ I've fixed the above issues:
 
 ![Mobile site with issues fixed](screenshots/test_refine_mobile_2.gif)
 
-After getting my stakeholders to rigourously test the mobile site, none of them could find and issues, and all thought it was well-usable and aethetically pleasing, even on a small screen.
+After getting my stakeholders to rigorously test the mobile site, none of them could find and issues, and all thought it was well-usable and aesthetically pleasing, even on a small screen.
 
 
 ## Testing dark mode
 
-Finally, I need to test my website's dark mode. Thought I didn't explicity design for this mode, talking to some of my stakeholders likely to use dark mode, they didn't care for colour, just wanted something simple.
+Finally, I need to test my website's dark mode. Thought I didn't explicitly design with this in mind, the default dark mode colour scheme (with some minor improvements) was, according to some of my dark-mode users, exactly what they wanted - basic, minimalist, and clear:
 
 ![Dark mode website](screenshots/test_refine_dark.gif)
-
-It's good.
 
 
 ---

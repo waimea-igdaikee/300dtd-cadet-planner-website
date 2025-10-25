@@ -2,16 +2,17 @@
 
 ## Addressing Relevant Implications
 
-### Accessiblity
+### Accessibility
 
-I've made sure to use colour to supplement, and not be the main feature, of buttons etc. For example, the role delete button is red, which may be indistiguishable from green to a colourblind person - but the red is only one indication that the button deletes - it also clearly says "delete", and a confirmation popup also shows:
+Accessibility in this project has been about making sure everyone, regardless of ability and device, can use my site.
+
+Throughout the development process, I've designed with mobile devices in mind, meaning that the layout is just as easy to use on a phone as it is a computer. To make sure my site works on all devices, including older ones that may not be able to correct semantic HTML mistakes. I've also validated all my pages with the W3C Markup Validation Service.
+
+I've made sure to use colour to supplement, and not be the distinguishing feature, of user inputs like buttons - for example, the role delete button is red, which may be indistinguishable from green to a colourblind person - but the red is only one indication of the button's purpose - it says "delete", and a confirmation popup also shows:
 
 ![Confirmation popup for delete](screenshots/review_confirm.png)
 
-I've also selected a readable font size, and checked with stakeholders (including older officers with impaired vision) that it is easy to read.
-
-Buttons are also big and easy to press.
-
+I've selected a readable font size and confirmed with end-users (including older officers with impaired vision) that my site is easy to read and that buttons are big enough to comfortably press on both the desktop and mobile layouts.
 
 ### Functionality
 
@@ -22,14 +23,14 @@ I also got users from both end-user groups to do a final test to make sure every
 
 ### Ethics
 
-One of the purposes of my website is to allocate parade roles more fairly. At the beginning of my project, I considered adding a warning message when allocating the same user for the same role to offten. Often, though, there is a good reason for someone to be repeating the same role, so I've instead decided that the table on the unit statistics page is the best way for senior rates / officers to allocate roles fairly where possible.
+One of the purposes of my website is to allocate parade roles more fairly. At the beginning of my project, I considered adding a warning message when allocating the same user for the same role to often. Often, though, there is a good reason for someone to be repeating the same role, so I've instead decided that the table on the unit statistics page is the best way for senior rates / officers to allocate roles fairly where possible.
 
 I've also made sure that the language on the personal statistics page isn't demeaning - e.g., it says "role last done 7 weeks ago," rather than "you are not pulling your load with this role."
 
 
 ### Aesthetics
 
-When I was prototyping my design in sprint 1 and refining it in sprint 3, I was continuously working with my end-users to make sure that my choices of colour scheme, fonts, and element positioning were aesthetically pleasing, while still being functional and accessable.
+When I was prototyping my design in sprint 1 and refining it in sprint 3, I was continuously working with my end-users to make sure that my choices of colour scheme, fonts, and element positioning were aesthetically pleasing, while still being functional and accessible.
 
 
 ### Usability
@@ -37,8 +38,8 @@ When I was prototyping my design in sprint 1 and refining it in sprint 3, I was 
 Throughout prototyping and development, I've sought end-user feedback to maximise my website's ease of use and predictability. When I made design choices, I evaluated these against Nielsen's usability heuristics (UX principles):
 
 - Consistency and Standards - I've stuck to established conventions, such as positioning the nav bar at the top of the page and using widely understood icons
-- Error prevention - When commiting to an irreversible action, such as deleting a role, a confirmation popup is shown to give users an escape from mis-clicks.
-- Aesthetic and Minamalist Design - I've made sure that my site's design is simple and displays only the neccesary information, depending on whether the user is a junior or senior rate / officer.
+- Error prevention - When committing to an irreversible action, such as deleting a role, a confirmation popup is shown to give users an escape from mis-clicks.
+- Aesthetic and Minamalist Design - I've made sure that my site's design is simple and displays only the necessary information, depending on whether the user is a junior or senior rate / officer.
 
 ---
 
