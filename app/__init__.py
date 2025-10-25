@@ -515,7 +515,7 @@ def add_user():
 
             # And let them know it was successful and they can login
             flash("Registration successful", "success")
-            return redirect("/allocations")
+            return redirect("/")
 
         # Found an existing record, so prompt to try again
         flash("Username already exists. Try again...", "error")

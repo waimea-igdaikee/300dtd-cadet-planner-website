@@ -151,14 +151,13 @@ table tr:last-child td:last-child {
 
 #messages ul {
     width: fit-content;
-    margin: 2rem auto;
+    margin: 10px auto -10px auto;
     padding: 0;
 }
 
 #messages .message {
     list-style: none;
     text-align: center;
-    margin-bottom: 1rem;
 }
 
 #messages .message.success { color: var(--pico-color-green-500); }

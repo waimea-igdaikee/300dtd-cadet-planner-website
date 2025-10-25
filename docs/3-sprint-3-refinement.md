@@ -50,15 +50,15 @@ My stakeholders all liked this change.
 
 The web app is fully implemented with a refined UI:
 
-![Refined allocations page](screenshots/test_refine_allocations.png)
+![Refined allocations page](screenshots/refine_allocations.png)
 
-![Refined roles page](screenshots/test_refine_roles.png)
+![Refined roles page](screenshots/refine_roles.png)
 
 Note how with the above roles image, we've decided to have the peach colour throughout instead of a white insert. This is based on feedback.
 
-![Refined personal statistics page](screenshots/test_refine_stats_personal.png)
+![Refined personal statistics page](screenshots/refine_stats_personal.png)
 
-![Refined unit statistics page](screenshots/test_refine_stats_unit.png)
+![Refined unit statistics page](screenshots/refine_stats_unit.png)
 
 
 
@@ -66,84 +66,90 @@ Note how with the above roles image, we've decided to have the peach colour thro
 
 ## Testing Features
 
-I'll now go through and test all my website's features. Similarly to the testing in sprint 2, I'll be tesing the functionality, but here I'll also be testing the user experience in terms of usability and asthetics.
+I'll now go through and test all my website's features. Similarly to the testing in sprint 2, I'll be testing the functionality, but here I'll also be testing the user experience in terms of usability and asthetics.
 
-## Testing FEATURE NAME HERE
+## Testing allocations
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+The allocations page should work correctly. Junior NCOs should be able to allocate and remove themselves from a role, while admins should be able to allocate anyone, as well as generate a new set of roles for the upcoming weeks.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+Like in sprint 2, I'll start by testing that **junior NCOs** can allocate and remove themselves from roles:
 
-### Changes / Improvements
+![Junior rate allocation process](screenshots/test_refine_allocations_1.gif)
 
-Replace this text with notes any improvements you made as a result of the testing.
+Both allocation and deallocation work as intended. The interface is also simple to use and aesthetically pleasing.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+I'll now test that **admins** can create roles for an upcoming week, allocate, and remove people:
 
+![Senior rate allocation and allocation generation](screenshots/test_refine_allocations_2.gif)
 
----
-
-## Testing FEATURE NAME HERE
-
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
-
-### Changes / Improvements
-
-Replace this text with notes any improvements you made as a result of the testing.
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
-
+As above, everything is functional and looks good.
 
 ---
 
-## Testing FEATURE NAME HERE
+## Testing creation, editing, and deletion of roles
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+As can be seem in the second image in the Final Implementation section above, all the roles display correctly. I'll test that admins can easily create, edit, and delete roles:
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+![Admin role manipulation](screenshots/test_refine_roles.gif)
 
-### Changes / Improvements
-
-Replace this text with notes any improvements you made as a result of the testing.
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
-
+We can see that everything works correctly. Also note the confirmation popup before deletion.
 
 ---
 
-## Testing FEATURE NAME HERE
+## Testing personal stats
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+I need to check that the personal statistics are being counted correctly. To do this, I will take a before screenshot, allocate myself to a role, wait a week, and check that all entries in the "last done" column have incremented by a week.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+Before:
 
-### Changes / Improvements
+![Stats before waiting a week](screenshots/test_refine_stats_personal_before.png)
 
-Replace this text with notes any improvements you made as a result of the testing.
+I've assigned myself to ensign, so if everytinh works that should read "last week" in a week's time.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+After:
 
+![Stats after waiting a week](screenshots/test_refine_stats_personal_after.png)
+
+As can be seen by comparing the images, everyting has incremented correctly, and the results are displayed logically.
 
 ---
 
-## Testing FEATURE NAME HERE
+## Testing unit stats
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+I need to test that 1. only admin accounts can view this page, and 2. the data is displayed in a user-friendly way.
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+![Functional unit stats page](screenshots/test_refine_stats_unit.gif)
+
+The functionality is all here - only admins can view the page, the data is displayed in table form, and the tooltips show when hovering over the table headings.
+
+I showed this to some of the officers likely to be using the table, and they really liked how it looked, but the one problem brought up is that the table needs a key explaining what the numbers mean - even though it makes sense to me, it might as well be a table of random numbers to someone that hadn't recieved an explanation.
+
+To remedy this, I've added a short explanation above the table:
+
+![Table with descriptive heading](screenshots/test_refine_stats_unit_2.png)
+
+---
+
+## Testing account creation and name editing
+
+I need to test that new accounts can be created properly, and that users can edit their account's display name. I also need to check that everything looks as it should:
+
+![Account login page with broken styling](screenshots/test_refine_login_1.png)
+
+Already, we can see that things aren't displaying correctly - though it's difficult to see in the screenshot, the "Log in to continue" text is displayed in white above the peach box, but this is meant to be black and also in front of the peach background.
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+I've done some fixes in my CSS styling - now, I'll make sure that everything else works properly:
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+![Registration, login, name change](screenshots/test_refine_register.gif)
+
+As the above gif shows, registration, login, and name editing work as inteded, and the process is also functionally simple and aesthetically pleasing.
 
 
 ---
 
 ## Sprint Review
 
-Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
+Through this sprint, I've progressively refined my website's feature set and design up to the point where both me and my stakeholder groups are with the end result. I've also tested all my website's features, and though some mistakes were identified, they have all been fixed.
 
