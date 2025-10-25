@@ -42,16 +42,31 @@ I showed the final colour sceme to my stakeholers:
 
 While they all liked the colour, some members, particually [certian stakeholder group] found it hard to read, therefore accessibility was bad. To maximise accessibility while keeping the aesthetically pleasing colour scheme, I have made the table itself white to maximise contrast, while keeping the peach border:
 
+![White, readable table](screenshots/allocations_table_2.png)
 
+My stakeholders all liked this change.
 
 ## Final Implementation
 
 The web app is fully implemented with a refined UI:
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE SYSTEM HERE**
+![Refined allocations page](screenshots/test_refine_allocations.png)
+
+![Refined roles page](screenshots/test_refine_roles.png)
+
+Note how with the above roles image, we've decided to have the peach colour throughout instead of a white insert. This is based on feedback.
+
+![Refined personal statistics page](screenshots/test_refine_stats_personal.png)
+
+![Refined unit statistics page](screenshots/test_refine_stats_unit.png)
+
 
 
 ---
+
+## Testing Features
+
+I'll now go through and test all my website's features. Similarly to the testing in sprint 2, I'll be tesing the functionality, but here I'll also be testing the user experience in terms of usability and asthetics.
 
 ## Testing FEATURE NAME HERE
 

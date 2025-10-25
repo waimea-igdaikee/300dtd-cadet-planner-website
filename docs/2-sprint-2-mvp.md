@@ -122,7 +122,7 @@ The registration and name change worked, however the error "*You need to be logg
 
 It turns out this error is being caused by my site attempting to route users to the allocations page after registering - but, as I don't want the site to automatically log users in after registering, they don't have access to this page. The simple fix is to route users directly to the login page instead: `return redirect("/login")`
 
-![Registration without error](image-1.png)
+![Registration without error](screenshots/test_mvp_register_2.png)
 
 As the above image shows, the error message is gone.
 

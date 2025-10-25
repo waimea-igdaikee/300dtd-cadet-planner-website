@@ -22,7 +22,7 @@ nav {
     margin: auto;
 }
 
-header h2 {
+nav h2 {
     color: var(--pico-primary-inverse);
     margin: 0 !important;
 }
@@ -44,7 +44,7 @@ h1, h2, h3 {
     width: 80% !important;
 }
 
-article {
+article, article footer {
     background-color: light-dark(#F3EBDA, var(--pico-card-background-color));
 }
 
@@ -54,6 +54,10 @@ article {
 details ul {
     width: 100px !important;
     right: auto !important;
+}
+
+details summary {
+    background-color: transparent !important;
 }
 
 /* ALLOCATIONS ---------------------------*/
