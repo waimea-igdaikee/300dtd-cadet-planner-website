@@ -135,7 +135,7 @@ It's important my end-users find navigating and operating my website straightfor
 
 ### Impact / Considerations
 
-For my site, consistency and standards will look like having the navigation bar at the top and using standard icons, like 3 stacked lines for the hamburger menu.
+For my site, consistency and standards will look like having the navigation bar at the top and using standard icons, like a downward facing arrow for dropdown menus.
 
 
 ## Error Prevention
@@ -148,7 +148,7 @@ It's important my end-users aren't able to make mistakes - this site exists to m
 
 ### Impact / Considerations
 
-I need to ensure that whenever my users commit to an action, for example, allocating or removing themselves from a role, that some form of confirmation message is shown to give them a way out of any misclicks or typos.
+I need to ensure that whenever my users commit to an action, for example, deleting a role, that some form of confirmation message is shown to give them a way out of any misclicks or typos.
 
 
 ## Aesthetic and Minamalist Design
