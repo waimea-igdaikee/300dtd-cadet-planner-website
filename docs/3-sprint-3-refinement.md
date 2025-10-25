@@ -147,6 +147,32 @@ I've done some fixes in my CSS styling - now, I'll make sure that everything els
 As the above gif shows, registration, login, and name editing work as inteded, and the process is also functionally simple and aesthetically pleasing.
 
 
+## Testing mobile view
+
+Throughout the development of my website, I've made my design with mobile devices in mind. In theory, this should mean the same desktop interface will also work on mobile - but I'll test it to be sure:
+
+![Mobile site with positioning issues](screenshots/test_refine_mobile_1.gif)
+
+It seems that nearly everything works properly, with two caveats - first, the nav dropdown goes slightly off the screen, making it difficult to read and interact with, and second, the table on the unit stats display requires scrolling, and while this isn't a problem, only the table should scroll - not the entire page.
+
+### Changes / Improvements
+
+I've fixed the above issues:
+
+![Mobile site with issues fixed](screenshots/test_refine_mobile_2.gif)
+
+After getting my stakeholders to rigourously test the mobile site, none of them could find and issues, and all thought it was well-usable and aethetically pleasing, even on a small screen.
+
+
+## Testing dark mode
+
+Finally, I need to test my website's dark mode. Thought I didn't explicity design for this mode, talking to some of my stakeholders likely to use dark mode, they didn't care for colour, just wanted something simple.
+
+![Dark mode website](screenshots/test_refine_dark.gif)
+
+It's good.
+
+
 ---
 
 ## Sprint Review

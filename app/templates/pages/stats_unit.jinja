@@ -23,29 +23,31 @@
 <article>
     <h2>Unit Statistics | Past 10 Weeks</h2>
     <p>Table shows number of times each user has done each role.</p>
-    <table id="stats_table">
-        <thead>
-            <tr>
-                <th scope="col">User</th>
-                {# Print each role as a table column heading #}
-                {% for role in roles %}
-                    <th class="heading_rotate" data-tooltip="{{role.name}}" scope="col">{{role.abbreviation}}</th>
-                {% endfor %}
-            </tr>
-        </thead>
-        
-        <tbody>
-            {# Print each user and put their count of each allocation in the respective column #}
-            {% for user, roles in allocations_count.items() %}
+    <div id="stats_table">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ user }}</td>
-                    {% for role, count in roles.items() %}
-                        <td>{{ count }}</td>
+                    <th scope="col">User</th>
+                    {# Print each role as a table column heading #}
+                    {% for role in roles %}
+                        <th class="heading_rotate" data-tooltip="{{role.name}}" scope="col">{{role.abbreviation}}</th>
                     {% endfor %}
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            
+            <tbody>
+                {# Print each user and put their count of each allocation in the respective column #}
+                {% for user, roles in allocations_count.items() %}
+                    <tr>
+                        <td>{{ user }}</td>
+                        {% for role, count in roles.items() %}
+                            <td>{{ count }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </article>
 
 {% endblock %}

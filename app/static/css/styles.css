@@ -17,19 +17,14 @@ header {
     padding: 0 !important;
 }
 
-nav {
-    width: min(800px, 80%);
+nav, main {
+    width: min(800px, 90%);
     margin: auto;
 }
 
 nav h2 {
     color: var(--pico-primary-inverse);
     margin: 0 !important;
-}
-
-main {
-    width: min(800px, 80%);
-    margin: auto;
 }
 
 h1, h2, h3 {
@@ -51,14 +46,31 @@ article, article footer {
 
 /* NAV -----------------------------------------*/
 
-details ul {
+#menu {
+    width: 6em;
+}
+
+.dropdown ul {
     width: 100px !important;
-    right: auto !important;
+    left: auto !important;
+}
+
+@media (max-width: 1045px) {
+    .dropdown ul {
+        right: 5% !important;
+    }
+}
+
+@media not (max-width: 1045px) {
+    .dropdown ul {
+        right: auto !important;
+    }
 }
 
 details summary {
     background-color: transparent !important;
 }
+
 
 /* ALLOCATIONS ---------------------------*/
 
@@ -73,10 +85,15 @@ details {
 .allocation summary {
     padding: 0 !important;
     border: 0 !important;
-    height: 31.5px !important;
+    height: fit-content !important;
     color: var(--pico-primary) !important;
     background-color: transparent !important;
     text-decoration: underline;
+
+}
+
+.allocation ul {
+    left: 0 !important;
 }
 
 table {
@@ -129,7 +146,7 @@ table tr:last-child td:last-child {
     justify-content: space-between;
 }
 
-.buttons > a, button {
+.buttons > a, .buttons > button {
     width: 30%;
 }
 
@@ -177,6 +194,10 @@ table tr:last-child td:last-child {
 }
 
 #stats_table {
+    overflow-x: auto;
+}
+
+#stats_table table {
     table-layout: auto;
 }
 
