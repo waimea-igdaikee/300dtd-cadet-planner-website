@@ -259,18 +259,21 @@ def role_delete():
 
 #-----------------------------------------------------------
 # Person Stats page route
-# Filters previous allocations
+# - Passes in a nested dictionary with a sub-dictionary for how many times
+#   and how many weeks it's been since this user did each role
+# - Only includes allocation data from the past 10 weeks
 #-----------------------------------------------------------
 @app.get("/stats_personal")
 @login_required
 def stats_personal():
-    # The user id is used to display which roles the user themselves is allocated
+
+    # Collect some data for the SQL query and further processing
     user_id = session["user_id"]
     current_date = datetime.date.today()
     current_date_string = current_date.isoformat()
 
     with connect_db() as client:
-        # Get all the current user's allocations from the DB.
+        # Count how many times the current user has done each role over the past 10 weeks.
         sql_allocations = """
             SELECT roles.name AS name,
                 COUNT(allocations.user) AS count,
@@ -283,39 +286,39 @@ def stats_personal():
                 AND allocations.date < ?
             GROUP BY roles.name
         """
-
         params=[user_id, current_date_string]
         result = client.execute(sql_allocations, params)
-        allocations_count_absolute = result.rows # Has the absolute date of the last time the role was done by this user
+        allocations_count_last_date = result.rows # Has the date of the last time this role was done by this user
 
-        allocations_count_relative = {} # This dictionary will hold a dictionary for each role
+        allocations_count_weeks_since = {} # This nested dictionary will hold a sub-dictionary for each role. 
+                                           # These sub-dictionaries will hold how many times and weeks since this role was done by this user.
         
-        for role in allocations_count_absolute:
-            allocations_count_relative[role["name"]] = {} # Create a sub dictionary for each role
+        for role in allocations_count_last_date:
 
+            count = role["count"]
+
+            allocations_count_weeks_since[role["name"]] = {} # Create a sub dictionary for each role
+
+            # Calculate whether the user has done this role in the past 10 weeks, and if so, how many weeks it's been
             if role["last_date"]:
-                last_date = datetime.datetime.strptime(role["last_date"], '%Y-%m-%d').date()
-                weeks_since = ceil((current_date - last_date).days / 7)
+                last_date = datetime.datetime.strptime(role["last_date"], '%Y-%m-%d').date() # Convert the string to a date object
+                weeks_since = ceil((current_date - last_date).days / 7) # Figure out how many weeks it's been, rounding up.
 
+                # Use the correct grammar depending on how many long it's been
                 if weeks_since > 1:
                     last_done = f"{weeks_since} weeks ago"
-                elif weeks_since > 0:
+                elif weeks_since == 1:
                     last_done = "Last week"
-                else: #weeks_since == 0
+                else: # Time data gets lost when converting to date, so this is if the user is doing this role later today
                     last_done = "Never"
             else:
                 last_done = "Never"
 
-            count = role["count"]
+            # Put this data in the dictionary
+            allocations_count_weeks_since[role["name"]]["count"] = count
+            allocations_count_weeks_since[role["name"]]["weeks_since"] = last_done
 
-            allocations_count_relative[role["name"]]["count"] = count
-            allocations_count_relative[role["name"]]["weeks_since"] = last_done
-
-
-
-
-        # And show them on the page
-        return render_template("pages/stats_personal.jinja", allocations_count=allocations_count_relative)
+        return render_template("pages/stats_personal.jinja", allocations_count=allocations_count_weeks_since)
     
 #-----------------------------------------------------------
 # Route for a user editing their name
@@ -354,14 +357,16 @@ def user_name_edit():
 
 #-----------------------------------------------------------
 # Unit Stats page route
-# Filters previous allocations
+# - Passes in list of roles
+# - Passes in nested dictionary of {each user : {each role : allocation count}}
+# - Only includes allocations over the past 10 weeks
 #-----------------------------------------------------------
 @app.get("/stats_unit")
 @login_required
 def stats_unit():
-    current_date_string = datetime.date.today().isoformat()
 
     with connect_db() as client:
+
         # Get all the roles for display as table headings
         sql = """
             SELECT name,
@@ -374,7 +379,9 @@ def stats_unit():
         result = client.execute(sql, params)
         roles = result.rows
 
-        # Get all the allocations from the DB
+        # Get the count of times each user has done each role over the past 10 weeks
+        current_date_string = datetime.date.today().isoformat()
+
         sql = """
             SELECT users.name AS user,
                 roles.name AS role,
@@ -390,21 +397,23 @@ def stats_unit():
         """
         params=[current_date_string]
         result = client.execute(sql, params)
-        users_allocations_count = result.rows
+        allocations_count_rows = result.rows # There is one row for each combination of user and role
 
-        # Convert the returned table to a nested dictionary so it can be iterated over on the webpage
-        allocations_count = {} # This dictionary will hold a dictionary for each user
-        for user_allocation_count in users_allocations_count:
-            user = user_allocation_count['user']
-            role = user_allocation_count['role']
-            count = user_allocation_count['count']
+        allocations_count = {} # This nested dictionary will hold a sub-dictionary for each user. 
+                               # These sub-dictionaries will hold {each role: allocation count}.
 
+        # Convert the returned rows into a nested dictionary as described above. This allows easy iteration in jinja.
+        for row in allocations_count_rows:
+            user = row['user']
+            role = row['role']
+            count = row['count']
+
+            # Make a sub-dictionary for this user if we haven't already
             if user not in allocations_count:
                 allocations_count[user] = {}
 
-            allocations_count[user][role] = count
+            allocations_count[user][role] = count # Take the count from the row and put in the sub-dictionary
 
-        # And show them on the page
         return render_template("pages/stats_unit.jinja", roles=roles, allocations_count=allocations_count)
 
 

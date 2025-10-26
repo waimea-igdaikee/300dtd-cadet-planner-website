@@ -121,7 +121,6 @@ table tr:last-child td:last-child {
 
 
 
-
 /* ROLES ---------------------------------------*/
 
 
@@ -193,9 +192,6 @@ table tr:last-child td:last-child {
     height: inherit !important;
 }
 
-#stats_table {
-    overflow-x: auto;
-}
 
 #stats_table table {
     table-layout: auto;
@@ -204,4 +200,15 @@ table tr:last-child td:last-child {
 .role_header {
     display: flex;
     justify-content: space-between;
+}
+
+
+/* Unit Stats ---------------------------------- */
+
+#stats_table {
+    overflow-x: auto; /* Make the table scrollable */
+}
+
+#stats_table table {
+    table-layout: auto;
 }

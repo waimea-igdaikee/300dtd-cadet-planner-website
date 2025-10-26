@@ -1,10 +1,7 @@
 {#=====================================================
-  Home page
-  - Hero style greeting banner
-  - List of things passed in as 'things' array
-  - Form for adding a new thing
-
-  - List of allocations passed in as 'allocations' array
+  Unit Statistics Page
+  - Shows a table of each user and how many times they've done each role over the past 10 weeks
+  - Nested dictionary of {each user : {each role : allocation count}} passed in
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
@@ -19,35 +16,42 @@
 
 {% block content %}
 
-{# What if no roles have been defined? #}
 <article>
     <h2>Unit Statistics | Past 10 Weeks</h2>
-    <p>Table shows number of times each user has done each role.</p>
-    <div id="stats_table">
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">User</th>
-                    {# Print each role as a table column heading #}
-                    {% for role in roles %}
-                        <th class="heading_rotate" data-tooltip="{{role.name}}" scope="col">{{role.abbreviation}}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
+
+    {# Only show the table if at least one role exists, otherwise show an error message. #}
+    {% if roles %}
+        <p>Table shows number of times each user has done each role.</p>
+        <div id="stats_table"> {# Wrap the table to allow for proper scroll behavior #}
+            <table>
             
-            <tbody>
-                {# Print each user and put their count of each allocation in the respective column #}
-                {% for user, roles in allocations_count.items() %}
+                <thead>
                     <tr>
-                        <td>{{ user }}</td>
-                        {% for role, count in roles.items() %}
-                            <td>{{ count }}</td>
+                        <th scope="col">User</th>
+                        {# Print each role as a table column heading #}
+                        {% for role in roles %}
+                            <th data-tooltip="{{role.name}}" scope="col">{{role.abbreviation}}</th>
                         {% endfor %}
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                
+                <tbody>
+                    {# Print each user and put their count of each allocation in the respective column #}
+                    {% for user, roles in allocations_count.items() %}
+                        <tr>
+                            <td>{{ user }}</td>
+                            {% for role, count in roles.items() %}
+                                <td>{{ count }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    {% else %}
+        <p>No parade roles exist at the moment.</p>
+    {% endif %}
 </article>
 
 {% endblock %}
