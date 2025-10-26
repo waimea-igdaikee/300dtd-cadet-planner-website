@@ -27,14 +27,14 @@
         placeholder="Display Name"
         required
         >
-        <button style="width:12em;">Update Name</button>
+        <button id="update">Update Name</button>
     </form>
 </article>
 
 <article>
     <h2>Your Statistics | Past 10 Weeks</h2>
     {# Only show the table if at least one role exists, otherwise show an error message. #}
-    {% if roles %}
+    {% if allocations_count %}
     <table>
 
         <thead>

@@ -1,8 +1,22 @@
+
 /*=====================================================
   User stylesheet - Building upon PicoCSS
 =====================================================*/
 
 /* General setup ----------------------------------------------------- */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+* {
+    font-family: "roboto", sans-serif !important;
+}
+
+h1, h2, h3 {
+    font-family: "source serif 4" !important;
+}
+
 
 /* Enable the light-dark colour system */
 :root {
@@ -33,19 +47,6 @@
 }
 
 
-/* Set up fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
-
-* {
-    font-family: "roboto" !important;
-}
-
-h1, h2, h3 {
-    font-family: "source serif 4" !important;
-}
-
-
 /* Nav bar */
 header {
     background-color: var(--pico-color-slate-800);
@@ -66,6 +67,7 @@ h1, h2, h3 {
     font-family: "source serif 4" !important;
 }
 
+/* Element setup ----------------------------------------------------- */
 
 /* Dropdown menus (including nav menu) */
 #menu {
@@ -104,7 +106,7 @@ article, article footer {
 }
 
 
-/* Tables  ----------------------------------------------------- */
+/* Tables */
 table {
     table-layout: fixed;
 }
@@ -200,6 +202,13 @@ table tr:last-child td:last-child {
 }
 
 
+/* Personal Stats page ----------------------------------------------------- */
+
+#update {
+    width: 12em;
+}
+
+
 /* Unit Stats page ----------------------------------------------------- */
 
 #stats_table {
@@ -208,4 +217,40 @@ table tr:last-child td:last-child {
 
 #stats_table table {
     table-layout: auto;
+}
+
+/* Floating Pico-style tooltip outside overflow container */
+#picoTooltip {
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none;
+
+    /* Pico variables */
+    padding: .25rem .5rem;
+    background: var(--pico-tooltip-background-color);
+    color: var(--pico-tooltip-color);
+    font-size: .875rem;
+    font-weight: var(--pico-font-weight);
+    border-radius: var(--pico-border-radius);
+    white-space: nowrap;
+
+    opacity: 0;
+    transform: translate(-50%, -0.25rem);
+    transition: opacity .2s, transform .2s;
+}
+
+#picoTooltip.show {
+    opacity: 1;
+    transform: translate(-50%, -0.5rem);
+}
+
+/* caret */
+#picoTooltip::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -0.3rem;
+    transform: translateX(-50%);
+    border: .3rem solid transparent;
+    border-top-color: var(--pico-tooltip-background-color);
 }

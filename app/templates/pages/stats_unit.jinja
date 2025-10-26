@@ -4,6 +4,11 @@
   - Nested dictionary of {each user : {each role : allocation count}} passed in
 =====================================================#}
 
+
+{# HTML tooltips don't work in a scroll container as they get clipped, so this script absolutely positioned divs 
+   above the table headings. These divs have readable tooltips. #}
+<script src="/static/js/tooltip.js"></script>
+
 {% extends 'pages/base.jinja' %}
 
 
@@ -30,7 +35,7 @@
                         <th scope="col">User</th>
                         {# Print each role as a table column heading #}
                         {% for role in roles %}
-                            <th data-tooltip="{{role.name}}" scope="col">{{role.abbreviation}}</th>
+                            <th custom-tooltip="{{role.name}}" scope="col">{{role.abbreviation}}</th>
                         {% endfor %}
                     </tr>
                 </thead>

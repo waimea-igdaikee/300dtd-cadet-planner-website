@@ -25,6 +25,7 @@
             <h2>Parade Roles {{ "Next" if week else "This"}} Week</h2> {# Set the title appropriately #}
             {# If this week has allocations for it, show them. Otherwise, show a message, or if the user is an admin, a button to generate some #}
             {% if allocations %} 
+
                 <table>
 
                     <thead>
@@ -36,6 +37,7 @@
 
                     <tbody>
                         {% for allocation in allocations %}
+
                             <tr>
                                 <td><a href="/roles?role={{ allocation.role_id }}#role_{{allocation.role_id}}">{{ allocation.role_name }}</a></td>
 
@@ -74,14 +76,19 @@
                                     {% endif %}
                                 </td>
                             </tr>
+
                         {% endfor %}
                     </tbody>
-
+                    
                 </table>
             {% elif session.admin %} {# If no roles exist for a given week, show a button to add them or a message depending on whether the user has admin #}
+
                 <a href="/allocations_create?week={{week}}" role="button">Add parade roles for {{ "next" if week else "this"}} week</a>
+
             {% else %}
+            
                 <p>No parade roles have been put up for {{ "next" if week else "this"}} week.</p> {# Set the appropriate message depending on week #}
+
             {% endif %}
 
         </article>
