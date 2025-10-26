@@ -1,7 +1,8 @@
 {#=====================================================
   Roles page
-  - List of roles passed in as 'roles' array
-  - Form for adding a new thing
+  - Displays roles from a list of roles passed in
+  - Admins can edit and delete existing roles
+  - Admins can create new roles
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
@@ -23,7 +24,7 @@
     {% for role in roles %}
 
         <article id="role_{{role.id}}"
-            {# If the user clicked on a role link on the allocations page, bold it for clarity #}
+            {# If the user followed a role link on the allocations page, highlight it for clarity #}
             {% if role_to_bold == role.id %}
                 class = "highlight"
             {% endif %}
@@ -35,9 +36,8 @@
                 <form action="/role_edit" method="POST">
                     <div class="flex">
                         {# Inputs are wrapped in divs to allow tooltips #}
-                        <div class="input">
+                        <div class="full-width">
                             <input
-                            
                                 type="text"
                                 name="name"
                                 placeholder="Role Name"
@@ -46,7 +46,7 @@
                             >
                         </div>
 
-                        <div class = "input small" data-tooltip="Abbreviation">
+                        <div class="small" data-tooltip="Abbreviation">
                             <input
                                 type="text"
                                 name="abbreviation"
@@ -77,10 +77,12 @@
                 </form>
             {% else %}
 
-                <div class="role_header">
+                <div class="role-header">
                     <h3>
                         {{ role.name }}
-                        {% if session.admin %} 
+
+                        {# Only admins need to know the abbreviation for each role - don't show it to non-admins #}
+                        {% if session.admin %}
                             ({{ role.abbreviation}})
                         {% endif %}
                     </h3>
@@ -113,7 +115,7 @@
 
                 <div class="flex">
                     {# Inputs are wrapped in divs to allow tooltips #}
-                    <div class="input">
+                    <div class="full-width">
                         <input
                         
                             type="text"
@@ -123,7 +125,7 @@
                         >
                     </div>
 
-                    <div class = "input small" data-tooltip="Abbreviation">
+                    <div class = "small" data-tooltip="Abbreviation">
                         <input
                             type="text"
                             name="abbreviation"

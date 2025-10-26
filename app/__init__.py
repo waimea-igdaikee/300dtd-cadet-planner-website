@@ -39,6 +39,8 @@ def login():
 
 #-----------------------------------------------------------
 # Allocations page route
+# - Sorts allocations into this week, next week, or discards them.
+# - Passes in these lists and a users list
 #-----------------------------------------------------------
 @app.get("/allocations")
 @login_required
@@ -47,7 +49,8 @@ def allocations():
     current_date = datetime.date.today()
 
     with connect_db() as client:
-        # Get all the future allocations from the DB
+        # Get all the allocations from the DB
+        ######################################## I could save some python time by filtering only future allocations in the below sql
         sql_allocations = """
             SELECT allocations.date,
                    roles.id as role_id,
@@ -66,12 +69,13 @@ def allocations():
 
 
         # Filter the dates into either this week, next week, or discard them.
-        # I'm not using SQL to filter them as this would require 2 sql queries for the 2 weeks.
+        # I'm not using SQL to filter them as this would require 2 sql queries for the 2 weeks, which would be inefficient.
         allocations_this_week = []
         allocations_next_week = []
         for allocation in allocations:
-            allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date()
+            allocation_date = datetime.datetime.strptime(allocation["date"], '%Y-%m-%d').date() # Generate a date object from the string
             date_delta = (allocation_date - current_date).days
+            # Sort into relevant list
             if 0 <= date_delta < 7:
                 allocations_this_week.append(allocation)
             elif 7 <= date_delta < 14:
@@ -88,7 +92,6 @@ def allocations():
         result_users = client.execute(sql_users, params)
         users = result_users.rows
         
-
         # And show them on the page
         return render_template(
             "pages/allocations.jinja",
@@ -98,12 +101,13 @@ def allocations():
         )
     
 #-----------------------------------------------------------
-# Route for processing a user allocating themselves
+# Route for processing a user (de)allocating themselves
+# - Has a parameter remove - this sets whether the user is being allocated or deallocated.
 #-----------------------------------------------------------
 @app.get("/allocate")
 @login_required
 def allocate():
-    # Retrieve the neccesary data to make the allocation query
+    # Retrieve the necessary data to make the (de)allocation query
     remove = request.args.get("remove")
     if remove == "1":
         user_id = "NULL"
@@ -113,7 +117,7 @@ def allocate():
     role = request.args.get("role")
 
     with connect_db() as client:
-        # Update the DB
+        # Update the database
         sql = """
             UPDATE allocations
             SET user = ?
@@ -124,10 +128,16 @@ def allocate():
         client.execute(sql, params)
         return redirect("/allocations")
     
+#-----------------------------------------------------------
+# Route for processing an admin allocating a user
+# - Admin login required
+# - Has remove parameter, controlling allocation / deallocation
+# - Has user_id parameter, controlling which user gets (de)allocated
+#-----------------------------------------------------------
 @app.get("/allocate_admin")
 @admin_required
 def allocate_admin():
-    # Retrieve the neccesary data to make the allocation query
+    # Retrieve the necessary data to make the (de)allocation query
     remove = request.args.get("remove")
     if remove == "1":
         user_id = "NULL"
@@ -137,7 +147,7 @@ def allocate_admin():
     role = request.args.get("role")
 
     with connect_db() as client:
-        # Update the DB
+        # Update the database
         sql = """
             UPDATE allocations
             SET user = ?
@@ -151,15 +161,15 @@ def allocate_admin():
 
 #-----------------------------------------------------------
 # Route for instantiating all parade roles for this or next week
+# - Happens when an admin presses the "generate roles for this/next week" button
+# - Adds empty allocations for each role for either this or next Tuesday, depending on the `week` parameter
 #-----------------------------------------------------------
 @app.get("/allocations_create")
-@login_required
+@admin_required
 def allocations_create():
-    # Retrieve the neccesary data to make the allocation query
     week = int(request.args.get("week"))
 
-
-    # Calculate how many days away the coming `day 1` (tuesday) is
+    # Calculate how many days away the coming `day 1` (Tuesday) is
     days_away = (1 - datetime.date.today().weekday() + 7) % 7
     if week == 1:
         days_away += 7 # Add a week if we are wanting the next tuesday after this tuesday
@@ -202,13 +212,19 @@ def roles():
 
         # Show them on the page
         return render_template("pages/roles.jinja", roles=roles)
-    
+
+
+#-----------------------------------------------------------
+# Route for deleting a role
+# - Requires admin login
+#-----------------------------------------------------------
 @app.get("/role_delete")
 @admin_required 
 def role_delete():
     role = int(request.args.get("role"))
+
     with connect_db() as client:
-        # Get all the things from the DB
+        # Delete the role from the database
         sql = """
             DELETE FROM roles
             WHERE id=?
@@ -216,21 +232,75 @@ def role_delete():
         params=[role]
         client.execute(sql, params)
 
-        # Get all the things from the DB
-        sql = """
-            SELECT *
-
-            FROM roles
-
-            ORDER BY roles.name ASC
-        """
-        params=[]
-        result = client.execute(sql, params)
-        roles = result.rows
-
-        # And show them on the page
+        # Go back to the roles page
         flash(f"Role deleted", "success")
-        return render_template("pages/roles.jinja", roles=roles)
+        return redirect("/roles")
+    
+    
+#-----------------------------------------------------------
+# Route for adding a role, using data posted from the new role form
+# - Requires admin login
+#-----------------------------------------------------------
+@app.post("/role_new")
+@admin_required
+def role_new():
+    # Get the data from the form
+    name  = request.form.get("name")
+    abbreviation = request.form.get("abbreviation")
+    description = request.form.get("description")
+
+    # Sanitise the text inputs
+    name = html.escape(name)
+    abbreviation = html.escape(abbreviation)
+    description=html.escape(description)
+
+    with connect_db() as client:
+        # Add the role to the database
+        sql = "INSERT INTO roles (name, abbreviation, description) VALUES (?, ?, ?)"
+        params = [name, abbreviation, description]
+        client.execute(sql, params)
+
+        # Go back to the roles page
+        flash(f"Role '{name}' added", "success")
+        return redirect("/roles")
+    
+
+#-----------------------------------------------------------
+# Route for editing a role, using data posted from the edit role form
+# - Requires admin login
+#-----------------------------------------------------------
+@app.post("/role_edit")
+@admin_required
+def role_edit():
+    # Get the data from the form
+    name  = request.form.get("name")
+    abbreviation = request.form.get("abbreviation")
+    description = request.form.get("description")
+    role = request.form.get("role")
+
+    # Sanitise the text inputs
+    name = html.escape(name)
+    abbreviation = html.escape(abbreviation)
+    description=html.escape(description)
+    
+
+    with connect_db() as client:
+        # Edit the role in the database
+        sql = """
+            UPDATE roles
+
+            SET name=?,
+                abbreviation=?,
+                description=?
+
+            WHERE roles.id=?
+        """
+        params = [name, abbreviation, description, role]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"Role '{name}' updated", "success")
+        return redirect("/roles")
     
     
 
@@ -392,74 +462,6 @@ def stats_unit():
             allocations_count[user][role] = count # Take the count from the row and put in the sub-dictionary
 
         return render_template("pages/stats_unit.jinja", roles=roles, allocations_count=allocations_count)
-
-
-#-----------------------------------------------------------
-# Route for adding a role, using data posted from a form
-# - Restricted to logged in users
-#-----------------------------------------------------------
-@app.post("/role_new")
-@admin_required
-def role_new():
-    # Get the data from the form
-    name  = request.form.get("name")
-    abbreviation = request.form.get("abbreviation")
-    description = request.form.get("description")
-
-    # Sanitise the text inputs
-    name = html.escape(name)
-    abbreviation = html.escape(abbreviation)
-    description=html.escape(description)
-
-    with connect_db() as client:
-        # Add the thing to the DB
-        sql = "INSERT INTO roles (name, abbreviation, description) VALUES (?, ?, ?)"
-        params = [name, abbreviation, description]
-        client.execute(sql, params)
-
-        # Go back to the home page
-        flash(f"Role '{name}' added", "success")
-        return redirect("/roles")
-    
-
-#-----------------------------------------------------------
-# Route for editing a role, using data posted from a form
-# - Restricted to logged in users
-#-----------------------------------------------------------
-@app.post("/role_edit")
-@admin_required
-def role_edit():
-    # Get the data from the form
-    name  = request.form.get("name")
-    abbreviation = request.form.get("abbreviation")
-    description = request.form.get("description")
-    role = request.form.get("role")
-
-    # Sanitise the text inputs
-    name = html.escape(name)
-    abbreviation = html.escape(abbreviation)
-    description=html.escape(description)
-    
-
-    with connect_db() as client:
-        # Add the thing to the DB
-        sql = """
-            UPDATE roles
-
-            SET name=?,
-                abbreviation=?,
-                description=?
-
-            WHERE roles.id=?
-        """
-        params = [name, abbreviation, description, role]
-        client.execute(sql, params)
-
-        # Go back to the home page
-        flash(f"Role '{name}' updated", "success")
-        return redirect("/roles")
-
-
 
 
 #-----------------------------------------------------------

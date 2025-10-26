@@ -2,16 +2,51 @@
   User stylesheet - Building upon PicoCSS
 =====================================================*/
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
-* {
-    font-family: "roboto" !important;
-}
+/* General setup ----------------------------------------------------- */
 
+/* Enable the light-dark colour system */
 :root {
   color-scheme: light dark;
 }
 
+
+/* Pre-configured width and flex classes */
+.small {
+    width: 20% !important;
+}
+
+.large {
+    width: 80% !important;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.flex > * {
+    margin-bottom: 0 !important;
+    height: inherit !important;
+}
+
+
+/* Set up fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+* {
+    font-family: "roboto" !important;
+}
+
+h1, h2, h3 {
+    font-family: "source serif 4" !important;
+}
+
+
+/* Nav bar */
 header {
     background-color: var(--pico-color-slate-800);
     padding: 0 !important;
@@ -31,21 +66,8 @@ h1, h2, h3 {
     font-family: "source serif 4" !important;
 }
 
-.small {
-    width: 20% !important;
-}
 
-.large {
-    width: 80% !important;
-}
-
-article, article footer {
-    background-color: light-dark(#F3EBDA, var(--pico-card-background-color));
-}
-
-
-/* NAV -----------------------------------------*/
-
+/* Dropdown menus (including nav menu) */
 #menu {
     width: 6em;
 }
@@ -67,35 +89,22 @@ article, article footer {
     }
 }
 
+details {
+    width: fit-content;
+}
+
 details summary {
     background-color: transparent !important;
 }
 
 
-/* ALLOCATIONS ---------------------------*/
-
-details {
-    width: fit-content;
+/* Articles */
+article, article footer {
+    background-color: light-dark(#F3EBDA, var(--pico-card-background-color));
 }
 
-.allocation {
-    margin-bottom: 0;
-}
 
-.allocation summary {
-    padding: 0 !important;
-    border: 0 !important;
-    height: fit-content !important;
-    color: var(--pico-primary) !important;
-    background-color: transparent !important;
-    text-decoration: underline;
-
-}
-
-.allocation ul {
-    left: 0 !important;
-}
-
+/* Tables  ----------------------------------------------------- */
 table {
     table-layout: fixed;
 }
@@ -117,54 +126,7 @@ table tr:last-child td:last-child {
 }
 
 
-
-
-
-
-/* ROLES ---------------------------------------*/
-
-
-
-.input {
-    width: 100%;
-}
-
-.cancel {
-    color: var(--pico-form-element-color);
-    background-color: var(--pico-form-element-background-color);
-    border-color: var(--pico-form-element-color);
-}
-
-.delete {
-    background-color: var(--pico-color-red-600);;
-    border-color: var(--pico-color-red-650);;
-    right: 0;
-}
-
-.buttons {
-    justify-content: space-between;
-}
-
-.buttons > a, .buttons > button {
-    width: 30%;
-}
-
-
-/* ABOUT PAGE -------------------------------------------- */
-
-#tech-stack {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-}
-
-#tech-stack article {
-    flex: 1;
-}
-
-
-/* MESSAGES -------------------------------------------- */
-
+/* Success / error messages  */
 #messages ul {
     width: fit-content;
     margin: 10px auto -10px auto;
@@ -179,31 +141,66 @@ table tr:last-child td:last-child {
 #messages .message.success { color: var(--pico-color-green-500); }
 #messages .message.error   { color: var(--pico-color-red-500); }
 
-.highlight {
-    background-color: light-dark(var(--pico-color-sand-150), var(--pico-color-slate-800));
+
+/* Allocations page ----------------------------------------------------- */
+
+/* .allocation is a <details> containing the dropdown */
+
+.allocation {
+    margin-bottom: 0;
 }
 
-.flex {
-    display: flex !important;
+.allocation summary {
+    padding: 0 !important;
+    border: 0 !important;
+    height: fit-content !important;
+    color: var(--pico-primary) !important;
+    background-color: transparent !important;
+    text-decoration: underline;
+
 }
 
-.flex > * {
-    margin-bottom: 0 !important;
-    height: inherit !important;
+.allocation ul {
+    left: 0 !important;
 }
 
 
-#stats_table table {
-    table-layout: auto;
-}
+/* Roles page  ----------------------------------------------------- */
 
-.role_header {
+/* Div containing role name, acronym, and edit button */
+.role-header {
     display: flex;
     justify-content: space-between;
 }
 
+/* Highlights a role article when link followed from allocations page */
+.highlight {
+    background-color: light-dark(var(--pico-color-sand-150), var(--pico-color-slate-800));
+}
 
-/* Unit Stats ---------------------------------- */
+/* Rows of three buttons when editing a role */
+.buttons {
+    justify-content: space-between;
+}
+
+.buttons a, .buttons button {
+    width: 30%;
+}
+
+.cancel {
+    color: var(--pico-form-element-color);
+    background-color: var(--pico-form-element-background-color);
+    border-color: var(--pico-form-element-color);
+}
+
+.delete {
+    background-color: var(--pico-color-red-600);;
+    border-color: var(--pico-color-red-650);;
+    right: 0;
+}
+
+
+/* Unit Stats page ----------------------------------------------------- */
 
 #stats_table {
     overflow-x: auto; /* Make the table scrollable */
