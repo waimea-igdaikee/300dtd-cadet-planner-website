@@ -14,7 +14,7 @@ from app.helpers.session import init_session
 from app.helpers.db      import connect_db
 from app.helpers.errors  import init_error, not_found_error
 from app.helpers.logging import init_logging
-from app.helpers.auth    import login_required
+from app.helpers.auth    import login_required, admin_required
 from app.helpers.time    import init_datetime, utc_timestamp, utc_timestamp_now
 
 import datetime
@@ -125,7 +125,7 @@ def allocate():
         return redirect("/allocations")
     
 @app.get("/allocate_admin")
-@login_required # Admin reqd
+@admin_required
 def allocate_admin():
     # Retrieve the neccesary data to make the allocation query
     remove = request.args.get("remove")
@@ -147,30 +147,6 @@ def allocate_admin():
         params=[user_id, date, role]
         client.execute(sql, params)
         return redirect("/allocations")
-    
-
-# #-----------------------------------------------------------
-# # Route for processing an admin allocating a user
-# #-----------------------------------------------------------
-# @app.post("/allocate")
-# @login_required # Perhaps I should make an @admin_req'd
-# def allocate_admin():
-#     # Get the data from the form
-#     user_id  = request.form.get("user_id")
-#     date = request.form.get("date")
-#     role = request.form.get("role")
-
-#     with connect_db() as client:
-#         # Update the DB
-#         sql = """
-#             UPDATE allocations
-#             SET user = ?
-#             WHERE date = ? AND role = ?
-#         """
-
-#         params=[user_id, date, role]
-#         client.execute(sql, params)
-#         return redirect("/allocations")
     
 
 #-----------------------------------------------------------
@@ -206,6 +182,7 @@ def allocations_create():
 
 #-----------------------------------------------------------
 # Roles page route
+# - Passes in a list of roles
 #-----------------------------------------------------------
 @app.get("/roles")
 @login_required
@@ -223,11 +200,11 @@ def roles():
         result = client.execute(sql, params)
         roles = result.rows
 
-        # And show them on the page
+        # Show them on the page
         return render_template("pages/roles.jinja", roles=roles)
     
 @app.get("/role_delete")
-@login_required # Should this have admin perms
+@admin_required 
 def role_delete():
     role = int(request.args.get("role"))
     with connect_db() as client:
@@ -362,7 +339,7 @@ def user_name_edit():
 # - Only includes allocations over the past 10 weeks
 #-----------------------------------------------------------
 @app.get("/stats_unit")
-@login_required
+@admin_required
 def stats_unit():
 
     with connect_db() as client:
@@ -422,7 +399,7 @@ def stats_unit():
 # - Restricted to logged in users
 #-----------------------------------------------------------
 @app.post("/role_new")
-@login_required # Perhaps I should make an @admin_req'd
+@admin_required
 def role_new():
     # Get the data from the form
     name  = request.form.get("name")
@@ -450,7 +427,7 @@ def role_new():
 # - Restricted to logged in users
 #-----------------------------------------------------------
 @app.post("/role_edit")
-@login_required # Perhaps I should make an @admin_req'd
+@admin_required
 def role_edit():
     # Get the data from the form
     name  = request.form.get("name")
