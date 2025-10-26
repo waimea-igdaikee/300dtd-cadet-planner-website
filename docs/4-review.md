@@ -18,7 +18,9 @@ I've selected a readable font size and confirmed with end-users (including older
 
 To make sure my website works as intended and expected by my end-users, I've placed a big focus on gathering feedback and making relevant changes, and this can be seen through all three of my development sprints.
 
-I also got users from both end-user groups to do a final test to make sure everything works logically, removing bias from me who understands everything.
+I got users from both end-user groups to do a final test to make sure everything works logically, removing bias from me who understands everything.
+
+I, along with my end-users, have also thoroughly checked that everything is bug-free.
 
 
 ### Ethics
@@ -31,6 +33,8 @@ I've also made sure that the language on the personal statistics page isn't deme
 ### Aesthetics
 
 When I was prototyping my design in sprint 1 and refining it in sprint 3, I was continuously working with my end-users to make sure that my choices of colour scheme, fonts, and element positioning were aesthetically pleasing, while still being functional and accessible.
+
+Some end-users will also prefer a dark-mode interface, so to please them I've made my site dark-mode compatible.
 
 
 ### Usability

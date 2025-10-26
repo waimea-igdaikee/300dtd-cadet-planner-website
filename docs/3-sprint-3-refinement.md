@@ -160,12 +160,16 @@ I've fixed the above issues:
 
 ![Mobile site with issues fixed](screenshots/test_refine_mobile_2.gif)
 
-After getting my stakeholders to rigorously test the mobile site, none of them could find and issues, and all thought it was well-usable and aesthetically pleasing, even on a small screen.
+However the tooltips are now broken, as they get clipped off by the scroll container. I've fixed this with javascript by generating absolutely positioned div elements in front of the table headings, and these divs hold the tooltip:
+
+![Funtional mobile tooltip](screenshots/test_refine_mobile_3.png)
+
+After getting my stakeholders to rigorously test the mobile site, none of them could find any other issues, and all thought it was well-usable and aesthetically pleasing, even on a small screen.
 
 
 ## Testing dark mode
 
-Finally, I need to test my website's dark mode. Thought I didn't explicitly design with this in mind, the default dark mode colour scheme (with some minor improvements) was, according to some of my dark-mode users, exactly what they wanted - basic, minimalist, and clear:
+Finally, I need to test my website's dark mode. Thought I didn't explicitly design with this in mind, the default dark mode colour scheme (with some minor improvements) was, according to my dark-mode-enjoying users, exactly what they wanted - basic, minimalist, and clear:
 
 ![Dark mode website](screenshots/test_refine_dark.gif)
 
@@ -174,5 +178,5 @@ Finally, I need to test my website's dark mode. Thought I didn't explicitly desi
 
 ## Sprint Review
 
-Through this sprint, I've progressively refined my website's feature set and design up to the point where both me and my stakeholder groups are with the end result. I've also tested all my website's features, and though some mistakes were identified, they have all been fixed.
+Through this sprint, I've progressively refined my website's feature set and design up to the point where both me and my stakeholder groups are with the end result. I've also tested all my website's features, and though some issues were identified, they have all been fixed.
 

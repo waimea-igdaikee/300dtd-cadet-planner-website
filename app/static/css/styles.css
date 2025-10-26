@@ -218,39 +218,3 @@ table tr:last-child td:last-child {
 #stats_table table {
     table-layout: auto;
 }
-
-/* Floating Pico-style tooltip outside overflow container */
-#picoTooltip {
-    position: absolute;
-    z-index: 9999;
-    pointer-events: none;
-
-    /* Pico variables */
-    padding: .25rem .5rem;
-    background: var(--pico-tooltip-background-color);
-    color: var(--pico-tooltip-color);
-    font-size: .875rem;
-    font-weight: var(--pico-font-weight);
-    border-radius: var(--pico-border-radius);
-    white-space: nowrap;
-
-    opacity: 0;
-    transform: translate(-50%, -0.25rem);
-    transition: opacity .2s, transform .2s;
-}
-
-#picoTooltip.show {
-    opacity: 1;
-    transform: translate(-50%, -0.5rem);
-}
-
-/* caret */
-#picoTooltip::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -0.3rem;
-    transform: translateX(-50%);
-    border: .3rem solid transparent;
-    border-top-color: var(--pico-tooltip-background-color);
-}

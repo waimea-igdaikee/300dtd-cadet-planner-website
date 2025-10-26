@@ -7,13 +7,14 @@ by Indiana Daikee
 
 ## Project Description
 
-At Navy Cadets, we have parade roles that need to be fulfilled by different people each week. Tracking how many times people have done each role and allocating roles to people weekly are things we struggle to do effectively.  As such, this database-driven web app solves these problems with the following features:
+At Navy Cadets, we have parade roles that need to be fulfilled by different people each week. Tracking how many times people have done each role and allocating roles to people weekly are things we struggle to do effectively. As such, this database-driven web app solves these problems with the following features:
 
-- Individual user account login, including admins with elevated permissions
-- Tracking of personal statistics over the past 10 weeks
-- Tracking and display of everyone's statistics over the past 10 weeks
-- Allocating parade roles
-- Creating, editing, and deleting roles
+- Individual user account registration and login system, with some account having admin permissions
+- An interface showing all the parade roles for this and next week, allowing users to allocate/deallocate themselves to specific roles, and admins to allocate/deallocate any user
+- Database tracking of how many times each user has done each role, and an interface for users to see their personal statistics
+- An admin-only interface showing a unit-wide overview of how many times each user has done each role
+- Responsive design, meaning the website works on devices of any screen size and with any modern browser
+- Dark mode support -  _note that __light mode is forced by default__ as this is what the vast majority of my end-users will use - please delete `data-theme="light"` from line 15 of [base.jinja](app\templates\pages\base.jinja) if you would prefer to use your system default_
 
 
 ---
@@ -58,13 +59,8 @@ The project demonstrates a number of **complex database techniques**:
 
 The project demonstrates a number of **complex digital media (web) techniques**:
 - Using non-core functionality
-- Using sophisticated digital effects
 - Applying industry standards or guidelines
 - Using responsive design for use on multiple devices
-- The integration of original media assets
 - Using dynamic data handling and interactivity
 - Automation through scripts
-
-** EDIT THESE LISTS ABOVE TO MATCH YOUR PROJECT**
-
 
