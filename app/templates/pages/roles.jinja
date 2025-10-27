@@ -5,7 +5,18 @@
   - Admins can create new roles
 =====================================================#}
 
+{# JS to decode encoded characters for display in the confirm e.g., the apostrophe in "bosun's mate" #}
+<script>
+    function decodeHtml(str) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = str;
+    return txt.value;
+    }
+</script>
+
+
 {% extends 'pages/base.jinja' %}
+
 
 {% set role_to_bold = request.args.get('role') | int %}
 {% set role_to_edit = request.args.get('edit') | int %}
@@ -71,7 +82,8 @@
                     <div class="flex buttons">
                         <button>Save</button>
                         <a role="button" class="cancel" href="/roles#role_{{role.id}}">Cancel</a>
-                        <a role="button" class="delete" href="/role_delete?role={{ role.id }}" onclick="return confirm('Are you sure you want to delete the {{ role.name|e }} role?');">Delete</a>
+
+                        <a role="button" class="delete" href="/role_delete?role={{ role.id }}" onclick="return confirm(decodeHtml('Are you sure you want to delete the {{ role.name|e }} role?'));">Delete</a>
                     </div>
 
                 </form>
