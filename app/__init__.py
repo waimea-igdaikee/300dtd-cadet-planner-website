@@ -110,7 +110,7 @@ def allocate():
     # Retrieve the necessary data to make the (de)allocation query
     remove = request.args.get("remove")
     if remove == "1":
-        user_id = "NULL"
+        user_id = None
     else:
         user_id = session["user_id"]
     date = request.args.get("date")
@@ -140,7 +140,7 @@ def allocate_admin():
     # Retrieve the necessary data to make the (de)allocation query
     remove = request.args.get("remove")
     if remove == "1":
-        user_id = "NULL"
+        user_id = None
     else:
         user_id = request.args.get("user_id")
     date = request.args.get("date")
@@ -226,6 +226,7 @@ def role_delete():
     with connect_db() as client:
         # Delete the role from the database
         sql = """
+
             DELETE FROM roles
             WHERE id=?
         """

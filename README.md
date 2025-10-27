@@ -1,7 +1,7 @@
 # Navy Cadet Parade Role Planner
 
 by Indiana Daikee
-
+###### NEED TO FIX PROBLEM WHEN NAMING ROLE A NON UNIQUE NAME
 
 ---
 
