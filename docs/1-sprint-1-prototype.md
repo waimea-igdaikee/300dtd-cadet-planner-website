@@ -40,6 +40,7 @@ Data inputs depend on which end-user group the user is part of:
 
 ### Required Data Output
 
+- The allocations page needs to whether each role is allocated for each week, and if so, who by
 - For the statistics pages, my site needs to show how many times that user as done each role in a logical format - perhaps a calender-heatmap-style display?
 
 ### Required Data Processing
