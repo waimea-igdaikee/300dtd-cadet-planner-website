@@ -47,10 +47,10 @@ def login():
 def allocations():
     # The user id is used to display which roles the user themselves is allocated
     current_date = datetime.date.today()
+    current_date_string = current_date.isoformat()
 
     with connect_db() as client:
-        # Get all the allocations from the DB
-        ######################################## I could save some python time by filtering only future allocations in the below sql
+        # Get future all the allocations from the DB
         sql_allocations = """
             SELECT allocations.date,
                    roles.id as role_id,
@@ -60,10 +60,11 @@ def allocations():
 
             FROM allocations
             JOIN roles ON allocations.role = roles.id
-            LEFT JOIN users on allocations.user = users.id
+            LEFT JOIN users ON allocations.user = users.id
+            WHERE allocations.date >= ?
             ORDER BY role_name
         """
-        params=[]
+        params=[current_date_string]
         result_allocations = client.execute(sql_allocations, params)
         allocations = result_allocations.rows
 
@@ -225,12 +226,23 @@ def role_delete():
 
     with connect_db() as client:
         # Delete the role from the database
-        sql = """
 
+        sql = """
             DELETE FROM roles
             WHERE id=?
         """
+
         params=[role]
+        client.execute(sql, params)
+
+        # Because ON DELETE CASCADE doesn't work in this script (but does in the console for some reason), 
+        # manually cascade the delete to allocations
+
+        sql = """
+            DELETE FROM allocations
+            WHERE role=?
+        """
+        # Use same params as before
         client.execute(sql, params)
 
         # Go back to the roles page
@@ -259,7 +271,19 @@ def role_new():
         # Add the role to the database
         sql = "INSERT INTO roles (name, abbreviation, description) VALUES (?, ?, ?)"
         params = [name, abbreviation, description]
-        client.execute(sql, params)
+        try:
+            client.execute(sql, params)
+
+        # If the user attemps to re-use a role name or abbreviation code, parse the error and flash a message
+        except Exception as e:
+            eStr = str(e)
+            if "SQLITE_CONSTRAINT_UNIQUE: UNIQUE constraint failed: roles.abbreviation" in eStr:
+                flash(f"A role already exists with that abbreviation", "error")
+            elif "SQLITE_CONSTRAINT_UNIQUE: UNIQUE constraint failed: roles.name" in eStr:
+                flash(f"A role already exists with that name", "error")
+            else:
+                flash(f"Error creating role", "error")
+            return redirect("/roles")
 
         # Go back to the roles page
         flash(f"Role '{name}' added", "success")
@@ -358,9 +382,9 @@ def stats_personal():
                 elif weeks_since == 1:
                     last_done = "Last week"
                 else: # Time data gets lost when converting to date, so this is if the user is doing this role later today
-                    last_done = "Never"
+                    last_done = "Not done recently"
             else:
-                last_done = "Never"
+                last_done = "Not done recently"
 
             # Put this data in the dictionary
             allocations_count_weeks_since[role["name"]]["count"] = count
