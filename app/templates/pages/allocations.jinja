@@ -22,7 +22,7 @@
     {% for allocations, week in [(allocations_this_week, 0), (allocations_next_week, 1)] %}
         <article>
 
-            <h2>Parade Roles {{ "Next" if week else "This"}} Week</h2> {# Set the title appropriately #}
+            <h2>Parade Roles {{ "Next" if week else "This" }} Week</h2> {# Set the title appropriately #}
             {# If this week has allocations for it, show them. Otherwise, show a message, or if the user is an admin, a button to generate some #}
             {% if allocations %} 
 
@@ -39,7 +39,9 @@
                         {% for allocation in allocations %}
 
                             <tr>
-                                <td><a href="/roles?role={{ allocation.role_id }}#role_{{allocation.role_id}}">{{ allocation.role_name }}</a></td>
+                                <td>
+                                    <a href="/roles?role={{ allocation.role_id }}#role_{{ allocation.role_id }}">{{ allocation.role_name }}</a>
+                                </td>
 
                                 <td>
                                     {% if allocation.user_id %} {# If this role is allocated to someone #}
@@ -83,7 +85,7 @@
                 </table>
             {% elif session.admin %} {# If no roles exist for a given week, show a button to add them or a message depending on whether the user has admin #}
 
-                <a href="/allocations_create?week={{week}}" role="button">Add parade roles for {{ "next" if week else "this"}} week</a>
+                <a href="/allocations_create?week={{ week }}" role="button">Add parade roles for {{ "next" if week else "this" }} week</a>
 
             {% else %}
             

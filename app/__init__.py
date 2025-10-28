@@ -321,7 +321,19 @@ def role_edit():
             WHERE roles.id=?
         """
         params = [name, abbreviation, description, role]
-        client.execute(sql, params)
+        try:
+            client.execute(sql, params)
+
+        # If the user attemps to re-use a role name or abbreviation code, parse the error and flash a message
+        except Exception as e:
+            eStr = str(e)
+            if "SQLITE_CONSTRAINT_UNIQUE: UNIQUE constraint failed: roles.abbreviation" in eStr:
+                flash(f"A role already exists with that abbreviation", "error")
+            elif "SQLITE_CONSTRAINT_UNIQUE: UNIQUE constraint failed: roles.name" in eStr:
+                flash(f"A role already exists with that name", "error")
+            else:
+                flash(f"Error editing role", "error")
+            return redirect("/roles")
 
         # Go back to the home page
         flash(f"Role '{name}' updated", "success")
@@ -419,7 +431,7 @@ def user_name_edit():
         params = [name, user_id]
         client.execute(sql, params)
 
-        # Updat the session to reflect the name change
+        # Update the session to reflect the name change
         session["user_name"] = name
 
         # Go back to the home page
