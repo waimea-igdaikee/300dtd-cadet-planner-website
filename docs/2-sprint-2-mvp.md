@@ -10,7 +10,7 @@ Develop a bare-bones, working web application that provides the key functionalit
 
 ## Implemented Database Schema
 
-This is the database schema I have implemented for the my MVP. As detailed in the Sprint 1 documentation, me and my stakeholders are still debating adding a rank field to the users table, as opposed to just storing the user's rank as part of their name.
+This is the database schema I have implemented for my MVP. As detailed in the Sprint 1 documentation, me and my end users are still debating adding a rank field to the users table, as opposed to just storing the user's rank as part of their name.
 
 ![Implemented database schema](screenshots/database2.png)
 
@@ -25,15 +25,11 @@ The key functionality of the web app was implemented:
 
 ![MVP of Roles page](screenshots/mvp_roles.png)
 
-
 ![MVP of Personal Stats page](screenshots/mvp_stats_personal.png)
-
 
 ![MVP of Unit Stats page](screenshots/mvp_stats_unit.png)
 
-Only admins can see this one. She ain't pretty
-
-
+Only admins can see the above unit statistics page. While it isn't visually appealing or easy to read, it does show the necessary information, which is all I need for my MVP.
 
 
 ---
@@ -78,7 +74,7 @@ I need to check that the personal statistics are being counted correctly. To do 
 
 ![Personal stats before allocation](screenshots/test_mvp_stats_personal_1.png)
 
-I've allocated myself to ensign and prep, so these should be incremented in a weeks time:
+I've allocated myself to ensign and prep, so these should be incremented in a week's time:
 
 ![Personal stats after allocation](screenshots/test_mvp_stats_personal_2.png)
 
@@ -93,7 +89,7 @@ Firstly, I need to test that only admins can see this page:
 
 ![Only admin account able to view page](screenshots/test_mvp_stats_unit_1.gif)
 
-This works as intended. However when taking a closer look at the actual data shown, we see some issues:
+This works as intended. However, when taking a closer look at the actual data shown, we see some issues:
 
 ![Incorrect stats shown](screenshots/test_mvp_stats_unit_2.png)
 

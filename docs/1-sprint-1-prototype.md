@@ -19,7 +19,7 @@ All of the tables can have entries with data I think is relevant to the use case
 
 I showed and explained this to some of the officers at my unit, and they raised some good points:
 > - Once roles have been allocated, people getting them done isn't an issue we face, so you don't need to track whether that role has been completed.
-> - What users that need to be admins?
+> - What about users that need to be admins?
 > - We only want one person allocated to a role each week, so the system you have to allocate multiple people to a role isn't necessary.
 > - Roles are the same each week, so the roles table doesn't need to track the date.
 
@@ -40,8 +40,8 @@ Data inputs depend on which end-user group the user is part of:
 
 ### Required Data Output
 
-- The allocations page needs to whether each role is allocated for each week, and if so, who by
-- For the statistics pages, my site needs to show how many times that user as done each role in a logical format - perhaps a calender-heatmap-style display?
+- The allocations page needs to show whether each role is allocated for each week, and if so, who by
+- For the statistics pages, my site needs to show how many times that user has done each role in a logical format - perhaps a calendar-heatmap-style display?
 
 ### Required Data Processing
 
@@ -67,7 +67,7 @@ I showed both my officers and junior rates the basic flow. They noted that there
 
 ![Flow demo with poorly positioned buttons](screenshots/flowButtons.png)
 
-This navbar comment didn't come as a suprise, as the flow mockup is only meant to show flowing between pages.
+This navbar comment didn't come as a surprise, as the flow mockup is only meant to show flowing between pages.
 
 As these were the only criticisms - and I can only get quality end-user feedback once per week - I don't feel the need to make a version two of my UI Flow mockup. In line with the above feedback, I'll move on to developing the UI layout for each page of my site.
 
@@ -96,7 +96,7 @@ I showed this UI prototype to both of my end user groups, and they had a few poi
 
 > I didn't realise that you could click roles to see the description
 
-This last feedback brings up a good point about the relevant implication of **usability** - *how easy to use my site is for the end-user, without the need for help or guidance*. Even though I thought the underlined text made it clear it was a link that could be followed, not all my end users realised that - and ultimately, that's what matters. I will address this by adding text saying 'click for info.' This, combined with the underline, should make it clear that it is a link the user can follow.
+This last feedback brings up a good point about the relevant implication of **usability** - *how easy-to-use my site is for the end-user, without the need for help or guidance*. Even though I thought the underlined text made it clear it was a link that could be followed, not all my end users realised that - and ultimately, that's what matters. I will address this by adding text saying 'click for info.' This, combined with the underline, should make it clear that it is a link the user can follow.
 
 #### Senior rate- / officer-specific feedback 
 > Selecting from a list for allocating someone to a role works here because you only have four cadets - but we have nearly 20. There needs to be a search, or maybe a way to filter by rank
@@ -140,11 +140,11 @@ Note that they were also happy with the un-allocate 'X' button - I showed them t
 
 ![Column of description previews](screenshots\descriptionPreviews.png)
 
-I asked my commanding officer what colours and fonts he wanted the site to have (he *is* the boss) and he said, "suprise me." For my next iteration, I will add colours and possibly change the font, keeping somewhat within a Navy theme.
+I asked my commanding officer what colours and fonts he wanted the site to have (he *is* the boss) and he said, "surprise me." For my next iteration, I will add colours and possibly change the font, keeping somewhat within a Navy theme.
 
 ### Further Development
 
-Seeing as my commanding officer is happy with anything, I've sat down with a couple of junior rates and worked out some good colours and fonts to trial.
+Since my commanding officer is happy with anything, I've sat down with a couple of junior rates and worked out some good colours and fonts to trial.
 
 I've done this by playing around with [Realtime Colours](https://www.realtimecolors.com/) and [Google Fonts](https://fonts.google.com):
 

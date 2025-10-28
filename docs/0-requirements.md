@@ -10,7 +10,7 @@ The problem we have is that it's quite difficult:
 - To quickly know who is doing what this current week
 - For people to volunteer for a role
 - For senior rates / officers to allocate someone a role
-- To track how many often each person has done each role
+- To track how many times and often each person has done each role
 
 
 ## End-User Requirements
@@ -22,7 +22,7 @@ The end users for this website would be everyone that attends the local Navy Cad
 - Have an individual login
 - Expect an obvious, clean, and easy-to-use interface that showing which roles are free or taken (and who by) for the current and next week. This interface will mostly be used on mobile phones but must still be desktop compatible
 - Need a way to easily accept a role for the current or next week
-- Need an obvious way to see if when they've been allocated a role
+- Need an obvious way to see if and when they've been allocated a role
 - Should be able to see an overview / description of each role in case they've forgotten
 - Can see their stats over the past term i.e. how many times they've done each role
 
@@ -72,7 +72,7 @@ Functionality means ensuring my website works as intended, as expected, and ulti
 
 ### Relevance to the System
 
-My website's design needs to be functional for both of my end-user groups - junior rates will expect it to 'just work' easily and without bugs or issues; anything buggy or unexpected will confuse them and ultimately void the purpose of my site, which is to make parade allocations easier for everyone. The same goes for the senior rates and officers - they need the interface for allocating roles and tracking people's work to be simply and functional, else they'll simply go back to the old system.
+My website's design needs to be functional for both of my end-user groups - junior rates will expect it to 'just work' easily and without bugs or issues; anything buggy or unexpected will confuse them and ultimately defeat the purpose of my site, which is to make parade allocations easier for everyone. The same goes for the senior rates and officers - they need the interface for allocating roles and tracking people's work to be simple and functional, else they'll simply go back to the old system.
 
 ### Impact / Considerations
 
@@ -89,7 +89,7 @@ The main purpose of this site is for it to enable the allocation of parade roles
 
 ### Impact / Considerations
 
-I need to consider how my website could cause harm - while my site's stakes for abuse aren't especially high, the outcomes my it creates should be fair for everyone - it wouldn't be fair if it resulted in the same person doing the same role every week. I might consider adding a warning when allocating the same person for the same role for multiple weeks in a row. I also need to make sure the personal statistics page doesn't 'put down' my users for not doing enough work - even if they're not pulling their load.
+I need to consider how my website could cause harm - while my site's stakes for abuse aren't especially high, the outcomes it creates should be fair for everyone - it wouldn't be fair if it resulted in the same person doing the same role every week. I might consider adding a warning when allocating the same person for the same role for multiple weeks in a row. I also need to make sure the personal statistics page doesn't 'put down' my users for not doing enough work - even if they're not pulling their load.
 
 
 ## Aesthetics
@@ -112,13 +112,13 @@ Usability is how easy to use my site will be for the end-user, without the need 
 
 ### Relevance to the System
 
-It's important my end-users find navigating and operating my website to be easy - users will expect my site to follow established conventions (as described by Nielsen's usability heuristics), and if my website doesn't meet this expectation, my users will end up confused, bothered, and ultimately worse off than before my using site.
+It's important my end-users find navigating and operating my website to be easy - users will expect my site to follow established conventions (as described by Nielsen's usability heuristics), and if my website doesn't meet this expectation, my users will end up confused, bothered, and ultimately worse off than before using my site.
 
 ### Impact / Considerations
 
 A big part of making my website as usable as possible will come from the iterative design process: gathering feedback from both of my end-user groups, making appropriate changes, gathering more feedback, and so on.
 
-Maximising usability will involve like making sure my website follows Nielsen's usability heuristics. These heuristics are detailed below in the *User Experience (UX) Principles* section.
+Maximising usability will involve making sure my website follows Nielsen's usability heuristics. These heuristics are detailed below in the *User Experience (UX) Principles* section.
 
 
 ---
@@ -151,7 +151,7 @@ It's important my end-users aren't able to make mistakes - this site exists to m
 I need to ensure that whenever my users commit to an action, for example, deleting a role, that some form of confirmation message is shown to give them a way out of any misclicks or typos.
 
 
-## Aesthetic and Minamalist Design
+## Aesthetic and Minimalist Design
 
 Aesthetic and Minimalist Design is about keeping the UI as simple as possible - only showing the necessary information for the current user action, and not overwhelming the user with useless information.
 
@@ -161,4 +161,4 @@ An aesthetic and minimalist design will make for an appealing and easy-to-use ex
 
 ### Impact / Considerations
 
-I need to make sure via the iterative feedback process that my site has a simple design that display only what is relevant and necessary - for both junior and senior / officer rates.
+I need to make sure via the iterative feedback process that my site has a simple design that displays only what is relevant and necessary - for both junior and senior / officer rates.

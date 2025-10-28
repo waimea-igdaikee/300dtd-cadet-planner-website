@@ -3,7 +3,7 @@
 
 ## Sprint Goals
 
-Develop the system until it is fully featured, with a refined UI and it satisfies the requirements. The system will be fully tested at this point.
+Develop the system until it is fully featured, with a refined UI that satisfies the requirements. The system will be fully tested at this point.
 
 
 ---
@@ -69,7 +69,7 @@ I'll now go through and test all my website's features. Similarly to the testing
 
 ## Testing allocations
 
-The allocations page should work correctly. Junior NCOs should be able to allocate and remove themselves from a role, while admins should be able to allocate anyone, as well as generate a new set of roles for the upcoming weeks.
+The allocations page should work correctly. Junior NCOs should be able to allocate and remove themselves from a role, while admins should be able to allocate anyone, as well as generate a new set of roles for the upcoming weeks. One requirement for this page that was dropped was the search function for admins when allocating a cadet - I discussed with the senior rates and officers, and they decided that due to the size of the unit (10-15 cadets), the search wasn't necessary as it's easy to identify and pick a cadet from the dropdown list.
 
 Like in sprint 2, I'll start by testing that **junior NCOs** can allocate and remove themselves from roles:
 
@@ -87,7 +87,7 @@ As above, everything is functional and looks good.
 
 ## Testing creation, editing, and deletion of roles
 
-As can be seem in the second image in the Final Implementation section above, all the roles display correctly. I'll test that admins can easily create, edit, and delete roles:
+As can be seen in the second image in the Final Implementation section above, all the roles display correctly. I'll test that admins can easily create, edit, and delete roles:
 
 ![Admin role manipulation](screenshots/test_refine_roles.gif)
 
@@ -162,14 +162,14 @@ I've fixed the above issues:
 
 However the tooltips are now broken, as they get clipped off by the scroll container. I've fixed this with javascript by generating absolutely positioned div elements in front of the table headings, and these divs hold the tooltip:
 
-![Funtional mobile tooltip](screenshots/test_refine_mobile_3.png)
+![Functional mobile tooltip](screenshots/test_refine_mobile_3.png)
 
 After getting my stakeholders to rigorously test the mobile site, none of them could find any other issues, and all thought it was well-usable and aesthetically pleasing, even on a small screen.
 
 
 ## Testing dark mode
 
-Finally, I need to test my website's dark mode. Thought I didn't explicitly design with this in mind, the default dark mode colour scheme (with some minor improvements) was, according to my dark-mode-enjoying users, exactly what they wanted - basic, minimalist, and clear:
+Finally, I need to test my website's dark mode. Though I didn't explicitly design with this in mind, the default dark mode colour scheme (with some minor improvements) was, according to my dark-mode-enjoying users, exactly what they wanted - basic, minimalist, and clear:
 
 ![Dark mode website](screenshots/test_refine_dark.gif)
 
@@ -178,5 +178,5 @@ Finally, I need to test my website's dark mode. Thought I didn't explicitly desi
 
 ## Sprint Review
 
-Through this sprint, I've progressively refined my website's feature set and design up to the point where both me and my stakeholder groups are with the end result. I've also tested all my website's features, and though some issues were identified, they have all been fixed.
+Through this sprint, I've progressively refined my website's feature set and design up to the point where both me and my stakeholder groups are very happy with the end result. I've also tested all my website's features, and though some issues were identified, they have all been fixed.
 

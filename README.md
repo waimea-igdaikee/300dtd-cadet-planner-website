@@ -1,20 +1,19 @@
 # Navy Cadet Parade Role Planner
 
 by Indiana Daikee
-###### NEED TO FIX PROBLEM WHEN NAMING ROLE A NON UNIQUE NAME
 
 ---
 
 ## Project Description
 
-At Navy Cadets, we have parade roles that need to be fulfilled by different people each week. Tracking how many times people have done each role and allocating roles to people weekly are things we struggle to do effectively. As such, this database-driven web app solves these problems with the following features:
+At Navy Cadets, we have parade roles that need to be fulfilled by different people each week. Tracking how many times people have done each role, and allocating roles weekly, are tasks we struggle to manage effectively. As such, this database-driven web app solves these problems with the following features:
 
 - Individual user account registration and login system, with some accounts having admin permissions
 - An interface showing all the parade roles for this and next week, allowing users to allocate/deallocate themselves to specific roles, and admins to allocate/deallocate any user
 - Database tracking of how many times each user has done each role, and an interface for users to see their personal statistics
 - An admin-only interface showing a unit-wide overview of how many times each user has done each role
 - Responsive design, meaning the website works on devices of any screen size and with any modern browser
-- Dark mode support -  _note that __light mode is forced by default__ as this is what the vast majority of my end-users will use - please delete `data-theme="light"` from line 15 of [base.jinja](app\templates\pages\base.jinja) if you would like to use your system default_
+- Dark mode support -  _note that __light mode is forced by default__ as this is what the vast majority of my end-users will use. To use your system default, please delete `data-theme="light"` from line 15 of [base.jinja](app\templates\pages\base.jinja)_
 
 
 ---
